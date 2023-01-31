@@ -1,2 +1,2 @@
-# mad_neutron
-Material Decomposition Neutron Radiography Tool
+# TRINIDI
+Time-of-flight Resonance Imaging with Neutrons for Isopope Density Inference
