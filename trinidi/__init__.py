@@ -10,9 +10,7 @@ is a Python package estimating isotopic densities using neutron transmission res
 
 __version__ = "0.0.1"
 
-import sys
-
-from . import _python37  # python 3.7 compatibility
+from .asdf import *
 
 
 __all__ = []

@@ -1,0 +1,9 @@
+*.pyc
+__pycache__
+
+# Sphinx documentation
+docs/_build/
+
+# macos files
+*.DS_Store
+
