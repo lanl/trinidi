@@ -42,6 +42,42 @@ extensions = [
     'sphinx.ext.viewcode'
 ]
 
+bibtex_bibfiles = ["references.bib"]
+
+# See
+#  https://stackoverflow.com/questions/2701998#62613202
+#  https://github.com/JamesALeedham/Sphinx-Autosummary-Recursion
+autosummary_generate = True
+
+
+# Copied from scikit-learn sphinx configuration
+if os.environ.get("NO_MATHJAX"):
+    extensions.append("sphinx.ext.imgmath")
+    imgmath_image_format = "svg"
+else:
+    extensions.append("sphinx.ext.mathjax")
+    mathjax_path = "https://cdn.mathjax.org/mathjax/latest/" "MathJax.js?config=TeX-AMS_HTML"
+
+mathjax_config = {
+    "TeX": {
+        "Macros": {
+            "mb": [r"\mathbf{#1}", 1],
+            "mbs": [r"\boldsymbol{#1}", 1],
+            "mbb": [r"\mathbb{#1}", 1],
+            "norm": [r"\lVert #1 \rVert", 1],
+            "abs": [r"\left| #1 \right|", 1],
+            "argmin": [r"\mathop{\mathrm{argmin}}"],
+            "sign": [r"\mathop{\mathrm{sign}}"],
+            "prox": [r"\mathrm{prox}"],
+            "loss": [r"\mathop{\mathrm{loss}}"],
+            "kp": [r"k_{\|}"],
+            "rp": [r"r_{\|}"],
+        }
+    }
+}
+
+
+
 exclude_patterns = ['_build', '**.ipynb_checkpoints']
 
 # Add any paths that contain templates here, relative to this directory.
@@ -96,7 +132,7 @@ html_theme_options = {
 }
 
 
-html_logo = 'uc.svg'
+html_logo = '_static/uc.svg'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = project + 'doc'
