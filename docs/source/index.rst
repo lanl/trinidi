@@ -1,5 +1,8 @@
-Welcome to Lumache's documentation!
-===================================
+TRINIDI Documentation
+=====================
+
+`Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference (TRINIDI) <https://github.com/lanl/trinidi>`__ is a Python package estimating isotopic densities using neutron transmission resonance images. 
+
 
 **Lumache** (/lu'make/) is a Python library for cooks and food lovers
 that creates recipes mixing random ingredients.
