@@ -4,3 +4,4 @@ sphinxcontrib-bibtex
 sphinx-autodoc-typehints
 faculty-sphinx-theme
 nbsphinx
+ipython>=6.3.1
