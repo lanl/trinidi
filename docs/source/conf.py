@@ -14,6 +14,8 @@ rootpath = os.path.join(confpath, "..", "..")
 sys.path.append(rootpath)
 
 
+from docutil import insert_inheritance_diagram, package_classes
+
 # from trinidi._version import package_version
 def package_version(): # update this ToDo
     return '0.0.1'
