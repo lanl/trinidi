@@ -6,22 +6,27 @@ TRINIDI Documentation
 TRINIDI is based on the work in `this manuscript <https://arxiv.org/abs/2302.12577>`__.
 
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
 
-.. note::
-
-   This project is under active development.
-
-Contents
---------
+SCICO Documentation
+===================
 
 .. toctree::
-
    :maxdepth: 2
    :caption: User Documentation
 
    usage
-   API Reference <_autosummary/trinidi.rst>
+   API Reference <_autosummary/scico.rst>
+   zreferences
 
 
+.. toctree::
+   :hidden:
+
+   api
+
+
+Indices
+=======
+
+* :ref:`genindex`
+* :ref:`modindex`
