@@ -1,7 +1,10 @@
-API
-===
+API Documentation
+=================
 
 .. autosummary::
-   :toctree: generated
+   :toctree: _autosummary
+   :template: package.rst
+   :caption: API Reference
+   :recursive:
 
-   lumache
+   trinidi
