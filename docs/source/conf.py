@@ -346,6 +346,13 @@ autoclass_content = "both"
 exclude_patterns = ["_build", "**tests**", "**spi**", "**README.rst", "include"]
 
 
+def class_inherit_diagrams(_):
+    # Insert inheritance diagrams for classes that have base classes
+    import trinidi
+
+    clslst = package_classes(trinidi)
+    for cls in clslst:
+        insert_inheritance_diagram(cls)
 
 
 
@@ -356,4 +363,3 @@ def setup(app):
         "http://netdna.bootstrapcdn.com/font-awesome/4.7.0/" "css/font-awesome.min.css"
     )
     app.connect("builder-inited", class_inherit_diagrams)
-    app.connect("autodoc-process-docstring", process_docstring)
