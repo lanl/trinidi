@@ -14,8 +14,6 @@ rootpath = os.path.join(confpath, "..", "..")
 sys.path.append(rootpath)
 
 
-from docutil import insert_inheritance_diagram, package_classes
-
 # from trinidi._version import package_version
 def package_version(): # update this ToDo
     return '0.0.1'
@@ -348,20 +346,9 @@ autoclass_content = "both"
 exclude_patterns = ["_build", "**tests**", "**spi**", "**README.rst", "include"]
 
 
-def class_inherit_diagrams(_):
-    # Insert inheritance diagrams for classes that have base classes
-    import trinidi
-
-    clslst = package_classes(trinidi)
-    for cls in clslst:
-        insert_inheritance_diagram(cls)
-
-
-
 def setup(app):
 
     app.add_css_file("trinidi.css")
     app.add_css_file(
         "http://netdna.bootstrapcdn.com/font-awesome/4.7.0/" "css/font-awesome.min.css"
     )
-    app.connect("builder-inited", class_inherit_diagrams)
