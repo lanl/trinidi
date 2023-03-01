@@ -18,5 +18,10 @@ Contents
 
 .. toctree::
 
+   :maxdepth: 2
+   :caption: User Documentation
+
    usage
-   api
+   API Reference <_autosummary/trinidi.rst>
+
+
