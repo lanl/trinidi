@@ -1,0 +1,6 @@
+sphinx>=4.2.0
+sphinxcontrib-napoleon
+sphinxcontrib-bibtex
+sphinx-autodoc-typehints
+faculty-sphinx-theme
+nbsphinx
