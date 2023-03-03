@@ -7,7 +7,7 @@ TRINIDI is based on the work in `this manuscript <https://arxiv.org/abs/2302.125
 
 
 
-SCICO Documentation
+TRINIDI Documentation
 ===================
 
 .. toctree::
