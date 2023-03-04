@@ -16,20 +16,9 @@ TRINIDI Documentation
    :caption: User Documentation
 
    usage
-   API Reference <_autosummary/scico.rst>
+   API Reference <_autosummary/trinidi.rst>
    zreferences
    contributing
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Developer Documentation
-
-   contributing
-
-.. toctree::
-   :hidden:
-
    api
 
 
