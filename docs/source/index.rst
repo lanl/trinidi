@@ -5,6 +5,7 @@ TRINIDI Documentation
 
 TRINIDI is based on the work in `this manuscript <https://arxiv.org/abs/2302.12577>`__.
 
+TRINIDI uses SCICO :cite:`balke-2022-scico`.
 
 
 TRINIDI Documentation

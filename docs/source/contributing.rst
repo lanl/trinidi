@@ -104,10 +104,6 @@ Tests
 All functions and classes should have corresponding ``pytest`` unit tests.
 
 
-Running Tests
-^^^^^^^^^^^^^
-
-
 To be able to run the tests, install ``pytest`` and, optionally,
 ``pytest-runner``:
 
