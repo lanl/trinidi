@@ -9,17 +9,11 @@ Measurements
 Open beam measurement, ``Y_o``, and the sample measurement, ``Y_s`` both
 need to be arrays with the same shapes:
 
-:math:`\mathrm{Shape}(Y_o)` = :math:`\mathrm{Shape}(Y_s)` = ``projection_shape + (N_A,)``
 
 
-.. math::    \mathrm{Shape}(Y_o) = \mathrm{Shape}(Y_s) = \mathrm{projection\_shape}
-
-.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) = \texttt{projection_shape}
-
-.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) = \mathsf{projection_shape}
+.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) = \texttt{projection_shape + (N_A,)}
 
 
-asdf
 
     ::
 
