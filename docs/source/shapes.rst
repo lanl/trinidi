@@ -9,13 +9,12 @@ need to be arrays with the same shapes:
 
     ::
 
-        projection_shape + (N_A,).
+        Y_o.shape = Y_s.shape = projection_shape + (N_A,).
 
-The tuple ``projection_shape`` describes the shape of the detector and
-thus is usually equal to the pixels in y-direction and x-direction,
-``(N_y, N_x)``. The integer ``N_A`` is the number of `measured`
-time-of-flight (TOF) bins, more precisely time-of-arrival (TOA) bins.
-(See :ref:`resolution_shapes`.)
+The tuple ``projection_shape`` is usually equal to the number of pixels
+in y-direction and x-direction, i.e. ``(N_y, N_x)``. The integer ``N_A``
+is the number of `measured` time-of-flight (TOF) bins, more precisely
+time-of-arrival (TOA) bins. (See :ref:`resolution_shapes`.)
 
 
 
