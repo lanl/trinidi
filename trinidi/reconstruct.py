@@ -5,24 +5,24 @@ class Parameters:
     r"""Parameter class for nuisance parameters.
 
 
-    `projection_shape` is the shape of the detector so usually this will
-        be (N_pixels_x, N_pixels_y) but it may be any shape including
-        singleton.
+    :code:`projection_shape` is the shape of the detector so usually this will
+        be :code:`(N_pixels_x, N_pixels_y)` but it may be any shape including
+        singleton shape.
 
-    `N_p` number of projections, `np.prod(projection_shape) = N_p`.
+    :code:`N_p` number of projections, :code:`np.prod(projection_shape) = N_p`.
 
-    `Y_o`, `Y_s` measurements have shape `projection_shape +  (N_A,)`
+    :code:`Y_o`, :code:`Y_s` measurements have shape :code:`projection_shape +  (N_A,)`
 
-    `N_A` is the number of measured TOF bins (TOA's)
+    :code:`N_A` is the number of measured TOF bins (TOA's)
 
-    'D' has shape `(N_F, N_A)`
+    :code:'D' has shape :code:`(N_F, N_A)`
 
-    `N_F` is the number of theoretical TOF bins. :math:`N_F \geq N_A`
+    :code:`N_F` is the number of theoretical TOF bins. :math:`N_F \geq N_A`
 
-    `ω_sz`, `ω_s0` have shape `projection_shape + (1,)`.
-        :math:`ω_sz^\top` has shape `(1,) + projection_shape`.
+    :code:`ω_sz`, :code:`ω_s0` have shape :code:`projection_shape + (1,)`.
+        :math:`ω_sz^\top` has shape :code:`(1,) + projection_shape`.
 
-    `R` has shape `(N_F, N_A)`.
+    :code:`R` has shape :code:`(N_F, N_A)`.
 
 
 
