@@ -19,7 +19,7 @@ need to be arrays with the same shapes:
 
     ::
 
-        Y_o.shape == Y_s.shape == projection_shape + (N_A,).
+        Y\_o.shape == Y\_s.shape == projection\_shape + (N_A,).
 
 The tuple ``projection_shape`` is usually equal to the number of pixels in y-direction and
 x-direction, i.e. ``(N_y, N_x)``. The integer ``N_A`` is the number of time-of-arrival (TOA) bins.
