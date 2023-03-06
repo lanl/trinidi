@@ -14,6 +14,8 @@ need to be arrays with the same shapes:
 
 .. math::    \mathrm{Shape}(Y_o) = \mathrm{Shape}(Y_s) = \mathrm{projection\_shape}
 
+.. math::    \mathrm{Shape}(Y_o) = \mathrm{Shape}(Y_s) = \texttt{projection\_shape}
+
 
 asdf
 
