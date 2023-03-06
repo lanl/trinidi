@@ -6,9 +6,8 @@ class Parameters:
 
 
     :code:`projection_shape` is the shape of the detector so usually this will
-        be :code:`(N_pixels_x, N_pixels_y)` but it may be any shape including
-        singleton shape.
-
+    be :code:`(N_pixels_x, N_pixels_y)` but it may be any shape including
+    singleton shape.
     :code:`N_p` number of projections, :code:`np.prod(projection_shape) = N_p`.
 
     :code:`Y_o`, :code:`Y_s` measurements have shape :code:`projection_shape +  (N_A,)`
