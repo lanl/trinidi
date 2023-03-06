@@ -17,7 +17,7 @@ need to be arrays with the same shapes:
 
 
 
-.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) &= \texttt{projection_shape + (N_A,)}
+.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) &= \texttt{projection_shape + (N_A,)} \\
                 &= \texttt{(N_p1, N_p2, ..., N_pn, N_A)}
 
 
