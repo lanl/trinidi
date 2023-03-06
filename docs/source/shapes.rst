@@ -12,7 +12,7 @@ need to be arrays with the same shapes:
 :math:`\mathrm{Shape}(Y_o)` = :math:`\mathrm{Shape}(Y_s)` = ``projection_shape + (N_A,)``
 
 
-..math::    \mathrm{Shape}(Y_o) = \mathrm{Shape}(Y_s) = \mathrm{projection_shape}
+.. math::    \mathrm{Shape}(Y_o) = \mathrm{Shape}(Y_s) = \mathrm{projection_shape}
 
 
     ::
