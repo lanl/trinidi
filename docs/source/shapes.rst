@@ -8,6 +8,7 @@ Open beam measurement, ``Y_o``, and the sample measurement, ``Y_s`` both
 need to be arrays with the same shapes:
 
     ::
+
         projection_shape + (N_A,).
 
 The tuple ``projection_shape`` describes the shape of the detector and
