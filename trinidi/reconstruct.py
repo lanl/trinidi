@@ -1,4 +1,4 @@
-"""Some reconstruction functions."""
+"""Some reconstruction functions and classes."""
 
 
 class Parameters:
