@@ -12,9 +12,12 @@ need to be arrays with the same shapes:
 :math:`\mathrm{Shape}(Y_o)` = :math:`\mathrm{Shape}(Y_s)` = ``projection_shape + (N_A,)``
 
 
+..math::    \mathrm{Shape}(Y_o) = \mathrm{Shape}(Y_s) = \mathrm{projection_shape}
+
+
     ::
 
-        :math:`\mathrm{Shape}(Y_o)` = Y_s.shape = projection_shape + (N_A,).
+        Y_o.shape == Y_s.shape == projection_shape + (N_A,).
 
 The tuple ``projection_shape`` is usually equal to the number of pixels in y-direction and
 x-direction, i.e. ``(N_y, N_x)``. The integer ``N_A`` is the number of time-of-arrival (TOA) bins.
