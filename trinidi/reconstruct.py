@@ -14,7 +14,7 @@ class Parameters:
 
     :code:`N_A` is the number of measured TOF bins (TOA's)
 
-    :code:'D' has shape :code:`(N_F, N_A)`
+    :code:`D` has shape :code:`(N_F, N_A)`
 
     :code:`N_F` is the number of theoretical TOF bins. :math:`N_F \geq N_A`
 

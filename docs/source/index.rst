@@ -19,6 +19,7 @@ TRINIDI Documentation
    API Reference <_autosummary/trinidi.rst>
    zreferences
    contributing
+   shapes
 
 
 Indices
