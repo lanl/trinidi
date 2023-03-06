@@ -13,6 +13,8 @@ need to be arrays with the same shapes:
 
 .. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) = \texttt{projection_shape + (N_A,)}
 
+.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) = \mathsf{projection\_shape + (N\_A,)}
+
 
 
     ::
