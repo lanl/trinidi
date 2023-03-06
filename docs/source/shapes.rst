@@ -17,6 +17,10 @@ need to be arrays with the same shapes:
 
 
 
+.. math::    \mathrm{Shape}(Y_\mathrm{o}) = \mathrm{Shape}(Y_\mathrm{s}) &= \texttt{projection_shape + (N_A,)}
+                &= \texttt{(N_p1, N_p2, ..., N_pn, N_A)}
+
+
     ::
 
         Y\_o.shape == Y\_s.shape == projection\_shape + (N_A,).
