@@ -5,7 +5,7 @@
 # package.
 
 """Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference (TRINIDI)
-is a Python package estimating isotopic densities using neutron transmission resonance images.
+is a Python package for estimating isotopic densities using neutron transmission resonance images.
 """
 
 __version__ = "0.0.1"
