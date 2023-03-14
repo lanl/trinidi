@@ -1,0 +1,1380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="84.155632mm"
+   height="19.129761mm"
+   viewBox="0 0 84.155632 19.129761"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
+   sodipodi:docname="trinidi_logo.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient1305">
+      <stop
+         style="stop-color:#fb8433;stop-opacity:1"
+         offset="0"
+         id="stop1301" />
+      <stop
+         style="stop-color:#cd510e;stop-opacity:1"
+         offset="1"
+         id="stop1303" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1299">
+      <stop
+         style="stop-color:#fb8433;stop-opacity:1"
+         offset="0"
+         id="stop1295" />
+      <stop
+         style="stop-color:#cd510e;stop-opacity:1"
+         offset="1"
+         id="stop1297" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1293">
+      <stop
+         style="stop-color:#dadada;stop-opacity:1"
+         offset="0"
+         id="stop1289" />
+      <stop
+         style="stop-color:#808080;stop-opacity:1"
+         offset="1"
+         id="stop1291" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1287">
+      <stop
+         style="stop-color:#dadada;stop-opacity:1"
+         offset="0"
+         id="stop1283" />
+      <stop
+         style="stop-color:#808080;stop-opacity:1"
+         offset="1"
+         id="stop1285" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1281">
+      <stop
+         style="stop-color:#dadada;stop-opacity:1"
+         offset="0"
+         id="stop1277" />
+      <stop
+         style="stop-color:#808080;stop-opacity:1"
+         offset="1"
+         id="stop1279" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1275">
+      <stop
+         style="stop-color:#dadada;stop-opacity:1"
+         offset="0"
+         id="stop1271" />
+      <stop
+         style="stop-color:#808080;stop-opacity:1"
+         offset="1"
+         id="stop1273" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1238">
+      <stop
+         style="stop-color:#fb8433;stop-opacity:1"
+         offset="0"
+         id="stop1234" />
+      <stop
+         style="stop-color:#cd510e;stop-opacity:1"
+         offset="1"
+         id="stop1236" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1278">
+      <stop
+         style="stop-color:#cbcbcb;stop-opacity:1"
+         offset="0"
+         id="stop1274" />
+      <stop
+         style="stop-color:#b4b4b4;stop-opacity:1"
+         offset="1"
+         id="stop1276" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1272">
+      <stop
+         style="stop-color:#cbcbcb;stop-opacity:1"
+         offset="0"
+         id="stop1268" />
+      <stop
+         style="stop-color:#b4b4b4;stop-opacity:1"
+         offset="1"
+         id="stop1270" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1266">
+      <stop
+         style="stop-color:#cbcbcb;stop-opacity:1"
+         offset="0"
+         id="stop1262" />
+      <stop
+         style="stop-color:#b4b4b4;stop-opacity:1"
+         offset="1"
+         id="stop1264" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1102">
+      <stop
+         style="stop-color:#cbcbcb;stop-opacity:1"
+         offset="0"
+         id="stop1098" />
+      <stop
+         style="stop-color:#b4b4b4;stop-opacity:1"
+         offset="1"
+         id="stop1100" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1064">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop1060" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop1062" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1058">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop1054" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop1056" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1052">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop1048" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop1050" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1046">
+      <stop
+         style="stop-color:#ffd43b;stop-opacity:1;"
+         offset="0"
+         id="stop1042" />
+      <stop
+         style="stop-color:#ffe873;stop-opacity:1"
+         offset="1"
+         id="stop1044" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1040">
+      <stop
+         style="stop-color:#ffd43b;stop-opacity:1;"
+         offset="0"
+         id="stop1036" />
+      <stop
+         style="stop-color:#ffe873;stop-opacity:1"
+         offset="1"
+         id="stop1038" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1014">
+      <stop
+         style="stop-color:#ffd43b;stop-opacity:1;"
+         offset="0"
+         id="stop1010" />
+      <stop
+         style="stop-color:#ffe873;stop-opacity:1"
+         offset="1"
+         id="stop1012" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1008">
+      <stop
+         style="stop-color:#ffd43b;stop-opacity:1;"
+         offset="0"
+         id="stop1004" />
+      <stop
+         style="stop-color:#ffe873;stop-opacity:1"
+         offset="1"
+         id="stop1006" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1002">
+      <stop
+         style="stop-color:#ffd43b;stop-opacity:1;"
+         offset="0"
+         id="stop998" />
+      <stop
+         style="stop-color:#ffe873;stop-opacity:1"
+         offset="1"
+         id="stop1000" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient996">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop992" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop994" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient990">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop986" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop988" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient984">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop980" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop982" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient978">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop974" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop976" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1131">
+      <stop
+         style="stop-color:#236ce4;stop-opacity:1"
+         offset="0"
+         id="stop1127" />
+      <stop
+         style="stop-color:#6d7177;stop-opacity:0.63529414"
+         offset="0.47999999"
+         id="stop1135" />
+      <stop
+         style="stop-color:#f2ca32;stop-opacity:0.41176471"
+         offset="1"
+         id="stop1129" />
+    </linearGradient>
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-1" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect872" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect872-1" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect929" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-6" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect965" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-6-1" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect1001" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-1" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect1049" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1131"
+       id="linearGradient1133"
+       x1="23.833544"
+       y1="97.317871"
+       x2="113.85285"
+       y2="82.869041"
+       gradientUnits="userSpaceOnUse" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-3" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect1164" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-3-3" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect1397" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-3-8" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect1524" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect835-9-1-3-8-3" />
+    <rect
+       x="15.119048"
+       y="73.327377"
+       width="187.6042"
+       height="75.678032"
+       id="rect934" />
+    <linearGradient
+       id="linearGradient2795">
+      <stop
+         style="stop-color:#b8b8b8;stop-opacity:0.49803922;"
+         offset="0"
+         id="stop2797" />
+      <stop
+         style="stop-color:#7f7f7f;stop-opacity:0;"
+         offset="1"
+         id="stop2799" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2787">
+      <stop
+         style="stop-color:#7f7f7f;stop-opacity:0.5;"
+         offset="0"
+         id="stop2789" />
+      <stop
+         style="stop-color:#7f7f7f;stop-opacity:0;"
+         offset="1"
+         id="stop2791" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3676">
+      <stop
+         style="stop-color:#b2b2b2;stop-opacity:0.5;"
+         offset="0"
+         id="stop3678" />
+      <stop
+         style="stop-color:#b3b3b3;stop-opacity:0;"
+         offset="1"
+         id="stop3680" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3236">
+      <stop
+         style="stop-color:#f4f4f4;stop-opacity:1"
+         offset="0"
+         id="stop3244" />
+      <stop
+         style="stop-color:white;stop-opacity:1"
+         offset="1"
+         id="stop3240" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4671">
+      <stop
+         style="stop-color:#ffd43b;stop-opacity:1;"
+         offset="0"
+         id="stop4673" />
+      <stop
+         style="stop-color:#ffe873;stop-opacity:1"
+         offset="1"
+         id="stop4675" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4689">
+      <stop
+         style="stop-color:#5a9fd4;stop-opacity:1;"
+         offset="0"
+         id="stop4691" />
+      <stop
+         style="stop-color:#306998;stop-opacity:1;"
+         offset="1"
+         id="stop4693" />
+    </linearGradient>
+    <linearGradient
+       x1="224.23996"
+       y1="144.75717"
+       x2="-65.308502"
+       y2="144.75717"
+       id="linearGradient2987"
+       xlink:href="#linearGradient4671"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(100.2702,99.61116)" />
+    <linearGradient
+       x1="172.94208"
+       y1="77.475983"
+       x2="26.670298"
+       y2="76.313133"
+       id="linearGradient2990"
+       xlink:href="#linearGradient4689"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(100.2702,99.61116)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4671"
+       id="linearGradient2255"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.562541,0,0,0.567972,-11.5974,-7.60954)"
+       x1="224.23996"
+       y1="144.75717"
+       x2="-65.308502"
+       y2="144.75717" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4689"
+       id="linearGradient2258"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.562541,0,0,0.567972,-11.5974,-7.60954)"
+       x1="172.94208"
+       y1="76.176224"
+       x2="26.670298"
+       y2="76.313133" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2795"
+       id="radialGradient2801"
+       cx="61.518883"
+       cy="132.28575"
+       fx="61.518883"
+       fy="132.28575"
+       r="29.036913"
+       gradientTransform="matrix(1,0,0,0.177966,0,108.7434)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4671"
+       id="linearGradient1475"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.562541,0,0,0.567972,-14.99112,-11.702371)"
+       x1="150.96111"
+       y1="192.35176"
+       x2="112.03144"
+       y2="137.27299" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4689"
+       id="linearGradient1478"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.562541,0,0,0.567972,-14.99112,-11.702371)"
+       x1="26.648937"
+       y1="20.603781"
+       x2="135.66525"
+       y2="114.39767" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2795"
+       id="radialGradient1480"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.7490565e-8,-0.23994696,1.054668,3.7915457e-7,-83.7008,142.46201)"
+       cx="61.518883"
+       cy="132.28575"
+       fx="61.518883"
+       fy="132.28575"
+       r="29.036913" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1046"
+       id="linearGradient1096"
+       x1="96.319565"
+       y1="381.25888"
+       x2="92.686104"
+       y2="364.4751"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1272"
+       id="linearGradient1104"
+       x1="36.431595"
+       y1="363.21341"
+       x2="113.93591"
+       y2="377.87466"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1266"
+       id="linearGradient1106"
+       x1="36.431595"
+       y1="363.21341"
+       x2="113.93591"
+       y2="377.87466"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1278"
+       id="linearGradient1108"
+       x1="36.431595"
+       y1="363.21341"
+       x2="113.93591"
+       y2="377.87466"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1102"
+       id="linearGradient1110"
+       x1="36.431595"
+       y1="363.21341"
+       x2="113.93591"
+       y2="377.87466"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1357"
+       x1="148.75842"
+       y1="329.37726"
+       x2="156.62848"
+       y2="346.12115"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(6.6450443,72.815706)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1359"
+       x1="148.75842"
+       y1="329.37726"
+       x2="156.62848"
+       y2="346.12115"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(6.6450443,72.815706)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1293"
+       id="linearGradient1367"
+       x1="150.87723"
+       y1="327.25327"
+       x2="154.51268"
+       y2="344.04004"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(6.6450443,72.815706)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1064"
+       id="linearGradient1454"
+       gradientUnits="userSpaceOnUse"
+       x1="145.12367"
+       y1="329.33331"
+       x2="160.26326"
+       y2="346.12161"
+       gradientTransform="translate(-74.633247,32.839845)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1064"
+       id="linearGradient1484"
+       gradientUnits="userSpaceOnUse"
+       x1="145.12367"
+       y1="329.33331"
+       x2="160.26326"
+       y2="346.12161"
+       gradientTransform="translate(-39.676054,33.089929)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1275"
+       id="linearGradient1125"
+       gradientUnits="userSpaceOnUse"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914"
+       gradientTransform="translate(-0.45310442,39.035542)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1281"
+       id="linearGradient1127"
+       gradientUnits="userSpaceOnUse"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914"
+       gradientTransform="translate(-0.45310442,39.035542)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1287"
+       id="linearGradient1129"
+       gradientUnits="userSpaceOnUse"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914"
+       gradientTransform="translate(-0.45310442,39.035542)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1293"
+       id="linearGradient1134"
+       gradientUnits="userSpaceOnUse"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914"
+       gradientTransform="translate(-0.45310442,39.035542)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1064"
+       id="linearGradient1225"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(3.5635103,37.874035)"
+       x1="145.12367"
+       y1="329.33331"
+       x2="160.26326"
+       y2="346.12161" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1064"
+       id="linearGradient1227"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(3.5635103,37.874035)"
+       x1="145.12367"
+       y1="329.33331"
+       x2="160.26326"
+       y2="346.12161" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1046"
+       id="linearGradient1229"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(3.5635103,37.874035)"
+       x1="154.5127"
+       y1="344.04004"
+       x2="150.87723"
+       y2="327.25327" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1313"
+       x1="73.672081"
+       y1="401.25266"
+       x2="116.49936"
+       y2="418.24658"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1315"
+       x1="73.672081"
+       y1="401.25266"
+       x2="116.49936"
+       y2="418.24658"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1317"
+       x1="73.672081"
+       y1="401.25266"
+       x2="116.49936"
+       y2="418.24658"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1460"
+       gradientUnits="userSpaceOnUse"
+       x1="73.672081"
+       y1="401.25266"
+       x2="116.49936"
+       y2="418.24658"
+       gradientTransform="matrix(1,0,-0.26794919,1,112.28643,28.901294)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1462"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,99.420567,101.717)"
+       x1="148.75842"
+       y1="329.37726"
+       x2="156.62848"
+       y2="346.12115" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1464"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,99.420567,101.717)"
+       x1="148.75842"
+       y1="329.37726"
+       x2="156.62848"
+       y2="346.12115" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1293"
+       id="linearGradient1466"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,99.420567,101.717)"
+       x1="150.87723"
+       y1="327.25327"
+       x2="154.51268"
+       y2="344.04004" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1468"
+       gradientUnits="userSpaceOnUse"
+       x1="73.672081"
+       y1="401.25266"
+       x2="116.49936"
+       y2="418.24658"
+       gradientTransform="matrix(1,0,-0.26794919,1,112.28643,28.901294)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1275"
+       id="linearGradient1470"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,101.37379,67.936836)"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1275"
+       id="linearGradient1472"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,101.37379,67.936836)"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1275"
+       id="linearGradient1474"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,101.37379,67.936836)"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1305"
+       id="linearGradient1476"
+       gradientUnits="userSpaceOnUse"
+       x1="73.672081"
+       y1="401.25266"
+       x2="116.49936"
+       y2="418.24658"
+       gradientTransform="matrix(1,0,-0.26794919,1,112.28643,28.901294)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1275"
+       id="linearGradient1479"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,-0.26794919,1,101.37379,67.936836)"
+       x1="42.988998"
+       y1="361.94794"
+       x2="104.38742"
+       y2="382.5914" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9899227"
+     inkscape:cx="78.597435"
+     inkscape:cy="-94.030068"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="2084"
+     inkscape:window-height="1181"
+     inkscape:window-x="144"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid923"
+       originx="-35.978488"
+       originy="-401.2087" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-35.978489,-401.20871)">
+    <rect
+       style="opacity:1;fill:#343434;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.23747;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4126"
+       width="154.73157"
+       height="33.382374"
+       x="24.945772"
+       y="425.26636" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1317);fill-opacity:1;stroke-width:1.0609"
+       d="m 116.49934,401.41576 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-5-7-8"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1484);fill-opacity:1;stroke-width:1.0609"
+       d="m 116.95244,362.38032 v 16.83077 l 0.002,-0.003 1.81342,2.02454 h 0.009 l 1.81035,-2.02108 v -16.78739 l -1.79478,2.00373 -1.83367,-2.04716 z"
+       id="path1230-5-8-0-9-5"
+       inkscape:transform-center-x="-3.3456091"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1454);fill-opacity:1;stroke-width:1.0609"
+       d="m 70.490423,362.17317 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-5"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <text
+       xml:space="preserve"
+       id="text833"
+       style="font-size:35.27779999999999916px;line-height:1.25;font-family:Silom;-inkscape-font-specification:Silom;white-space:pre;shape-inside:url(#rect835);"
+       transform="translate(12.794891,0.25088023)"><tspan
+         x="15.119141"
+         y="104.30085"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35.2778px;font-family:Flux;-inkscape-font-specification:'Flux Medium'">TRINIDI</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:Silom;-inkscape-font-specification:Silom;stroke-width:0.264583"
+       x="48.921642"
+       y="156.54926"
+       id="text861"><tspan
+         sodipodi:role="line"
+         id="tspan859"
+         x="48.921642"
+         y="156.54926"
+         style="stroke-width:0.264583" /></text>
+    <text
+       xml:space="preserve"
+       id="text833-5-5"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.39999999999999858px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1);"
+       transform="translate(7.4312414,72.290656)"><tspan
+         x="15.119141"
+         y="98.855125"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.4px;font-family:'Kannada MN';-inkscape-font-specification:'Kannada MN Bold'">TRINIDI</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text833-5-5-9"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.39999999999999858px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3);"
+       transform="translate(2.4060644,114.72636)"><tspan
+         x="15.119141"
+         y="98.855125"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.4px;font-family:'Kannada MN';-inkscape-font-specification:'Kannada MN Bold'">TRINIDI</tspan></tspan></text>
+    <path
+       id="text833-5-5-9-6"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#ff0000;stroke-width:1"
+       d="m 98.5229,226.89413 v 15.01459 l 0.0031,-0.003 1.80609,1.80609 h 0.009 l 1.80299,-1.80299 v -14.97583 l -1.78749,1.78749 -1.826247,-1.82625 z m -91.3432605,0.0388 v 1.43867 h 5.8291015 v 15.37891 h 3.621484 V 228.3716 h 5.816699 v -1.43867 z m 18.4670895,0 v 16.81758 h 3.633886 v -7.60264 h 1.178224 l 5.643065,7.60264 h 4.092773 l -5.990331,-8.04912 c 0.578777,-0.17363 1.099675,-0.39688 1.562696,-0.66973 0.471289,-0.27285 0.872299,-0.58704 1.203026,-0.94258 0.330729,-0.36379 0.582911,-0.76067 0.756544,-1.19062 0.181901,-0.42995 0.272852,-0.88884 0.272852,-1.37666 0,-0.66146 -0.132292,-1.27331 -0.396875,-1.83555 -0.256315,-0.56224 -0.644922,-1.04593 -1.165821,-1.45107 -0.520898,-0.41341 -1.174088,-0.73174 -1.95957,-0.95498 -0.785482,-0.23151 -1.703255,-0.34727 -2.75332,-0.34727 z m 16.569531,0 v 15.01459 l 0.0031,-0.003 1.806091,1.80609 h 0.0093 l 1.80299,-1.803 v -14.97583 l -1.787488,1.78749 -1.826244,-1.82624 z m 8.334375,0 v 16.81758 h 2.1208 v -11.55899 l 10.852052,11.80703 h 1.339453 v -17.06562 h -2.083594 v 10.69082 L 52.758253,226.93289 Z m 27.384375,0 v 16.81758 h 6.511229 c 1.570966,0 2.964162,-0.22324 4.179591,-0.66973 1.223698,-0.44648 2.253091,-1.05833 3.088182,-1.83555 0.835094,-0.77721 1.467607,-1.68258 1.89756,-2.71611 0.438211,-1.04179 0.657323,-2.15387 0.657323,-3.33623 0,-1.31465 -0.260445,-2.4846 -0.781346,-3.50986 -0.512628,-1.02526 -1.231966,-1.88929 -2.158008,-2.59209 -0.917773,-0.7028 -2.021581,-1.2361 -3.311427,-1.5999 -1.281573,-0.37207 -2.691307,-0.55811 -4.229198,-0.55811 z m -6.525183,0.0388 -1.806091,1.80609 -0.0031,-0.003 v 15.01458 l 0.0078,-5.1e-4 1.826244,-1.82625 1.787488,1.78749 V 228.77464 L 71.41913,226.97165 Z M 29.280615,228.57 h 1.922364 c 0.438216,0 0.839224,0.0744 1.203026,0.22324 0.363802,0.14883 0.677998,0.35968 0.942578,0.63252 0.264586,0.26458 0.47129,0.58291 0.620118,0.95498 0.148828,0.37207 0.223242,0.78136 0.223242,1.22783 0,0.47956 -0.09508,0.90951 -0.285253,1.28985 -0.190169,0.38034 -0.454752,0.7028 -0.79375,0.96738 -0.338997,0.25631 -0.740008,0.45475 -1.203028,0.59531 -0.454753,0.14055 -0.950847,0.21084 -1.488282,0.21084 h -1.141015 z m 52.28828,0.062 h 2.443263 c 0.892969,0 1.715659,0.1695 2.468065,0.5085 0.752409,0.33073 1.401467,0.78962 1.94717,1.37666 0.545703,0.58704 0.971515,1.28571 1.27744,2.09599 0.305924,0.80202 0.458888,1.67433 0.458888,2.6169 0,1.0914 -0.165365,2.05879 -0.496094,2.90215 -0.322461,0.84335 -0.76481,1.55443 -1.327052,2.1332 -0.553969,0.57877 -1.203026,1.017 -1.947167,1.31465 -0.74414,0.29765 -1.53789,0.44648 -2.38125,0.44648 h -2.443263 z" />
+    <path
+       id="text833-5-5-9-6-77"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);stroke-width:1"
+       d="m 90.338487,167.1438 v 15.01459 l 0.0031,-0.003 1.806091,1.8061 h 0.0093 l 1.80299,-1.80298 v -14.97584 l -1.787488,1.78749 -1.826244,-1.82625 z" />
+    <path
+       id="text833-5-5-9-6-7-4"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);stroke-width:1"
+       d="m 112.07232,177.2588 v 1.43867 h 5.8291 v 15.37891 h 3.62148 v -15.37891 h 5.8167 v -1.43867 z m 18.46709,0 v 16.81758 h 3.63388 v -7.60264 h 1.17823 l 5.64306,7.60264 h 4.09277 l -5.99033,-8.04912 c 0.57878,-0.17363 1.09968,-0.39688 1.5627,-0.66973 0.47129,-0.27285 0.8723,-0.58704 1.20303,-0.94258 0.33072,-0.36379 0.58291,-0.76067 0.75654,-1.19062 0.1819,-0.42995 0.27285,-0.88884 0.27285,-1.37666 0,-0.66146 -0.13229,-1.27331 -0.39687,-1.83555 -0.25632,-0.56224 -0.64493,-1.04593 -1.16582,-1.45107 -0.5209,-0.41341 -1.17409,-0.73174 -1.95957,-0.95498 -0.78549,-0.23151 -1.70326,-0.34727 -2.75332,-0.34727 z m 16.56953,0 v 15.01459 l 0.003,-0.003 1.80609,1.80609 h 0.009 l 1.80299,-1.80299 v -14.97583 l -1.78749,1.78749 -1.82624,-1.82624 z m 8.33437,0 v 16.81758 h 2.1208 V 182.5174 l 10.85205,11.80703 h 1.33946 V 177.2588 h -2.0836 v 10.69082 L 157.65093,177.2588 Z m 19.05,0 v 16.81758 h 3.62149 V 177.2588 Z m 8.33437,0 v 16.81758 h 6.51123 c 1.57097,0 2.96417,-0.22324 4.1796,-0.66973 1.22369,-0.44648 2.25309,-1.05833 3.08818,-1.83554 0.83509,-0.77722 1.46761,-1.68259 1.89756,-2.71612 0.43821,-1.04179 0.65732,-2.15387 0.65732,-3.33623 0,-1.31465 -0.26045,-2.4846 -0.78135,-3.50986 -0.51263,-1.02526 -1.23196,-1.88929 -2.158,-2.59209 -0.91778,-0.7028 -2.02159,-1.2361 -3.31143,-1.5999 -1.28158,-0.37207 -2.69131,-0.55811 -4.2292,-0.55811 z m 20.58789,0 v 16.81758 h 3.62149 V 177.2588 Z m -69.24228,1.63711 h 1.92237 c 0.43821,0 0.83922,0.0744 1.20302,0.22324 0.3638,0.14883 0.678,0.35968 0.94258,0.63252 0.26458,0.26458 0.47129,0.58291 0.62012,0.95498 0.14883,0.37207 0.22324,0.78135 0.22324,1.22783 0,0.47956 -0.0951,0.90951 -0.28525,1.28985 -0.19017,0.38034 -0.45475,0.7028 -0.79375,0.96738 -0.339,0.25631 -0.74001,0.45476 -1.20303,0.59532 -0.45475,0.14055 -0.95085,0.21083 -1.48828,0.21083 h -1.14102 z m 52.28828,0.062 h 2.44326 c 0.89297,0 1.71566,0.1695 2.46807,0.5085 0.75241,0.33073 1.40146,0.78962 1.94717,1.37666 0.5457,0.58704 0.97151,1.28571 1.27744,2.09599 0.30592,0.80202 0.45889,1.67433 0.45889,2.6169 0,1.0914 -0.16537,2.05879 -0.4961,2.90215 -0.32246,0.84335 -0.76481,1.55443 -1.32705,2.1332 -0.55397,0.57877 -1.20303,1.017 -1.94717,1.31465 -0.74414,0.29765 -1.53789,0.44648 -2.38125,0.44648 h -2.44326 z" />
+    <path
+       id="text833-5-5-9-6-0"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 104.51896,250.05485 v 15.01459 l 0.003,-0.003 1.8061,1.80609 h 0.009 l 1.80299,-1.80299 v -14.97583 l -1.78749,1.78749 -1.82625,-1.82624 z m -91.343252,0.0388 v 1.43867 h 5.829101 v 15.37891 h 3.621485 v -15.37895 h 5.816699 v -1.43867 z m 18.46709,0 v 16.81758 h 3.633886 v -7.60264 h 1.178224 l 5.643065,7.60264 h 4.092773 l -5.990331,-8.04912 c 0.578776,-0.17363 1.099675,-0.39688 1.562696,-0.66973 0.471289,-0.27285 0.872299,-0.58704 1.203026,-0.94258 0.330729,-0.36379 0.582911,-0.76067 0.756544,-1.19062 0.181901,-0.42995 0.272852,-0.88885 0.272852,-1.37667 0,-0.66145 -0.132292,-1.2733 -0.396871,-1.83554 -0.256316,-0.56224 -0.644922,-1.04593 -1.165821,-1.45108 -0.520898,-0.41341 -1.174088,-0.73173 -1.95957,-0.95498 -0.785482,-0.2315 -1.703255,-0.34726 -2.75332,-0.34726 z m 16.569531,0 v 15.01455 l 0.0031,-0.003 1.806091,1.80609 h 0.0093 l 1.80299,-1.80299 v -14.97583 l -1.787488,1.78749 -1.826244,-1.82625 z m 8.334375,0 v 16.81758 h 2.1208 V 255.3522 l 10.852052,11.80703 h 1.339453 v -17.06562 h -2.083594 v 10.69082 L 58.754321,250.09361 Z m 27.384375,0 v 16.81758 h 6.511229 c 1.570966,0 2.964161,-0.22324 4.179591,-0.66973 1.223698,-0.44648 2.253091,-1.05834 3.088182,-1.83555 0.835094,-0.77722 1.467607,-1.68258 1.89756,-2.71611 0.438209,-1.04179 0.657329,-2.15387 0.657319,-3.33623 0,-1.31465 -0.26044,-2.4846 -0.781341,-3.50986 -0.512627,-1.02526 -1.231967,-1.88929 -2.158009,-2.59209 -0.917773,-0.7028 -2.021581,-1.23611 -3.311427,-1.59991 -1.281573,-0.37207 -2.691307,-0.5581 -4.229198,-0.5581 z m -6.525183,0.0388 -1.806091,1.80609 -0.0031,-0.003 v 15.01459 l 0.0078,-5.3e-4 1.826244,-1.82625 1.787488,1.78749 v -14.97583 l -1.80299,-1.80299 z m -42.129212,1.59835 h 1.922364 c 0.438216,0 0.839224,0.0744 1.203026,0.22324 0.363802,0.14883 0.677998,0.35968 0.942578,0.63252 0.264586,0.26458 0.471289,0.58291 0.620118,0.95498 0.148826,0.37207 0.223242,0.78135 0.223242,1.22783 0,0.47956 -0.09508,0.9095 -0.285253,1.28985 -0.190169,0.38033 -0.454752,0.7028 -0.79375,0.96738 -0.338997,0.25631 -0.740008,0.45475 -1.203029,0.59531 -0.454752,0.14055 -0.950846,0.21084 -1.488281,0.21084 h -1.141015 z m 52.28828,0.062 h 2.443263 c 0.892969,0 1.715659,0.16949 2.468065,0.50849 0.752409,0.33074 1.401466,0.78963 1.94717,1.37667 0.545703,0.58704 0.971515,1.28571 1.27744,2.09599 0.30592,0.80202 0.458885,1.67433 0.458888,2.6169 0,1.0914 -0.165365,2.05879 -0.496094,2.90215 -0.322461,0.84334 -0.76481,1.55443 -1.327052,2.1332 -0.553969,0.57877 -1.203026,1.017 -1.947167,1.31465 -0.74414,0.29765 -1.53789,0.44648 -2.38125,0.44648 h -2.443263 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 58.624239,272.58818 -1.806075,1.80609 -0.0028,-0.003 1.8e-5,15.01459 0.0079,-5.3e-4 1.826236,-1.82625 1.787481,1.78749 -3.6e-5,-14.97583 -1.802973,-1.80299 z"
+       id="path1236" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 52.135549,275.41079 v 15.01455 l 0.0031,-0.003 1.806092,1.80609 h 0.0093 l 1.80299,-1.80299 -10e-7,-14.97583 -1.787487,1.78749 -1.826244,-1.82625 z"
+       id="path1230" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 61.495302,275.41032 3.1e-5,15.01459 0.0032,-0.003 1.806091,1.80609 h 0.009 l 1.802978,-1.80299 -1e-5,-14.97583 -1.787488,1.78749 -1.826249,-1.82624 z"
+       id="text833-5-5-9-6-0-6" />
+    <path
+       id="text833-5-5-9-6-0-61"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 102.43577,272.4509 v 1.43868 h 5.82909 v 15.3789 h 3.62149 v -15.3789 h 5.8167 v -1.43868 z m 18.46708,0 v 16.81758 h 3.63389 v -7.60264 h 1.17822 l 5.64307,7.60264 h 4.09277 l -5.99033,-8.04913 c 0.57878,-0.17364 1.09967,-0.39687 1.5627,-0.66974 0.47128,-0.27283 0.8723,-0.58703 1.20302,-0.94257 0.33073,-0.36378 0.58291,-0.76068 0.75655,-1.19063 0.1819,-0.42995 0.27285,-0.88884 0.27285,-1.37665 0,-0.66146 -0.1323,-1.27331 -0.39688,-1.83555 -0.25631,-0.56224 -0.64492,-1.04592 -1.16582,-1.45108 -0.5209,-0.41341 -1.17409,-0.73173 -1.95957,-0.95496 -0.78548,-0.23151 -1.70325,-0.34727 -2.75332,-0.34727 z m 24.90387,0 v 16.81758 h 2.12079 V 277.7095 l 10.85199,11.80703 h 1.33944 V 272.4509 h -2.08358 v 10.69081 L 148.01432,272.4509 Z m 27.38421,0 v 16.81758 h 6.5112 c 1.57096,0 2.96415,-0.22325 4.17958,-0.66974 1.2237,-0.44648 2.2531,-1.05833 3.08819,-1.83554 0.83509,-0.77722 1.4676,-1.6826 1.89755,-2.71611 0.43821,-1.0418 0.65734,-2.15387 0.65733,-3.33624 0,-1.31463 -0.26045,-2.48459 -0.78135,-3.50985 -0.51262,-1.02527 -1.23196,-1.88929 -2.15801,-2.5921 -0.91777,-0.70279 -2.02158,-1.23611 -3.31142,-1.59991 -1.28158,-0.37206 -2.69131,-0.55809 -4.22919,-0.55809 z m -48.65419,1.63711 h 1.92236 c 0.43822,0 0.83924,0.0744 1.20303,0.22323 0.3638,0.14883 0.678,0.35968 0.94258,0.63252 0.26459,0.26458 0.47129,0.58293 0.62012,0.95498 0.14882,0.37209 0.22324,0.78137 0.22324,1.22783 0,0.47956 -0.0951,0.9095 -0.28526,1.28984 -0.19017,0.38034 -0.45475,0.70281 -0.79375,0.9674 -0.33899,0.2563 -0.74,0.45474 -1.20302,0.59531 -0.45475,0.14055 -0.95085,0.21085 -1.48829,0.21085 h -1.14101 z m 52.28806,0.062 h 2.44325 c 0.89296,0 1.71565,0.16949 2.46805,0.5085 0.75241,0.33075 1.40146,0.78962 1.94717,1.37665 0.5457,0.58706 0.97152,1.28572 1.27744,2.096 0.30593,0.80204 0.45889,1.67434 0.45889,2.61689 0,1.09141 -0.16536,2.0588 -0.49609,2.90216 -0.32246,0.84334 -0.76482,1.55443 -1.32705,2.13321 -0.55397,0.57877 -1.20303,1.017 -1.94717,1.31463 -0.74414,0.29766 -1.53789,0.44649 -2.38124,0.44649 h -2.44325 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#ff0000;fill-opacity:0.619883;stroke-width:1.0609"
+       d="m 166.56737,271.36207 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1.0609"
+       d="m 214.43748,244.55849 v 16.83077 l 0.002,-0.003 1.81343,2.02454 h 0.009 l 1.81034,-2.02108 v -16.78739 l -1.79477,2.00373 -1.83368,-2.04716 z"
+       id="path1230-5"
+       inkscape:transform-center-x="-3.3456091"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1.0609"
+       d="m 167.97146,244.35734 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <rect
+       style="fill:#00ff00;fill-opacity:0.418129;stroke-width:2.2;stroke-opacity:0"
+       id="rect973"
+       width="19.116592"
+       height="23.283028"
+       x="173.19304"
+       y="269.02112" />
+    <path
+       id="text833-5-5-9-6-0-61-0"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 133.91463,245.39459 v 1.43867 h 5.8291 v 15.3789 h 3.62149 v -15.3789 h 5.8167 v -1.43867 z" />
+    <path
+       id="text833-5-5-9-6-0-61-00"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 151.30272,245.39459 v 16.81758 h 3.63388 v -7.60262 h 1.17823 l 5.64306,7.60262 h 4.09278 l -5.99033,-8.0491 c 0.57877,-0.17365 1.09966,-0.39688 1.56269,-0.66974 0.47128,-0.27284 0.87231,-0.58703 1.20303,-0.94258 0.33073,-0.36378 0.5829,-0.76068 0.75654,-1.19063 0.1819,-0.42994 0.27285,-0.88884 0.27285,-1.37665 0,-0.66146 -0.13229,-1.27331 -0.39687,-1.83555 -0.25631,-0.56224 -0.64492,-1.04592 -1.16582,-1.45108 -0.5209,-0.41341 -1.17409,-0.73176 -1.95957,-0.95498 -0.78548,-0.23152 -1.70325,-0.34727 -2.75332,-0.34727 z m 3.63388,1.63711 h 1.92237 c 0.43822,0 0.83924,0.0744 1.20302,0.22325 0.36381,0.14883 0.678,0.35968 0.94258,0.63252 0.26459,0.26458 0.47129,0.58293 0.62012,0.95498 0.14882,0.37209 0.22324,0.78137 0.22324,1.22783 0,0.47956 -0.0951,0.90951 -0.28525,1.28984 -0.19017,0.38034 -0.45475,0.70279 -0.79375,0.9674 -0.33899,0.25628 -0.74001,0.45474 -1.20303,0.59531 -0.45475,0.14055 -0.95084,0.21082 -1.48828,0.21082 h -1.14102 z" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8"
+       width="2.1207986"
+       height="2.1210001"
+       x="149.18192"
+       y="245.39459" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#ff0000;fill-opacity:0.619883;stroke-width:1.0609"
+       d="m 132.24384,270.70541 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-8"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-3"
+       width="2.1207986"
+       height="2.1210001"
+       x="165.85068"
+       y="260.09116" />
+    <path
+       id="text833-5-5-9-6-0-61-1"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 173.72705,245.39507 v 16.81758 h 2.1208 v -11.55898 l 10.85205,11.80703 h 1.33945 v -17.06563 h -2.08359 v 10.69083 l -10.0211,-10.69083 z" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-3-4"
+       width="2.1207986"
+       height="2.1210001"
+       x="171.60625"
+       y="260.09164" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-3-4-0"
+       width="2.1207986"
+       height="2.1210001"
+       x="188.03935"
+       y="260.33969" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1.0609"
+       d="m 191.98259,244.63171 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       id="text833-5-5-9-6-0-61-3"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 195.9164,245.59908 v 16.81758 h 6.50916 c 1.57096,0 2.96416,-0.22323 4.17959,-0.66971 1.2237,-0.44649 2.25309,-1.05833 3.08818,-1.83555 0.83509,-0.77721 1.46761,-1.68262 1.89756,-2.7161 0.43821,-1.04183 0.65734,-2.15387 0.65733,-3.33624 0,-1.31464 -0.26045,-2.4846 -0.78135,-3.50986 -0.51262,-1.02529 -1.23196,-1.88928 -2.15801,-2.59209 -0.91777,-0.70279 -2.02158,-1.23611 -3.31143,-1.59991 -1.28157,-0.37206 -2.69131,-0.55812 -4.22919,-0.55812 z m 3.63182,1.69913 h 2.44326 c 0.89296,0 1.71567,0.16949 2.46806,0.5085 0.75242,0.33076 1.40146,0.78963 1.94717,1.37666 0.5457,0.58706 0.97152,1.28571 1.27744,2.096 0.30593,0.80203 0.45889,1.67434 0.45889,2.61689 0,1.09141 -0.16536,2.0588 -0.49609,2.90216 -0.32246,0.84333 -0.76482,1.5544 -1.32705,2.1332 -0.55397,0.57875 -1.20303,1.01701 -1.94717,1.31464 -0.74414,0.29765 -1.5379,0.44648 -2.38125,0.44648 h -2.44326 z" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8"
+       width="2.1207986"
+       height="2.1210001"
+       x="193.79559"
+       y="260.29565" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-2"
+       width="2.1207986"
+       height="2.1210001"
+       x="212.323"
+       y="260.29266" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.418129;stroke-width:0.305585;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-0"
+       width="1.841"
+       height="1.024"
+       x="190.16716"
+       y="262.46011" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.418129;stroke-width:0.305585;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-0-4"
+       width="1.841"
+       height="1.024"
+       x="171.60622"
+       y="244.40129" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.418129;stroke-width:0.305585;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-0-7"
+       width="1.841"
+       height="1.024"
+       x="212.6028"
+       y="244.5589" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#0000ff;fill-opacity:0.491228;stroke-width:1.0609"
+       d="m 50.627161,331.04277 v 16.83077 l 0.002,-0.003 1.81342,2.02454 h 0.009 l 1.81034,-2.02108 v -16.78739 l -1.79477,2.00373 -1.83367,-2.04716 z"
+       id="path1230-5-8-0"
+       inkscape:transform-center-x="-3.3456091"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#0000ff;fill-opacity:0.491228;stroke-width:1.0609"
+       d="m 39.122341,331.0857 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#0000ff;fill-opacity:0.491228;stroke-width:1.0609"
+       d="m 46.691351,326.98408 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7-2-3"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-8-1"
+       width="2.1207986"
+       height="2.1210001"
+       x="42.757099"
+       y="329.00864" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-8-1-1"
+       width="2.1207986"
+       height="2.1210001"
+       x="48.506359"
+       y="328.92175" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-8-1-1-9"
+       width="2.1207986"
+       height="2.1210001"
+       x="42.757122"
+       y="345.79599" />
+    <rect
+       style="fill:#00ffff;fill-opacity:0.418129;stroke-width:0.472037;stroke-opacity:0"
+       id="rect1050-8-8-1-1-0"
+       width="2.1207986"
+       height="2.1210001"
+       x="48.506367"
+       y="345.75253" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.418129;stroke-width:0.305585;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-0-7-2-1"
+       width="1.841"
+       height="1.024"
+       x="44.882923"
+       y="345.83588" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.418129;stroke-width:0.305585;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-0-7-2-3"
+       width="1.841"
+       height="1.024"
+       x="40.9161"
+       y="330.10565" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.418129;stroke-width:0.305585;stroke-opacity:0"
+       id="rect1050-8-3-4-0-8-0-7-2-0"
+       width="1.841"
+       height="1.024"
+       x="50.63348"
+       y="330.01917" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1359);fill-opacity:1;stroke-width:1.0609"
+       d="m 163.27353,402.10609 v 16.83077 l 0.002,-0.003 1.81342,2.02454 h 0.009 l 1.81035,-2.02108 v -16.78739 l -1.79478,2.00373 -1.83367,-2.04716 z"
+       id="path1230-5-8-0-9"
+       inkscape:transform-center-x="-3.3456091"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1357);fill-opacity:1;stroke-width:1.0609"
+       d="m 151.76871,402.14902 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1367);fill-opacity:1;stroke-width:1.0609"
+       d="m 159.33772,398.0474 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7-2-3-7"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <g
+       id="g2034"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.972425,347.74216)">
+      <path
+         style="fill:url(#linearGradient1478);fill-opacity:1"
+         d="M 54.918785,9.1927421e-4 C 50.335132,0.02221727 45.957846,0.41313697 42.106285,1.0946693 30.760069,3.0991731 28.700036,7.2947714 28.700035,15.032169 v 10.21875 h 26.8125 v 3.40625 h -26.8125 -10.0625 c -7.792459,0 -14.6157588,4.683717 -16.7499998,13.59375 -2.46181998,10.212966 -2.57101508,16.586023 0,27.25 1.9059283,7.937852 6.4575432,13.593748 14.2499998,13.59375 h 9.21875 v -12.25 c 0,-8.849902 7.657144,-16.656248 16.75,-16.65625 h 26.78125 c 7.454951,0 13.406253,-6.138164 13.40625,-13.625 v -25.53125 c 0,-7.2663386 -6.12998,-12.7247771 -13.40625,-13.9374997 C 64.281548,0.32794397 59.502438,-0.02037903 54.918785,9.1927421e-4 Z m -14.5,8.21875012579 c 2.769547,0 5.03125,2.2986456 5.03125,5.1249996 -2e-6,2.816336 -2.261703,5.09375 -5.03125,5.09375 -2.779476,-1e-6 -5.03125,-2.277415 -5.03125,-5.09375 -10e-7,-2.826353 2.251774,-5.1249996 5.03125,-5.1249996 z"
+         id="path1948" />
+      <path
+         style="fill:url(#linearGradient1475);fill-opacity:1"
+         d="m 85.637535,28.657169 v 11.90625 c 0,9.230755 -7.825895,16.999999 -16.75,17 h -26.78125 c -7.335833,0 -13.406249,6.278483 -13.40625,13.625 v 25.531247 c 0,7.266344 6.318588,11.540324 13.40625,13.625004 8.487331,2.49561 16.626237,2.94663 26.78125,0 6.750155,-1.95439 13.406253,-5.88761 13.40625,-13.625004 V 86.500919 h -26.78125 v -3.40625 h 26.78125 13.406254 c 7.792461,0 10.696251,-5.435408 13.406241,-13.59375 2.79933,-8.398886 2.68022,-16.475776 0,-27.25 -1.92578,-7.757441 -5.60387,-13.59375 -13.406241,-13.59375 z m -15.0625,64.65625 c 2.779478,3e-6 5.03125,2.277417 5.03125,5.093747 -2e-6,2.826354 -2.251775,5.125004 -5.03125,5.125004 -2.76955,0 -5.03125,-2.29865 -5.03125,-5.125004 2e-6,-2.81633 2.261697,-5.093747 5.03125,-5.093747 z"
+         id="path1950" />
+      <ellipse
+         style="opacity:0.44382;fill:url(#radialGradient1480);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:15.4174;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path1894"
+         cx="55.816761"
+         cy="127.70079"
+         rx="35.930977"
+         ry="6.9673119" />
+    </g>
+    <path
+       id="text833-5-5-9-6-0-61-0-1"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1110);fill-opacity:1;stroke-width:1"
+       d="m 36.431593,363.21342 v 1.43867 h 5.8291 v 15.3789 h 3.62149 v -15.3789 h 5.8167 v -1.43867 z" />
+    <path
+       id="text833-5-5-9-6-0-61-00-5"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1108);fill-opacity:1;stroke-width:1"
+       d="M 53.819683,363.21342 V 380.031 h 3.63388 v -7.60262 h 1.17823 l 5.64306,7.60262 h 4.09278 l -5.99033,-8.0491 c 0.57877,-0.17365 1.09966,-0.39688 1.56269,-0.66974 0.47128,-0.27284 0.87231,-0.58703 1.20303,-0.94258 0.33073,-0.36378 0.5829,-0.76068 0.75654,-1.19063 0.1819,-0.42994 0.27285,-0.88884 0.27285,-1.37665 0,-0.66146 -0.13229,-1.27331 -0.39687,-1.83555 -0.25631,-0.56224 -0.64492,-1.04592 -1.16582,-1.45108 -0.5209,-0.41341 -1.17409,-0.73176 -1.95957,-0.95498 -0.78548,-0.23152 -1.70325,-0.34727 -2.75332,-0.34727 z m 3.63388,1.63711 h 1.92237 c 0.43822,0 0.83924,0.0744 1.20302,0.22325 0.36381,0.14883 0.678,0.35968 0.94258,0.63252 0.26459,0.26458 0.47129,0.58293 0.62012,0.95498 0.14882,0.37209 0.22324,0.78137 0.22324,1.22783 0,0.47956 -0.0951,0.90951 -0.28525,1.28984 -0.19017,0.38034 -0.45475,0.70279 -0.79375,0.9674 -0.33899,0.25628 -0.74001,0.45474 -1.20303,0.59531 -0.45475,0.14055 -0.95084,0.21082 -1.48828,0.21082 h -1.14102 z" />
+    <path
+       id="text833-5-5-9-6-0-61-1-3"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1104);fill-opacity:1;stroke-width:1"
+       d="m 76.244013,363.2139 v 16.81758 h 2.1208 V 368.4725 l 10.85205,11.80703 h 1.33945 V 363.2139 h -2.08359 v 10.69083 l -10.0211,-10.69083 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1096);fill-opacity:1;stroke-width:1.0609"
+       d="m 94.499553,362.45054 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7-9"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       id="text833-5-5-9-6-0-61-3-6"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1106);fill-opacity:1;stroke-width:1"
+       d="m 98.433363,363.41791 v 16.81758 h 6.509157 c 1.57096,0 2.96416,-0.22323 4.17959,-0.66971 1.2237,-0.44649 2.25309,-1.05833 3.08818,-1.83555 0.83509,-0.77721 1.46761,-1.68262 1.89756,-2.7161 0.43821,-1.04183 0.65734,-2.15387 0.65733,-3.33624 0,-1.31464 -0.26045,-2.4846 -0.78135,-3.50986 -0.51262,-1.02529 -1.23196,-1.88928 -2.15801,-2.59209 -0.91777,-0.70279 -2.02158,-1.23611 -3.31143,-1.59991 -1.28157,-0.37206 -2.69131,-0.55812 -4.22919,-0.55812 z m 3.631817,1.69913 h 2.44326 c 0.89296,0 1.71567,0.16949 2.46806,0.5085 0.75242,0.33076 1.40146,0.78963 1.94717,1.37666 0.5457,0.58706 0.97152,1.28571 1.27744,2.096 0.30593,0.80203 0.45889,1.67434 0.45889,2.61689 0,1.09141 -0.16536,2.0588 -0.49609,2.90216 -0.32246,0.84333 -0.76482,1.5544 -1.32705,2.1332 -0.55397,0.57875 -1.20303,1.01701 -1.94717,1.31464 -0.74414,0.29765 -1.5379,0.44648 -2.38125,0.44648 h -2.44326 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1.0609"
+       d="m 93.46314,301.79448 v 16.83077 l 0.002,-0.003 1.81343,2.02454 h 0.009 l 1.81034,-2.02108 v -16.78739 l -1.79477,2.00373 -1.83368,-2.04716 z"
+       id="path1230-5-3-3"
+       inkscape:transform-center-x="-3.3456091"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1.0609"
+       d="m 46.997123,301.59333 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-0"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       id="text833-5-5-9-6-0-61-0-1-8"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 12.940293,302.63058 v 1.43867 h 5.8291 v 15.3789 h 3.62149 v -15.3789 h 5.8167 v -1.43867 z" />
+    <path
+       id="text833-5-5-9-6-0-61-00-5-7"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 30.328383,302.63058 v 16.81758 h 3.63388 v -7.60262 h 1.17823 l 5.64306,7.60262 h 4.09278 l -5.99033,-8.0491 c 0.57877,-0.17365 1.09966,-0.39688 1.56269,-0.66974 0.47128,-0.27284 0.87231,-0.58703 1.20303,-0.94258 0.33073,-0.36378 0.5829,-0.76068 0.75654,-1.19063 0.1819,-0.42994 0.27285,-0.88884 0.27285,-1.37665 0,-0.66146 -0.13229,-1.27331 -0.39687,-1.83555 -0.25631,-0.56224 -0.64492,-1.04592 -1.16582,-1.45108 -0.5209,-0.41341 -1.17409,-0.73176 -1.95957,-0.95498 -0.78548,-0.23152 -1.70325,-0.34727 -2.75332,-0.34727 z m 3.63388,1.63711 h 1.92237 c 0.43822,0 0.83924,0.0744 1.20302,0.22325 0.36381,0.14883 0.678,0.35968 0.94258,0.63252 0.26459,0.26458 0.47129,0.58293 0.62012,0.95498 0.14882,0.37209 0.22324,0.78137 0.22324,1.22783 0,0.47956 -0.0951,0.90951 -0.28525,1.28984 -0.19017,0.38034 -0.45475,0.70279 -0.79375,0.9674 -0.33899,0.25628 -0.74001,0.45474 -1.20303,0.59531 -0.45475,0.14055 -0.95084,0.21082 -1.48828,0.21082 h -1.14102 z" />
+    <path
+       id="text833-5-5-9-6-0-61-1-3-6"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 52.752713,302.63106 v 16.81758 h 2.1208 v -11.55898 l 10.85205,11.80703 h 1.33945 v -17.06563 h -2.08359 v 10.69083 l -10.0211,-10.69083 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1.0609"
+       d="m 71.008253,301.8677 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7-9-2"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       id="text833-5-5-9-6-0-61-3-6-9"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:#000000;fill-opacity:1;stroke-width:1"
+       d="m 74.942063,302.83507 v 16.81758 h 6.509157 c 1.57096,0 2.96416,-0.22323 4.17959,-0.66971 1.2237,-0.44649 2.25309,-1.05833 3.08818,-1.83555 0.83509,-0.77721 1.46761,-1.68262 1.89756,-2.7161 0.43821,-1.04183 0.65734,-2.15387 0.65733,-3.33624 0,-1.31464 -0.26045,-2.4846 -0.78135,-3.50986 -0.51262,-1.02529 -1.23196,-1.88928 -2.15801,-2.59209 -0.91777,-0.70279 -2.02158,-1.23611 -3.31143,-1.59991 -1.28157,-0.37206 -2.69131,-0.55812 -4.22919,-0.55812 z m 3.631817,1.69913 h 2.44326 c 0.89296,0 1.71567,0.16949 2.46806,0.5085 0.75242,0.33076 1.40146,0.78963 1.94717,1.37666 0.5457,0.58706 0.97152,1.28571 1.27744,2.096 0.30593,0.80203 0.45889,1.67434 0.45889,2.61689 0,1.09141 -0.16536,2.0588 -0.49609,2.90216 -0.32246,0.84333 -0.76482,1.5544 -1.32705,2.1332 -0.55397,0.57875 -1.20303,1.01701 -1.94717,1.31464 -0.74414,0.29765 -1.5379,0.44648 -2.38125,0.44648 h -2.44326 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1313);fill-opacity:1;stroke-width:1.0609"
+       d="m 70.037319,401.20871 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-5-7"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       id="text833-5-5-9-6-0-61-0-1-3"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1125);fill-opacity:1;stroke-width:1"
+       d="m 35.978489,402.24896 v 1.43867 h 5.8291 v 15.3789 h 3.62149 v -15.3789 h 5.8167 v -1.43867 z" />
+    <path
+       id="text833-5-5-9-6-0-61-00-5-79"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1127);fill-opacity:1;stroke-width:1"
+       d="m 53.366579,402.24896 v 16.81758 h 3.63388 v -7.60262 h 1.17823 l 5.64306,7.60262 h 4.09278 l -5.99033,-8.0491 c 0.57877,-0.17365 1.09966,-0.39688 1.56269,-0.66974 0.47128,-0.27284 0.87231,-0.58703 1.20303,-0.94258 0.33073,-0.36378 0.5829,-0.76068 0.75654,-1.19063 0.1819,-0.42994 0.27285,-0.88884 0.27285,-1.37665 0,-0.66146 -0.13229,-1.27331 -0.39687,-1.83555 -0.25631,-0.56224 -0.64492,-1.04592 -1.16582,-1.45108 -0.5209,-0.41341 -1.17409,-0.73176 -1.95957,-0.95498 -0.78548,-0.23152 -1.70325,-0.34727 -2.75332,-0.34727 z m 3.63388,1.63711 h 1.92237 c 0.43822,0 0.83924,0.0744 1.20302,0.22325 0.36381,0.14883 0.678,0.35968 0.94258,0.63252 0.26459,0.26458 0.47129,0.58293 0.62012,0.95498 0.14882,0.37209 0.22324,0.78137 0.22324,1.22783 0,0.47956 -0.0951,0.90951 -0.28525,1.28984 -0.19017,0.38034 -0.45475,0.70279 -0.79375,0.9674 -0.33899,0.25628 -0.74001,0.45474 -1.20303,0.59531 -0.45475,0.14055 -0.95084,0.21082 -1.48828,0.21082 h -1.14102 z" />
+    <path
+       id="text833-5-5-9-6-0-61-1-3-0"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1129);fill-opacity:1;stroke-width:1"
+       d="m 75.790909,402.24944 v 16.81758 h 2.1208 v -11.55898 l 10.85205,11.80703 h 1.33945 v -17.06563 h -2.08359 v 10.69083 l -10.0211,-10.69083 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1315);fill-opacity:1;stroke-width:1.0609"
+       d="m 94.046449,401.48608 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7-9-23"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       id="text833-5-5-9-6-0-61-3-6-99"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1134);fill-opacity:1;stroke-width:1"
+       d="m 97.980259,402.45345 v 16.81758 h 6.509161 c 1.57096,0 2.96416,-0.22323 4.17959,-0.66971 1.2237,-0.44649 2.25309,-1.05833 3.08818,-1.83555 0.83509,-0.77721 1.46761,-1.68262 1.89756,-2.7161 0.43821,-1.04183 0.65734,-2.15387 0.65733,-3.33624 0,-1.31464 -0.26045,-2.4846 -0.78135,-3.50986 -0.51262,-1.02529 -1.23196,-1.88928 -2.15801,-2.59209 -0.91777,-0.70279 -2.02158,-1.23611 -3.31143,-1.59991 -1.28157,-0.37206 -2.69131,-0.55812 -4.22919,-0.55812 z m 3.631821,1.69913 h 2.44326 c 0.89296,0 1.71567,0.16949 2.46806,0.5085 0.75242,0.33076 1.40146,0.78963 1.94717,1.37666 0.5457,0.58706 0.97152,1.28571 1.27744,2.096 0.30593,0.80203 0.45889,1.67434 0.45889,2.61689 0,1.09141 -0.16536,2.0588 -0.49609,2.90216 -0.32246,0.84333 -0.76482,1.5544 -1.32705,2.1332 -0.55397,0.57875 -1.20303,1.01701 -1.94717,1.31464 -0.74414,0.29765 -1.5379,0.44648 -2.38125,0.44648 h -2.44326 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1225);fill-opacity:1;stroke-width:1.0609"
+       d="m 160.192,367.16442 v 16.83077 l 0.002,-0.003 1.81342,2.02454 h 0.009 l 1.81035,-2.02108 v -16.78739 l -1.79478,2.00373 -1.83367,-2.04716 z"
+       id="path1230-5-8-0-9-9"
+       inkscape:transform-center-x="-3.3456091"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1227);fill-opacity:1;stroke-width:1.0609"
+       d="m 148.68718,367.20735 2e-5,16.83082 0.002,-0.003 1.81345,2.02458 h 0.009 l 1.81031,-2.0211 -2e-5,-16.78735 -1.79477,2.00372 -1.83368,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-4"
+       inkscape:transform-center-x="-8.8811841"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1229);fill-opacity:1;stroke-width:1.0609"
+       d="m 156.25619,363.10573 -1.81345,2.02457 -0.002,-0.003 2e-5,16.83082 0.007,-5.7e-4 1.83368,-2.04719 1.79476,2.00372 -4e-5,-16.78735 -1.8103,-2.02111 z"
+       id="path1236-6-7-2-3-7-1"
+       inkscape:transform-center-x="1.7738909"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1460);fill-opacity:1;stroke-width:1.0609"
+       d="m 121.22674,430.31705 -4.50978,16.83082 0.003,-0.003 1.27097,2.02458 h 0.009 l 2.35186,-2.0211 4.49814,-16.78735 -2.33167,2.00372 -1.28516,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-5-7-8-5"
+       inkscape:transform-center-x="-7.1742111"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1462);fill-opacity:1;stroke-width:1.0609"
+       d="m 167.81596,431.00738 -4.50979,16.83077 0.003,-0.003 1.27095,2.02454 h 0.009 l 2.35189,-2.02108 4.49817,-16.78739 -2.33168,2.00373 -1.28513,-2.04716 z"
+       id="path1230-5-8-0-9-4"
+       inkscape:transform-center-x="-1.6504041"
+       inkscape:transform-center-y="7.315818" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1464);fill-opacity:1;stroke-width:1.0609"
+       d="m 156.29964,431.05031 -4.50979,16.83082 0.003,-0.003 1.27097,2.02458 h 0.009 l 2.35186,-2.0211 4.49814,-16.78735 -2.33167,2.00372 -1.28515,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-1"
+       inkscape:transform-center-x="-7.1742076"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1466);fill-opacity:1;stroke-width:1.0609"
+       d="m 164.96767,426.94869 -2.35593,2.02457 -0.001,-0.003 -4.50978,16.83082 0.007,-5.7e-4 2.38222,-2.04719 1.25787,2.00372 4.49812,-16.78735 -1.26875,-2.02111 z"
+       id="path1236-6-7-2-3-7-8"
+       inkscape:transform-center-x="4.0119411"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1468);fill-opacity:1;stroke-width:1.0609"
+       d="m 74.820202,430.11 -4.509784,16.83082 0.0028,-0.003 1.270965,2.02458 h 0.009 l 2.351862,-2.0211 4.498137,-16.78735 -2.331665,2.00372 -1.285156,-2.04712 z"
+       id="text833-5-5-9-6-0-6-3-1-6-4-5-7-83"
+       inkscape:transform-center-x="-7.1741053"
+       inkscape:transform-center-y="7.359713" />
+    <path
+       id="text833-5-5-9-6-0-61-0-1-3-5"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1470);fill-opacity:1;stroke-width:1"
+       d="m 40.482638,431.15025 -0.38549,1.43867 h 5.8291 l -4.120764,15.3789 h 3.62149 l 4.120764,-15.3789 h 5.8167 l 0.38549,-1.43867 z" />
+    <path
+       id="text833-5-5-9-6-0-61-00-5-79-2"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1472);fill-opacity:1;stroke-width:1"
+       d="m 57.870728,431.15025 -4.506257,16.81758 h 3.63388 l 2.037116,-7.60262 h 1.17823 l 3.605944,7.60262 h 4.09278 l -3.83358,-8.0491 c 0.625299,-0.17365 1.206004,-0.39688 1.742146,-0.66974 0.544388,-0.27284 1.029605,-0.58703 1.455594,-0.94258 0.428204,-0.36378 0.786724,-0.76068 1.075568,-1.19063 0.297102,-0.42994 0.511014,-0.88884 0.641723,-1.37665 0.177237,-0.66146 0.208892,-1.27331 0.09496,-1.83555 -0.105659,-0.56224 -0.364667,-1.04592 -0.777005,-1.45108 -0.410127,-0.41341 -0.978015,-0.73176 -1.703684,-0.95498 -0.723444,-0.23152 -1.610199,-0.34727 -2.660269,-0.34727 z m 3.195218,1.63711 h 1.92237 c 0.43822,0 0.819304,0.0744 1.1432,0.22325 0.323931,0.14883 0.581624,0.35968 0.773097,0.63252 0.193696,0.26458 0.315094,0.58293 0.364234,0.95498 0.04912,0.37209 0.01387,0.78137 -0.105756,1.22783 -0.128498,0.47956 -0.338803,0.90951 -0.630862,1.28984 -0.292082,0.38034 -0.643062,0.70279 -1.052964,0.9674 -0.40766,0.25628 -0.861857,0.45474 -1.362543,0.59531 -0.49241,0.14055 -1.007329,0.21082 -1.544769,0.21082 h -1.14102 z" />
+    <path
+       id="text833-5-5-9-6-0-61-1-3-0-2"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1474);fill-opacity:1;stroke-width:1"
+       d="m 80.29493,431.15073 -4.506257,16.81758 h 2.1208 l 3.097219,-11.55898 7.688366,11.80703 h 1.33945 l 4.572722,-17.06563 h -2.08359 l -2.8646,10.69083 -7.1565,-10.69083 z" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1476);fill-opacity:1;stroke-width:1.0609"
+       d="m 98.755011,430.38737 -2.355932,2.02457 -0.0012,-0.003 -4.509784,16.83082 0.0072,-5.7e-4 2.382223,-2.04719 1.257865,2.00372 4.498117,-16.78735 -1.268745,-2.02111 z"
+       id="path1236-6-7-9-23-6"
+       inkscape:transform-center-x="4.012047"
+       inkscape:transform-center-y="7.342403" />
+    <path
+       id="text833-5-5-9-6-0-61-3-6-99-6"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Hiragino Kaku Gothic Std';-inkscape-font-specification:'Hiragino Kaku Gothic Std Ultra-Bold';white-space:pre;shape-inside:url(#rect835-9-1-3-8);fill:url(#linearGradient1479);fill-opacity:1;stroke-width:1"
+       d="m 102.42961,431.35474 -4.506254,16.81758 h 6.509164 c 1.57096,0 3.02397,-0.22323 4.35903,-0.66971 1.34334,-0.44649 2.53667,-1.05833 3.58002,-1.83555 1.04334,-0.77721 1.91847,-1.68262 2.62534,-2.7161 0.71736,-1.04183 1.23446,-2.15387 1.55127,-3.33624 0.35226,-1.31464 0.40529,-2.4846 0.15911,-3.50986 -0.23789,-1.02529 -0.72573,-1.88928 -1.46346,-2.59209 -0.72946,-0.70279 -1.69036,-1.23611 -2.88273,-1.59991 -1.18188,-0.37206 -2.54177,-0.55812 -4.07965,-0.55812 z m 3.17654,1.69913 h 2.44326 c 0.89296,0 1.67026,0.16949 2.33181,0.5085 0.66379,0.33076 1.18988,0.78963 1.5783,1.37666 0.38839,0.58706 0.62701,1.28571 0.71581,2.096 0.091,0.80203 0.0103,1.67434 -0.2423,2.61689 -0.29244,1.09141 -0.71701,2.0588 -1.27372,2.90216 -0.54843,0.84333 -1.18132,1.5544 -1.89864,2.1332 -0.70905,0.57875 -1.47554,1.01701 -2.29943,1.31464 -0.82389,0.29765 -1.65753,0.44648 -2.50088,0.44648 h -2.44326 z" />
+  </g>
+</svg>

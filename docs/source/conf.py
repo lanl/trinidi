@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-import re
 import sys
-import types
-from inspect import getmembers, isfunction
 
 from sphinx.ext.napoleon.docstring import GoogleDocstring
 
@@ -15,8 +12,8 @@ sys.path.append(rootpath)
 
 
 # from trinidi._version import package_version
-def package_version(): # update this ToDo
-    return '0.0.1'
+def package_version():  # update this ToDo
+    return "0.0.1"
 
 
 ## See
@@ -43,6 +40,7 @@ def parse_class_attributes_section(self, section):
 
 
 GoogleDocstring._parse_class_attributes_section = parse_class_attributes_section
+
 
 # we now patch the parse method to guarantee that the the above methods are
 # assigned to the _section dict
@@ -121,7 +119,9 @@ if os.environ.get("NO_MATHJAX"):
     imgmath_image_format = "svg"
 else:
     extensions.append("sphinx.ext.mathjax")
-    mathjax_path = "https://cdn.mathjax.org/mathjax/latest/" "MathJax.js?config=TeX-AMS_HTML"
+    mathjax_path = (
+        "https://cdn.mathjax.org/mathjax/latest/" "MathJax.js?config=TeX-AMS_HTML"
+    )
 
 mathjax_config = {
     "TeX": {
@@ -201,13 +201,12 @@ html_theme_options = {
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 # html_logo = None
-html_logo = "_static/uc.svg"
+html_logo = "_static/trinidi_logo.svg"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = None
-# html_favicon = "_static/trinidi.ico"
+html_favicon = "_static/trinidi_favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -279,7 +278,9 @@ napoleon_use_rtype = False
 
 
 graphviz_output_format = "svg"
-inheritance_graph_attrs = dict(rankdir="LR", fontsize=9, ratio="compress", bgcolor="transparent")
+inheritance_graph_attrs = dict(
+    rankdir="LR", fontsize=9, ratio="compress", bgcolor="transparent"
+)
 inheritance_node_attrs = dict(
     shape="box",
     fontsize=9,
@@ -306,9 +307,7 @@ man_pages = [("index", "trinidi", "Thilo Balke", ["Thilo Balke"], 1)]
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (
-        "index",
-    ),
+    ("index",),
 ]
 
 
@@ -321,9 +320,6 @@ if on_rtd:
     import matplotlib
 
     matplotlib.use("agg")
-
-
-
 
 
 print("rootpath: %s" % rootpath)
@@ -347,7 +343,6 @@ exclude_patterns = ["_build", "**tests**", "**spi**", "**README.rst", "include"]
 
 
 def setup(app):
-
     app.add_css_file("trinidi.css")
     app.add_css_file(
         "http://netdna.bootstrapcdn.com/font-awesome/4.7.0/" "css/font-awesome.min.css"
