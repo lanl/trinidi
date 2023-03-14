@@ -158,7 +158,7 @@ source_encoding = "utf-8"
 master_doc = "index"
 
 # General information about the project.
-project = "trinidi"
+project = "TRINIDI"
 copyright = "2023 Thilo Balke"
 
 # The version info for the project you're documenting, acts as replacement for
