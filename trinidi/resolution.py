@@ -4,6 +4,8 @@ import numpy as np
 from jax import device_put
 from scico.linop import Convolve, LinearOperator
 
+from trinidi.util import time2energy
+
 
 class ResolutionOperator:
     """Resolution Operator Class"""
@@ -31,7 +33,7 @@ projection_shape = {self.projection_shape}
         if kernels == None:
             kernels = [1]
 
-        if len(kernels) > 1:
+        if len(kernels) >= 1:
             self.kernels = kernels
         else:
             raise ValueError("Number of kernels must be at least 1.")
@@ -144,17 +146,18 @@ projection_shape = {self.projection_shape}
 from scipy.special import gamma
 
 
-def _chi_squared_kernel(t_F, Δt, flight_path_length):
-    """Resolution Function From Lynn Paper
+def lanl_fp5_kernel(t_A, Δt, flight_path_length):
+    r"""Resolution function kernel based on :cite:`lynn2002neutron`.
 
     Args:
-        E (None, optional): Description
-        Δt (None, optional): Description
+        t_A (scalar): time-of-arrival of the neutron in :math:`\mathrm{μs}`.
+        Δt (scalar): time sampling bin width in :math:`\mathrm{μs}`.
+        flight_path_length (scalar): flight path length in :math:`\mathrm{m}`.
 
     Returns:
-        TYPE: Description
+        Kernel array.
     """
-    # Based on "Neutron Doppler broadening studies of tantalum and tungsten metal" by Lynn, J Eric, Trela, Walter J, Meggers, Kai
+    E = time2energy(flight_path_length, t_A)
 
     v1 = 6
     T1 = 0.74 / np.sqrt(E) / Δt
@@ -166,14 +169,10 @@ def _chi_squared_kernel(t_F, Δt, flight_path_length):
 
     w1 = 0.65
 
-    mode = t1 + T1 * v1 / 2 - T1  # This is only true for
-    thresh = t2 + v2 * T2  # these values of v, T, t
+    mode = t1 + T1 * v1 / 2 - T1  # This is only true
+    thresh = t2 + v2 * T2  # for these values of v, T, t
 
-    x = np.arange(-np.ceil(thresh), np.ceil(thresh))  # TODO: Maybe get rid of zeros
-    # print(f'{x=}')
-    # print(f'{E=}')
-    # print(f'{mode=}')
-    # print(f'{thresh=}')
+    x = np.arange(-np.ceil(thresh), np.ceil(thresh))
 
     fi = lambda x, v, t, T: (
         (x - t) ** (v / 2 - 1) / (gamma(v / 2) * T ** (v / 2))
@@ -186,51 +185,64 @@ def _chi_squared_kernel(t_F, Δt, flight_path_length):
     f2[x + mode > t2] = fi(x[x + mode > t2] + mode, v2, t2, T2)
 
     f = f1 * w1 + f2 * (1 - w1)
-    sum_eff = np.sum(f)
-
-    f /= sum_eff
-
-    # mean_eff = np.sum(f * x)
-    # mode_eff = x[np.argmax(f)]
-    # std_eff = np.sum(f * (x-mean_eff)**2)**0.5
-    # skew_eff = np.sum(f * ((x-mean_eff)/std_eff)**3)
+    f = f / np.sum(f)
 
     return f
 
 
-# kernels = [
-#     np.array([1]),
-#     np.array([1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8]),
-# ]
+def equispaced_kernels(t_A, num_kernels, kernel_generator):
+    r"""Generate a list of resolution function kernels that correspond
+        to equispaced time-of-flights and a given kernal_generator.
 
-# t_A = np.arange(70, 700, 0.32)
-# N_A = t_A.size
+    Args:
+        t_A (array): time-of-arrival array of the neutrons in :math:`\mathrm{μs}`.
+        num_kernels (int): Number of kernels to be generated. If `1`, single kernel with average
+            time-of-arrival is being generated.
+        kernel_generator (function): Function with single argument that generates a kernel array
+            based on the time-of-arrival.
 
+    Returns:
+        list of Kernel arrays.
+    """
+    if num_kernels > 1:
+        t_As = np.linspace(t_A[0], t_A[-1], num=num_kernels)
+    else:
+        t_As = [np.mean(t_A)]
 
-# output_shape = (1, N_A)
-
-
-# flight_path_length = 10.4
-
-
-# R = ResolutionOperator(output_shape, kernels)
-# t_F = R.compute_t_F(t_A)
-# x = np.random.rand(*R.input_shape)
-
-# y = R(x)
-
-# import matplotlib.pyplot as plt
-
-# fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
-# ax = np.atleast_1d(ax)
-# ax[0].plot(t_F, x[0], label="x", alpha=0.75)
-# ax[0].plot(t_A, y[0], label="y", alpha=0.75)
-# ax[0].legend(prop={"size": 8})
-# fig.suptitle("")
-# # plt.savefig('')
-# plt.show()
+    return [kernel_generator(t) for t in t_As]
 
 
-# energy = time2energy(flight_path_length, t_A)
+def main():
+    """Main method"""
 
-# energy2time(flight_path_length, energy)
+    Δt = 0.32
+    t_A = np.arange(70, 700, Δt)
+    N_A = t_A.size
+    flight_path_length = 10.4
+    num_kernels = 5
+
+    projection_shape = (1,)
+    output_shape = projection_shape + (N_A,)
+
+    g = lambda t_A: lanl_fp5_kernel(t_A, Δt, flight_path_length)
+    kernels = equispaced_kernels(t_A, num_kernels, g)
+    R = ResolutionOperator(output_shape, kernels)
+    t_F = R.compute_t_F(t_A)
+
+    x = np.random.rand(*R.input_shape) ** 0.5
+    y = R(x)
+
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
+    ax = np.atleast_1d(ax)
+    ax[0].plot(t_F, x.flatten(), label="Original", alpha=0.75)
+    ax[0].plot(t_A, y.flatten(), label="Blurred", alpha=0.75)
+    ax[0].legend(prop={"size": 8})
+    fig.suptitle("")
+    # plt.savefig('')
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()
