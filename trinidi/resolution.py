@@ -141,34 +141,96 @@ projection_shape = {self.projection_shape}
         return Convolve(h, input_shape=input_shape, mode="same", jit=True)
 
 
-kernels = [
-    np.array([1]),
-    np.array([1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8]),
-]
-
-t_A = np.arange(70, 700, 0.32)
-N_A = t_A.size
+from scipy.special import gamma
 
 
-output_shape = (1, N_A)
+def _chi_squared_kernel(t_F, Δt, flight_path_length):
+    """Resolution Function From Lynn Paper
+
+    Args:
+        E (None, optional): Description
+        Δt (None, optional): Description
+
+    Returns:
+        TYPE: Description
+    """
+    # Based on "Neutron Doppler broadening studies of tantalum and tungsten metal" by Lynn, J Eric, Trela, Walter J, Meggers, Kai
+
+    v1 = 6
+    T1 = 0.74 / np.sqrt(E) / Δt
+    t1 = 0.49 / np.sqrt(E) / Δt
+
+    v2 = 4.3
+    T2 = 5.1 / np.sqrt(E) / Δt
+    t2 = 2.2 / np.sqrt(E) / Δt
+
+    w1 = 0.65
+
+    mode = t1 + T1 * v1 / 2 - T1  # This is only true for
+    thresh = t2 + v2 * T2  # these values of v, T, t
+
+    x = np.arange(-np.ceil(thresh), np.ceil(thresh))  # TODO: Maybe get rid of zeros
+    # print(f'{x=}')
+    # print(f'{E=}')
+    # print(f'{mode=}')
+    # print(f'{thresh=}')
+
+    fi = lambda x, v, t, T: (
+        (x - t) ** (v / 2 - 1) / (gamma(v / 2) * T ** (v / 2))
+    ) * np.exp(-(x - t) / T)
+
+    f1 = np.zeros_like(x)
+    f1[x + mode > t1] = fi(x[x + mode > t1] + mode, v1, t1, T1)
+
+    f2 = np.zeros_like(x)
+    f2[x + mode > t2] = fi(x[x + mode > t2] + mode, v2, t2, T2)
+
+    f = f1 * w1 + f2 * (1 - w1)
+    sum_eff = np.sum(f)
+
+    f /= sum_eff
+
+    # mean_eff = np.sum(f * x)
+    # mode_eff = x[np.argmax(f)]
+    # std_eff = np.sum(f * (x-mean_eff)**2)**0.5
+    # skew_eff = np.sum(f * ((x-mean_eff)/std_eff)**3)
+
+    return f
 
 
-flight_path_length = 10.4
+# kernels = [
+#     np.array([1]),
+#     np.array([1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8, 1 / 8]),
+# ]
+
+# t_A = np.arange(70, 700, 0.32)
+# N_A = t_A.size
 
 
-R = ResolutionOperator(output_shape, kernels)
-t_F = R.compute_t_F(t_A)
-x = np.random.rand(*R.input_shape)
+# output_shape = (1, N_A)
 
-y = R(x)
 
-import matplotlib.pyplot as plt
+# flight_path_length = 10.4
 
-fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
-ax = np.atleast_1d(ax)
-ax[0].plot(t_F, x[0], label="x", alpha=0.75)
-ax[0].plot(t_A, y[0], label="y", alpha=0.75)
-ax[0].legend(prop={"size": 8})
-fig.suptitle("")
-# plt.savefig('')
-plt.show()
+
+# R = ResolutionOperator(output_shape, kernels)
+# t_F = R.compute_t_F(t_A)
+# x = np.random.rand(*R.input_shape)
+
+# y = R(x)
+
+# import matplotlib.pyplot as plt
+
+# fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
+# ax = np.atleast_1d(ax)
+# ax[0].plot(t_F, x[0], label="x", alpha=0.75)
+# ax[0].plot(t_A, y[0], label="y", alpha=0.75)
+# ax[0].legend(prop={"size": 8})
+# fig.suptitle("")
+# # plt.savefig('')
+# plt.show()
+
+
+# energy = time2energy(flight_path_length, t_A)
+
+# energy2time(flight_path_length, energy)
