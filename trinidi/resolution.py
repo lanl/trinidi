@@ -90,7 +90,7 @@ projection_shape = {self.projection_shape}
         return R_(array)
 
     def compute_t_F(self, t_A):
-        """Finds time-of-flight array so that R(t_F) = t_A
+        r"""Finds time-of-flight array so that :math:`R(t_F) \approx t_A`.
 
         Args:
             t_A (array): Time-of-arrival equi-spaced increasing array
@@ -191,8 +191,7 @@ def lanl_fp5_kernel(t_A, Δt, flight_path_length):
 
 
 def equispaced_kernels(t_A, num_kernels, kernel_generator):
-    r"""Generate a list of resolution function kernels that correspond
-        to equispaced time-of-flights and a given kernal_generator.
+    r"""Generate a list of resolution function kernels that correspond to equispaced time-of-flights and a given kernel_generator.
 
     Args:
         t_A (array): time-of-arrival array of the neutrons in :math:`\mathrm{μs}`.
@@ -210,39 +209,3 @@ def equispaced_kernels(t_A, num_kernels, kernel_generator):
         t_As = [np.mean(t_A)]
 
     return [kernel_generator(t) for t in t_As]
-
-
-def main():
-    """Main method"""
-
-    Δt = 0.32
-    t_A = np.arange(70, 700, Δt)
-    N_A = t_A.size
-    flight_path_length = 10.4
-    num_kernels = 5
-
-    projection_shape = (1,)
-    output_shape = projection_shape + (N_A,)
-
-    g = lambda t_A: lanl_fp5_kernel(t_A, Δt, flight_path_length)
-    kernels = equispaced_kernels(t_A, num_kernels, g)
-    R = ResolutionOperator(output_shape, kernels)
-    t_F = R.compute_t_F(t_A)
-
-    x = np.random.rand(*R.input_shape) ** 0.5
-    y = R(x)
-
-    import matplotlib.pyplot as plt
-
-    fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
-    ax = np.atleast_1d(ax)
-    ax[0].plot(t_F, x.flatten(), label="Original", alpha=0.75)
-    ax[0].plot(t_A, y.flatten(), label="Blurred", alpha=0.75)
-    ax[0].legend(prop={"size": 8})
-    fig.suptitle("")
-    # plt.savefig('')
-    plt.show()
-
-
-if __name__ == "__main__":
-    main()
