@@ -10,6 +10,8 @@ is a Python package for estimating isotopic densities using neutron transmission
 
 __version__ = "0.0.1"
 
+
+from .cross_section import *
 from .resolution import *
 from .util import *
 
