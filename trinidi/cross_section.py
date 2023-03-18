@@ -63,15 +63,14 @@ def info(isotopes=None):
     return
 
 
-def create_xsdict(isotopes, t, flight_path_length, samples_per_bin=10):
+def create_xsdict(isotopes, t_F, flight_path_length, samples_per_bin=10):
     """Creates a cross section dictionary."""
-    xsdict = np.zeros([len(isotopes), t.size])
-    Δt = abs(t[1] - t[0])
-    E = time2energy(t, flight_path_length)
+    xsdict = np.zeros([len(isotopes), t_F.size])
+    Δt = abs(t_F[1] - t_F[0])
+    E = time2energy(t_F, flight_path_length)
     xsdata = __xsdata_load_once__()
 
     for i, isotope in enumerate(isotopes):
-
         if isotope not in xsdata["isotopes"]:
             raise ValueError(f"Isotope {isotope} cannot be found in data base.")
 
@@ -86,15 +85,12 @@ def create_xsdict(isotopes, t, flight_path_length, samples_per_bin=10):
             )
 
         if samples_per_bin == 1:
-
             xs = xs + interpolate.interp1d(E_raw, xs_raw)(E)
 
         else:
-
-            xs = np.zeros(t.size)
+            xs = np.zeros(t_F.size)
             for r in np.linspace(-1 / 2, 1 / 2, samples_per_bin):
-
-                E_shift = time2energy(t + r * Δt, flight_path_length)
+                E_shift = time2energy(t_F + r * Δt, flight_path_length)
                 xs = xs + interpolator(E_shift) / samples_per_bin
 
         xsdict[i] = xs
@@ -102,25 +98,25 @@ def create_xsdict(isotopes, t, flight_path_length, samples_per_bin=10):
     return xsdict
 
 
-def plot_xsdict(ax, D, isotopes, t=None, E=None):
+def plot_xsdict(ax, D, isotopes, t_F=None, E=None):
     """Plot a cross section dictionary.
 
     Args:
         ax: Matplotlib axis.
-        D: Cross section dictionary with shape `(N_m, N_t)`.
+        D: Cross section dictionary with shape `(N_m, N_F)`.
         isotopes: List of isotope symbols with length `N_m`.
-        t (optional): Time-of-flight array with size `N_t`. Exactly one of `t` and `E` must be `None`.
-        E (optional): Energy array with size `N_t`. Exactly one of `t` and `E` must be `None`.
+        t_F (optional): Time-of-flight array with size `N_F`. Exactly one of `t_F` and `E` must be `None`.
+        E (optional): Energy array with size `N_F`. Exactly one of `t_F` and `E` must be `None`.
     """
 
-    if t is not None and E is None:
-        xax = t
+    if t_F is not None and E is None:
+        xax = t_F
         xax_label = "Time-of-flight [μs]"
-    elif t is None and E is not None:
+    elif t_F is None and E is not None:
         xax = E
         xax_label = "Energy [eV]"
     else:
-        raise ValueError("Exactly one of t and E must be None")
+        raise ValueError("Exactly one of t_F and E must be None")
 
     for i in range(len(isotopes)):
         ax.plot(xax, D[i], label=isotopes[i], alpha=0.6)
