@@ -39,7 +39,7 @@ def info(isotopes=None):
 
     Args:
         isotopes (optional, list): list of isotope symbols.
-        If `None` all available isotopes are used.
+            If `None` all available isotopes are displayed.
     """
 
     xsdata = __xsdata_load_once__()
@@ -100,3 +100,32 @@ def create_xsdict(isotopes, t, flight_path_length, samples_per_bin=10):
         xsdict[i] = xs
 
     return xsdict
+
+
+def plot_xsdict(ax, D, isotopes, t=None, E=None):
+    """Plot a cross section dictionary.
+
+    Args:
+        ax: Matplotlib axis.
+        D: Cross section dictionary with shape `(N_m, N_t)`.
+        isotopes: List of isotope symbols with length `N_m`.
+        t (optional): Time-of-flight array with size `N_t`. Exactly one of `t` and `E` must be `None`.
+        E (optional): Energy array with size `N_t`. Exactly one of `t` and `E` must be `None`.
+    """
+
+    if t is not None and E is None:
+        xax = t
+        xax_label = "Time-of-flight [μs]"
+    elif t is None and E is not None:
+        xax = E
+        xax_label = "Energy [eV]"
+    else:
+        raise ValueError("Exactly one of t and E must be None")
+
+    for i in range(len(isotopes)):
+        ax.plot(xax, D[i], label=isotopes[i], alpha=0.6)
+
+    ax.set_yscale("log")
+    ax.set_title("Cross Section Dictionary [cm²/mol]")
+    ax.legend()
+    ax.set_xlabel(xax_label)
