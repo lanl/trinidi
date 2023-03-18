@@ -5,7 +5,7 @@ import numpy as np
 MASS_OF_NEUTRON = 939.56542052 * 1e6 / (299792458) ** 2  # [eV s²/m²]
 
 
-def time2energy(flight_path_length, time):
+def time2energy(time, flight_path_length):
     r"""Convert time-of-flight to energy of the neutron.
 
     .. math::
@@ -16,8 +16,8 @@ def time2energy(flight_path_length, time):
     lenghth.
 
     Args:
-        flight_path_length: flight path length in :math:`\mathrm{m}`.
         time: Time-of-flight in :math:`\mathrm{μs}`.
+        flight_path_length: flight path length in :math:`\mathrm{m}`.
 
     Returns:
         Energy of the neutron in :math:`\mathrm{eV}`.
@@ -28,7 +28,7 @@ def time2energy(flight_path_length, time):
     return m / 2 * (L / t) ** 2  # eV
 
 
-def energy2time(flight_path_length, energy):
+def energy2time(energy, flight_path_length):
     r"""Convert energy to time-of-flight of the neutron.
 
     .. math::
@@ -39,8 +39,8 @@ def energy2time(flight_path_length, energy):
     lenghth.
 
     Args:
-        flight_path_length: flight path length in :math:`\mathrm{m}`.
         energy:  Energy of the neutron in :math:`\mathrm{eV}`.
+        flight_path_length: flight path length in :math:`\mathrm{m}`.
 
     Returns:
         Time-of-flight in :math:`\mathrm{μs}`.

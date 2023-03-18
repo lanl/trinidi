@@ -157,7 +157,7 @@ def lanl_fp5_kernel(t_A, Δt, flight_path_length):
     Returns:
         Kernel array.
     """
-    E = time2energy(flight_path_length, t_A)
+    E = time2energy(t_A, flight_path_length)
 
     v1 = 6
     T1 = 0.74 / np.sqrt(E) / Δt
