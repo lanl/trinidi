@@ -125,3 +125,100 @@ def plot_xsdict(ax, D, isotopes, t_F=None, E=None):
     ax.set_title("Cross Section Dictionary [cm²/mol]")
     ax.legend()
     ax.set_xlabel(xax_label)
+
+
+class XSDict:
+    """docstring for XSDict"""
+
+    def __repr__(self):
+        return f"""{type(self)}
+isotopes = {self.isotopes}
+N_m = {self.N_m}
+
+t_F = [{self.t_F[0]:.3f} μs, ..., {self.t_F[-1]:.3f} μs]
+Δt = {self.Δt:.3f} μs
+N_F = {self.N_F}
+flight_path_length = {self.flight_path_length:.3f} m
+E = [{self.E[-1]:.3f} eV, ..., {self.E[0]:.3f} eV]
+
+samples_per_bin = {self.samples_per_bin}
+
+shape = {self.values.shape} = (N_m, N_F)
+values = {self.values.__repr__()}
+
+        """
+
+    def __init__(self, isotopes, t_F, flight_path_length, samples_per_bin=10):
+        """Initialize a XSDict object.
+
+        Args:
+            isotopes (TYPE): Description
+            t_F (TYPE): Description
+            flight_path_length (TYPE): Description
+            samples_per_bin (int, optional): Description
+
+        Raises:
+            ValueError: Description
+        """
+        self.isotopes = isotopes.copy()
+        self.N_m = len(self.isotopes)
+
+        self.t_F = t_F
+        self.Δt = self.t_F[1] - self.t_F[0]
+        if self.Δt < 0:
+            raise ValueError("t_F must be equispaced and increasing")
+        self.N_F = self.t_F.size
+
+        self.flight_path_length = flight_path_length
+        self.E = time2energy(self.t_F, self.flight_path_length)
+
+        self.samples_per_bin = samples_per_bin
+        self.values = create_xsdict(
+            isotopes, t_F, flight_path_length, samples_per_bin=10
+        )
+
+    def plot(self, ax, function_of_energy=False):
+        """Plot a XSDict.
+
+        Args:
+            ax (TYPE): Description
+            function_of_energy (bool, optional): Description
+        """
+        if function_of_energy:
+            plot_xsdict(ax, self.values, self.isotopes, E=self.E)
+        else:
+            plot_xsdict(ax, self.values, self.isotopes, t_F=self.t_F)
+
+    def merge(self, merge_isotopes, merge_weights, new_key):
+        """Merge entries of an XSDict.
+
+        Args:
+            merge_isotopes (TYPE): Description
+            merge_weights (TYPE): Description
+            new_key (TYPE): Description
+
+        Raises:
+            ValueError: Description
+        """
+        not_in = list(set(merge_isotopes) - set(self.isotopes))
+        if not_in:
+            raise ValueError(
+                f"merge_isotopes must be subset of self.isotopes. {not_in} not part of {self.isotopes}"
+            )
+
+        target = min([self.isotopes.index(isotope) for isotope in merge_isotopes])
+
+        D = list(self.values)
+        d = np.zeros_like(D[target])
+
+        for isotope in merge_isotopes:
+            i = self.isotopes.index(isotope)
+
+            d = d + D[i] * merge_weights[i]
+            del D[i]
+            del self.isotopes[i]
+
+        self.isotopes.insert(target, new_key)
+
+        D.insert(target, d)
+        self.values = np.array(D)

@@ -25,31 +25,35 @@ E = util.time2energy(t_F, flight_path_length)  # energy array [eV]
 
 # Generate cross section dictionary and plot it with respect to time-of-flight and energy.
 isotopes = ["U-235", "U-238"]
-D = cross_section.create_xsdict(isotopes, t_F, flight_path_length)
+
+D = cross_section.XSDict(isotopes, t_F, flight_path_length, samples_per_bin=10)
+
 
 fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=False)
 ax = np.atleast_1d(ax)
-cross_section.plot_xsdict(ax[0], D, isotopes, t_F=t_F)
-cross_section.plot_xsdict(ax[1], D, isotopes, E=E)
+D.plot(ax[0], function_of_energy=True)
+D.plot(ax[1], function_of_energy=False)
 fig.suptitle("Plotting Cross Section Dictionary by TOF and Energy")
 plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0, rect=(0, 0, 1, 0.95))
+plt.show()
 
 
 # Generate cross section dictionary and merge isotopes by natural abundance percentages
 isotopes_full = ["Au-197", "W-180", "W-182", "W-183", "W-184", "W-186"]
-isotopes_merged = ["Au", "W"]
+merge_isotopes = ["W-180", "W-182", "W-183", "W-184", "W-186"]
+merge_weights = [0.0012, 0.265, 0.143, 0.306, 0.284]
+new_key = "W"
 
-C = np.array(
-    [[1, 0, 0, 0, 0, 0], [0, 0.0012, 0.265, 0.143, 0.306, 0.284]]
-)  # abundances
+D_full = cross_section.XSDict(isotopes_full, t_F, flight_path_length)
 
-D_full = cross_section.create_xsdict(isotopes_full, t_F, flight_path_length)
-D_merged = C @ D_full
+D_merged = cross_section.XSDict(isotopes_full, t_F, flight_path_length)
+D_merged.merge(merge_isotopes, merge_weights, new_key)
+
 
 fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
 ax = np.atleast_1d(ax)
-cross_section.plot_xsdict(ax[0], D_full, isotopes_full, t_F=t_F)
-cross_section.plot_xsdict(ax[1], D_merged, isotopes_merged, t_F=t_F)
+D_full.plot(ax[0])
+D_merged.plot(ax[1])
 plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0, rect=(0, 0, 1, 0.95))
 fig.suptitle("Plotting Full and Merged Cross Section Dictionaries")
 plt.show()
