@@ -19,7 +19,7 @@ global __xsdata__
 
 
 def __xsdata_load_once__():
-    """Function that loads the cross section data dictionary `__xsdata__` once when necessary."""
+    """Loads the cross section data dictionary `__xsdata__` once when necessary."""
 
     if "__xsdata__" not in globals():
         global __xsdata__
@@ -63,72 +63,17 @@ def info(isotopes=None):
     return
 
 
-def create_xsdict(isotopes, t_F, flight_path_length, samples_per_bin=10):
-    """Creates a cross section dictionary."""
-    xsdict = np.zeros([len(isotopes), t_F.size])
-    Δt = abs(t_F[1] - t_F[0])
-    E = time2energy(t_F, flight_path_length)
-    xsdata = __xsdata_load_once__()
-
-    for i, isotope in enumerate(isotopes):
-        if isotope not in xsdata["isotopes"]:
-            raise ValueError(f"Isotope {isotope} cannot be found in data base.")
-
-        iid = xsdata["isotopes"].index(isotope)
-        xs_raw = xsdata["cross_sections"][iid]
-        E_raw = xsdata["energies"][iid]
-        interpolator = interpolate.interp1d(E_raw, xs_raw)
-
-        if not (min(E_raw) < min(E) and max(E) < max(E_raw)):
-            raise ValueError(
-                f"Requested energy range [{si_format(min(E))}eV, {si_format(max(E))}eV] for {isotope} is too large. Must be within [{si_format(min(E_raw))}eV, {si_format(max(E_raw))}eV]."
-            )
-
-        if samples_per_bin == 1:
-            xs = xs + interpolate.interp1d(E_raw, xs_raw)(E)
-
-        else:
-            xs = np.zeros(t_F.size)
-            for r in np.linspace(-1 / 2, 1 / 2, samples_per_bin):
-                E_shift = time2energy(t_F + r * Δt, flight_path_length)
-                xs = xs + interpolator(E_shift) / samples_per_bin
-
-        xsdict[i] = xs
-
-    return xsdict
-
-
-def plot_xsdict(ax, D, isotopes, t_F=None, E=None):
-    """Plot a cross section dictionary.
-
-    Args:
-        ax: Matplotlib axis.
-        D: Cross section dictionary with shape `(N_m, N_F)`.
-        isotopes: List of isotope symbols with length `N_m`.
-        t_F (optional): Time-of-flight array with size `N_F`. Exactly one of `t_F` and `E` must be `None`.
-        E (optional): Energy array with size `N_F`. Exactly one of `t_F` and `E` must be `None`.
-    """
-
-    if t_F is not None and E is None:
-        xax = t_F
-        xax_label = "Time-of-flight [μs]"
-    elif t_F is None and E is not None:
-        xax = E
-        xax_label = "Energy [eV]"
-    else:
-        raise ValueError("Exactly one of t_F and E must be None")
-
-    for i in range(len(isotopes)):
-        ax.plot(xax, D[i], label=isotopes[i], alpha=0.6)
-
-    ax.set_yscale("log")
-    ax.set_title("Cross Section Dictionary [cm²/mol]")
-    ax.legend()
-    ax.set_xlabel(xax_label)
-
-
 class XSDict:
-    """docstring for XSDict"""
+    r"""XSDict cross section dictionary class.
+
+    The cross section of the :math:`i^{\mathrm{th}}` time-of-flight bin corresponds to the
+    average cross section in the time-of-flight interval `[t_F[i] - Δt/2, t_F[i] + Δt/2]`.
+
+    The attribute `self.values` stores the cross section values and is a `numpy.ndarray`
+    of size `(N_m, N_F)`, where `N_m` is the number of isotopes (`len(isotopes)`) and `N_m`
+    is the number of time-of-flight bins (`t_F.size`).
+
+    """
 
     def __repr__(self):
         return f"""{type(self)}
@@ -139,26 +84,24 @@ t_F = [{self.t_F[0]:.3f} μs, ..., {self.t_F[-1]:.3f} μs]
 Δt = {self.Δt:.3f} μs
 N_F = {self.N_F}
 flight_path_length = {self.flight_path_length:.3f} m
-E = [{self.E[-1]:.3f} eV, ..., {self.E[0]:.3f} eV]
+E = [{self.E[0]:.3f} eV, ..., {self.E[-1]:.3f} eV]
 
 samples_per_bin = {self.samples_per_bin}
 
-shape = {self.values.shape} = (N_m, N_F)
-values = {self.values.__repr__()}
-
+values.shape = {self.values.shape} = (N_m, N_F)
         """
 
     def __init__(self, isotopes, t_F, flight_path_length, samples_per_bin=10):
-        """Initialize a XSDict object.
+        r"""Initialize a XSDict object.
 
         Args:
-            isotopes (TYPE): Description
-            t_F (TYPE): Description
-            flight_path_length (TYPE): Description
-            samples_per_bin (int, optional): Description
-
-        Raises:
-            ValueError: Description
+            isotopes (list): Isotope symbols e.g. `["U-235", "U-238"]`.
+            t_F (array): time-of-flight array of the neutrons in :math:`\mathrm{μs}`.
+            flight_path_length (scalar): flight path length in :math:`\mathrm{m}`.
+            samples_per_bin (int, optional): Default 10. Likely this parameter need not be
+                modified. Number of samples used within time-of-flight bin to approximate average
+                cross section within bin. If `samples_per_bin == 1`, center of the time-of-flight
+                bin is used.
         """
         self.isotopes = isotopes.copy()
         self.N_m = len(self.isotopes)
@@ -173,32 +116,49 @@ values = {self.values.__repr__()}
         self.E = time2energy(self.t_F, self.flight_path_length)
 
         self.samples_per_bin = samples_per_bin
-        self.values = create_xsdict(
-            isotopes, t_F, flight_path_length, samples_per_bin=10
+        self.values = self._get_cross_section_values(
+            isotopes, self.t_F, self.flight_path_length, self.samples_per_bin
         )
 
     def plot(self, ax, function_of_energy=False):
-        """Plot a XSDict.
+        """Plot the cross sections of a XSDict object.
 
         Args:
-            ax (TYPE): Description
-            function_of_energy (bool, optional): Description
+            ax: Matplotlib axis used for plotting.
+            function_of_energy (bool, optional): `True` plots the dictionary as a function
+                of energy. Default `False` plots it as a function of time-of-flight.
         """
         if function_of_energy:
-            plot_xsdict(ax, self.values, self.isotopes, E=self.E)
+            xax = self.E
+            xax_label = "Energy [eV]"
         else:
-            plot_xsdict(ax, self.values, self.isotopes, t_F=self.t_F)
+            xax = self.t_F
+            xax_label = "Time-of-flight [μs]"
+
+        for d, isotopes in zip(self.values, self.isotopes):
+            ax.plot(xax, d, label=isotopes, alpha=0.6)
+
+        ax.set_yscale("log")
+        ax.set_title("Cross Section Dictionary [cm²/mol]")
+        ax.legend()
+        ax.set_xlabel(xax_label)
 
     def merge(self, merge_isotopes, merge_weights, new_key):
-        """Merge entries of an XSDict.
+        """Merge cross section entries of an XSDict.
+
+        This function can be used to combine cross section entries using a weighted sum.
+        The list `merge_isotopes` must be a subset of `self.isotopes`. The `merge_weights` are
+        usually the natural abundance fractions of the isotopes, summing to <=1. The returned
+        list of `isotopes` has the unchanged isotopes where the merged isotopes are replaced by
+        the `new_key` string. (I.e. they updated list `isotopes` is likely not stricly only isotopes.)
 
         Args:
-            merge_isotopes (TYPE): Description
-            merge_weights (TYPE): Description
-            new_key (TYPE): Description
+            merge_isotopes (list): list of isotope symbols to be summed.
+            merge_weights (list): list of weights to be used for weighted sum.
+            new_key (str): New symbol to be used in place of the merged cross sections.
 
-        Raises:
-            ValueError: Description
+        Returns:
+            (list) Updated list of isotopes.
         """
         not_in = list(set(merge_isotopes) - set(self.isotopes))
         if not_in:
@@ -206,6 +166,7 @@ values = {self.values.__repr__()}
                 f"merge_isotopes must be subset of self.isotopes. {not_in} not part of {self.isotopes}"
             )
 
+        # index of the first merged isotope; where new_key will be inserted.
         target = min([self.isotopes.index(isotope) for isotope in merge_isotopes])
 
         D = list(self.values)
@@ -222,3 +183,45 @@ values = {self.values.__repr__()}
 
         D.insert(target, d)
         self.values = np.array(D)
+
+        return self.isotopes
+
+    def _get_cross_section_values(
+        self, isotopes, t_F, flight_path_length, samples_per_bin
+    ):
+        """Creates a cross section dictionary."""
+
+        xsdict = np.zeros([len(isotopes), t_F.size])
+        Δt = abs(t_F[1] - t_F[0])
+        E = time2energy(t_F, flight_path_length)
+        xsdata = __xsdata_load_once__()
+
+        for i, isotope in enumerate(isotopes):
+            if isotope not in xsdata["isotopes"]:
+                raise ValueError(f"Isotope {isotope} cannot be found in data base.")
+
+            iid = xsdata["isotopes"].index(isotope)
+            xs_raw = xsdata["cross_sections"][iid]
+            E_raw = xsdata["energies"][iid]
+            xs_interp = interpolate.interp1d(E_raw, xs_raw)
+
+            if not (min(E_raw) < min(E) and max(E) < max(E_raw)):
+                raise ValueError(
+                    f"Requested energy range [{si_format(min(E))}eV, {si_format(max(E))}eV]"
+                    f"for {isotope} is too large. Must be within "
+                    f"[{si_format(min(E_raw))}eV, {si_format(max(E_raw))}eV]."
+                )
+
+            if samples_per_bin == 1:
+                xs = xs + interpolate.interp1d(E_raw, xs_raw)(E)
+
+            else:
+                xs = np.zeros(t_F.size)
+                # compute average cross section using samples_per_bin samples per time-of-flight bin
+                for r in np.linspace(-1 / 2, 1 / 2, samples_per_bin):
+                    E_shift = time2energy(t_F + r * Δt, flight_path_length)
+                    xs = xs + xs_interp(E_shift) / samples_per_bin
+
+            xsdict[i] = xs
+
+        return xsdict

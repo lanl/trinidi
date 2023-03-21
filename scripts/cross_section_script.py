@@ -47,7 +47,8 @@ new_key = "W"
 D_full = cross_section.XSDict(isotopes_full, t_F, flight_path_length)
 
 D_merged = cross_section.XSDict(isotopes_full, t_F, flight_path_length)
-D_merged.merge(merge_isotopes, merge_weights, new_key)
+isotopes_new = D_merged.merge(merge_isotopes, merge_weights, new_key)
+print(isotopes_new)  # ['Au-197', 'W']
 
 
 fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
