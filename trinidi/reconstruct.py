@@ -24,7 +24,7 @@ class ProjectionRegion:
         self.ω = self.mask / self.mask.sum()
 
     def average(self, Y):
-        r"""Compute :math:`ω^\top Y`,
+        r"""Compute :math:`\omega^\top Y`,
 
             where :math:`\omega` has shape `projection_shape + (1,)` and :math:`Y` has shape
             `projection_shape + (N_A,)`, thus the result has shape `(1, N_A)`.
@@ -36,7 +36,7 @@ class ProjectionRegion:
                 `N` is the number of projections, `np.prod(projection_shape)`.
 
         Returns:
-            The :math:`ω^\top Y` array.
+            The :math:`\omega^\top Y` array.
         """
         projection_dims = tuple([i for i, _ in enumerate(self.projection_shape)])
         return np.sum(self.ω * Y, axis=projection_dims)[np.newaxis, :]

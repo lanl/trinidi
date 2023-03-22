@@ -8,7 +8,7 @@ from trinidi.util import time2energy
 
 
 class ResolutionOperator:
-    """Resolution Operator Class"""
+    """ResolutionOperator Class"""
 
     def __repr__(self):
         return f"""{type(self)}
@@ -79,14 +79,20 @@ class ResolutionOperator:
                 1,
                 self.N_A,
             )
-            self.single = self.__class__(single_output_shape, self.kernels)
+            self.R_single = self.__class__(single_output_shape, self.kernels)
 
     def __call__(self, x):
         return self.R(x)
 
+    def single(self, x):
+        r"""Call Resolution operator on an array of size `(1, N_F)`."""
+        return self.R_single(x)
+
     def call_on_any_array(self, array):
-        """Call Resolution operator on any array that has the same
-        number of TOA bins (N_A).
+        """Call ResolutionOperator on an array of size `(..., N_F)`.
+
+        Note: New ResolutionOperator object is created every time this function is called.
+        Thus, is is not recommended to use this function when fast performance is required.
         """
         if array.shape[-1] != self.input_shape[-1]:
             raise ValueError(
@@ -97,13 +103,13 @@ class ResolutionOperator:
         return R_(array)
 
     def compute_t_F(self, t_A):
-        r"""Finds time-of-flight array so that :math:`R(t_F) \approx t_A`.
+        r"""Finds time-of-flight array so that :math:`t_F^\top R \approx t_A^\top`.
 
         Args:
-            t_A (array): Time-of-arrival equi-spaced increasing array
+            t_A (array): Time-of-arrival equi-spaced increasing array.
 
         Returns:
-            t_F (array): Time-of-flight equi-spaced increasing array
+            t_F (array): Time-of-flight equi-spaced increasing array.
         """
 
         x = np.arange(self.N_F)
