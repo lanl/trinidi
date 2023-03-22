@@ -12,12 +12,12 @@ class ResolutionOperator:
 
     def __repr__(self):
         return f"""{type(self)}
+    input_shape = {self.input_shape} = projection_shape + (N_F,)
+    output_shape = {self.output_shape} = projection_shape + (N_A,)
 
-input_shape = {self.input_shape}
-output_shape = {self.output_shape}
-
-projection_shape = {self.projection_shape}
-
+    projection_shape = {self.projection_shape}
+    N_F = {self.input_shape[-1]}
+    N_A = {self.output_shape[-1]}
         """
 
     def __init__(self, output_shape, kernels=None):
@@ -42,14 +42,14 @@ projection_shape = {self.projection_shape}
         self.N_A = self.output_shape[-1]
 
         kernel_sizes = [k.size for k in self.kernels]
-        self.N_buffer_lo = int((max(kernel_sizes[:2]) - 1) / 2)
-        self.N_buffer_hi = int((max(kernel_sizes[-2:]) - 1) / 2)
-        self.N_F = self.N_buffer_lo + self.N_A + self.N_buffer_hi
+        N_buffer_lo = int((max(kernel_sizes[:2]) - 1) / 2)
+        N_buffer_hi = int((max(kernel_sizes[-2:]) - 1) / 2)
+        self.N_F = N_buffer_lo + self.N_A + N_buffer_hi
 
         # Creating operators
         self.input_shape = self.projection_shape + (self.N_F,)
 
-        self.W = self._get_weights()
+        self.W = self._get_weights(self.kernels, self.N_F)
 
         # Convolution operators with different stds
         self.Hks = []
@@ -67,12 +67,19 @@ projection_shape = {self.projection_shape}
             else:
                 self.H = self.H + HWk
 
-        if self.N_buffer_hi > 0:
-            self.G = lambda x: ((x.T)[self.N_buffer_lo : -self.N_buffer_hi]).T
+        if N_buffer_hi > 0:
+            self.G = lambda x: ((x.T)[N_buffer_lo:-N_buffer_hi]).T
         else:
-            self.G = lambda x: ((x.T)[self.N_buffer_lo :]).T
+            self.G = lambda x: ((x.T)[N_buffer_lo:]).T
 
         self.R = lambda x: self.G(self.H(x))
+
+        if self.projection_shape != (1,):
+            single_output_shape = (
+                1,
+                self.N_A,
+            )
+            self.single = self.__class__(single_output_shape, self.kernels)
 
     def __call__(self, x):
         return self.R(x)
@@ -111,15 +118,14 @@ projection_shape = {self.projection_shape}
 
         return t_F
 
-    def _get_weights(self):
+    def _get_weights(self, kernels, N_F):
         def triangle(size, center=0, radius=1):
             x = np.arange(size)
             y = 1 - np.abs(x - center) / radius
             y = np.maximum(y, 0)
             return y
 
-        K = len(self.kernels)
-        N_F = self.N_F
+        K = len(kernels)
 
         if K > 1:
             W = np.zeros([K, N_F])

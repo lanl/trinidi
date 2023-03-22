@@ -6,7 +6,7 @@ import numpy as np
 from scipy import interpolate
 from si_prefix import si_format
 
-from trinidi.util import time2energy
+from trinidi import util
 
 # Store absolute path to xsdata.npy
 __xsdata_filename__ = os.path.join(os.path.dirname(__file__), "../data/xsdata.npy")
@@ -77,18 +77,18 @@ class XSDict:
 
     def __repr__(self):
         return f"""{type(self)}
-isotopes = {self.isotopes}
-N_m = {self.N_m}
+    isotopes = {self.isotopes}
+    N_m = {self.N_m}
 
-t_F = [{self.t_F[0]:.3f} μs, ..., {self.t_F[-1]:.3f} μs]
-Δt = {self.Δt:.3f} μs
-N_F = {self.N_F}
-flight_path_length = {self.flight_path_length:.3f} m
-E = [{self.E[0]:.3f} eV, ..., {self.E[-1]:.3f} eV]
+    t_F = [{self.t_F[0]:.3f} μs, ..., {self.t_F[-1]:.3f} μs]
+    Δt = {self.Δt:.3f} μs
+    N_F = {self.N_F}
+    flight_path_length = {self.flight_path_length:.3f} m
+    E = [{self.E[0]:.3f} eV, ..., {self.E[-1]:.3f} eV]
 
-samples_per_bin = {self.samples_per_bin}
+    samples_per_bin = {self.samples_per_bin}
 
-values.shape = {self.values.shape} = (N_m, N_F)
+    values.shape = {self.values.shape} = (N_m, N_F)
         """
 
     def __init__(self, isotopes, t_F, flight_path_length, samples_per_bin=10):
@@ -113,7 +113,7 @@ values.shape = {self.values.shape} = (N_m, N_F)
         self.N_F = self.t_F.size
 
         self.flight_path_length = flight_path_length
-        self.E = time2energy(self.t_F, self.flight_path_length)
+        self.E = util.time2energy(self.t_F, self.flight_path_length)
 
         self.samples_per_bin = samples_per_bin
         self.values = self._get_cross_section_values(
@@ -130,10 +130,10 @@ values.shape = {self.values.shape} = (N_m, N_F)
         """
         if function_of_energy:
             xax = self.E
-            xax_label = "Energy [eV]"
+            xax_label = util.ENERGY_LABEL
         else:
             xax = self.t_F
-            xax_label = "Time-of-flight [μs]"
+            xax_label = util.TOF_LABEL
 
         for d, isotopes in zip(self.values, self.isotopes):
             ax.plot(xax, d, label=isotopes, alpha=0.6)
@@ -193,7 +193,7 @@ values.shape = {self.values.shape} = (N_m, N_F)
 
         xsdict = np.zeros([len(isotopes), t_F.size])
         Δt = abs(t_F[1] - t_F[0])
-        E = time2energy(t_F, flight_path_length)
+        E = util.time2energy(t_F, flight_path_length)
         xsdata = __xsdata_load_once__()
 
         for i, isotope in enumerate(isotopes):
@@ -219,7 +219,7 @@ values.shape = {self.values.shape} = (N_m, N_F)
                 xs = np.zeros(t_F.size)
                 # compute average cross section using samples_per_bin samples per time-of-flight bin
                 for r in np.linspace(-1 / 2, 1 / 2, samples_per_bin):
-                    E_shift = time2energy(t_F + r * Δt, flight_path_length)
+                    E_shift = util.time2energy(t_F + r * Δt, flight_path_length)
                     xs = xs + xs_interp(E_shift) / samples_per_bin
 
             xsdict[i] = xs
