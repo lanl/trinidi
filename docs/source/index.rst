@@ -19,7 +19,7 @@ TRINIDI Documentation
    zreferences
    contributing
    shapes
-   examples
+   notebooks/examples
 
 .. toctree::
    :hidden:

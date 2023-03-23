@@ -16,3 +16,12 @@ conda install sphinx
 
 # other commands
 cd docs && make clean && make html && open -a "Safari" ../build/sphinx/html/index.html && cd ..
+
+
+
+
+
+
+
+
+jupyter nbconvert --to python ex1.ipynb
