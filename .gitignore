@@ -3,7 +3,9 @@ __pycache__
 
 # Sphinx documentation
 docs/_build/
+build/
+docs/source/_autosummary/
+
 
 # macos files
 *.DS_Store
-

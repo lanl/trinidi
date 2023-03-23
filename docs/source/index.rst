@@ -9,18 +9,25 @@ TRINIDI uses SCICO :cite:`balke-2022-scico`.
 
 
 TRINIDI Documentation
-===================
+=====================
 
 .. toctree::
    :maxdepth: 2
    :caption: User Documentation
 
-   usage
    API Reference <_autosummary/trinidi.rst>
    zreferences
    contributing
    shapes
    examples
+
+.. toctree::
+   :hidden:
+
+   example_notebooks/ex1.ipynb
+
+
+
 
 
 Indices

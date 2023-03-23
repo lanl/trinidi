@@ -2,4 +2,4 @@ scico>=0.0.3
 numpy>=1.20.0
 matplotlib
 si_prefix
-scico=0.0.3.post1
+scico
