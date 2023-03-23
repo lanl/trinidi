@@ -31,9 +31,6 @@ class ProjectionRegion:
 
         Args:
             Y: :math:`Y` array.
-            ω (optional): :math:`\omega` array. When `None`, the average over all projections is
-                being computed, i.e. it is equivalent to :math:`(\forall i) \omega_i = 1/N`, where
-                `N` is the number of projections, `np.prod(projection_shape)`.
 
         Returns:
             The :math:`\omega^\top Y` array.
@@ -85,7 +82,7 @@ import numpy as np
 from trinidi import cross_section, resolution, util
 
 Δt = 0.90
-t_A = np.arange(72, 720, Δt)
+t_A = np.arange(72, 400, Δt)
 N_A = t_A.size
 flight_path_length = 10
 
@@ -97,12 +94,12 @@ projection_shape = (31, 31)
 
 output_shape = projection_shape + (N_A,)
 
-R = resolution.ResolutionOperator(output_shape, kernels)
+R = resolution.ResolutionOperator(output_shape, kernels=kernels)
 t_F = R.compute_t_F(t_A)
 D = cross_section.XSDict(isotopes, t_F, flight_path_length)
 
 
-ϕ, b, θ, α_1, α_2 = util.generate_spectra(t_A, acquisition_time=3)
+ϕ, b, θ, α_1, α_2 = util.generate_spectra(t_A, acquisition_time=10)
 
 
 fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
@@ -185,7 +182,7 @@ class Parameters:
     """
 
     def __init__(
-        self, Y_o, Y_s, R, D, Ω_z=None, Ω_0=None, N_b=5, β=1.0, optimization_params=None
+        self, Y_o, Y_s, R, D, Ω_z, Ω_0=None, N_b=5, β=1.0, optimization_params=None
     ):
         r"""
         Args:
@@ -203,20 +200,57 @@ class Parameters:
                 Equal weight when `β=1.0` (default).
         """
 
-        # self.t_A = t_A
-        # self.R = resolution.ResolutionOperator(Y_o.shape, kernels)
-        # self.t_F = R.compute_t_F(self.t_A)
+        self.Y_o = Y_o
+        self.Y_s = Y_s
 
-        # self.D = cross_section.XSDict(isotopes, t_F, flight_path_length)
+        self.R = R
+        self.D = D
 
-        y_o = ""
-        y_s0 = ""
-        y_sz = ""
+        N_A = Y_o.shape[-1]
+        self.P = util.background_basis(N_b, N_A)
 
-        self.v = ""
-        P = ""
+        # v = (Y_o 1/N_p) / (1'/N_p Y_o 1/N_A) where 1 is a vector of ones.
+        self.v = np.mean(Y_o, axis=-1, keepdims=True) / np.mean(Y_o)
 
-        apgm = ""
+        # represents the 1-vector
+        Ω_o = ProjectionRegion(np.ones(projection_shape + (1,)))
+        self.y_o = (Ω_o.average(Y_o) / Ω_o.average(self.v)).T
+
+        self.Ω_z = Ω_z
+        self.y_sz = (Ω_z.average(Y_s) / Ω_z.average(self.v)).T
+
+        self.Ω_0 = Ω_0
+        if Ω_0 is not None:
+            self.y_s0 = (Ω_0.average(Y_s) / Ω_0.average(self.v)).T
+
+    def plot_regions(self, t_A):
+        r"""Plot Ω regions and corresponding spectra"""
+        Ys_Yo = np.sum(self.Y_s, axis=-1) / np.sum(self.Y_o, axis=-1)
+
+        N = 3 if self.Ω_0 else 2
+        fig, ax = plt.subplots(1, N, figsize=[12, 8], sharex=True)
+        ax = np.atleast_1d(ax)
+        ax[0].imshow(Ys_Yo)
+        self.Ω_z.plot_contours(ax[0], color="red")
+        if self.Ω_0:
+            self.Ω_0.plot_contours(ax[0], color="blue")
+        ax[0].set_title("TOF Integrated Measurement Ratio")
+
+        self.Ω_z.imshow(ax[1], title="Ω_z")
+
+        if self.Ω_0:
+            self.Ω_0.imshow(ax[2], title="Ω_0")
+
+        fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
+        ax = np.atleast_1d(ax)
+        ax[0].plot(t_A, self.y_o.flatten(), label="y_o", alpha=0.75, color="green")
+        ax[0].plot(t_A, self.y_sz.flatten(), label="y_sz", alpha=0.75, color="red")
+        if self.Ω_0:
+            ax[0].plot(t_A, self.y_s0.flatten(), label="y_s0", alpha=0.75, color="blue")
+        ax[0].legend(prop={"size": 8})
+        ax[0].set_xlabel(util.TOF_LABEL)
+
+        self.D.plot(ax[1])
 
     def estmate(self):
         r"""Estimate Parameters"""
@@ -237,17 +271,8 @@ class Parameters:
         r"""Load Parameters"""
 
 
-y_sz = Ω_z.average(Y_s).T
-y_s0 = Ω_0.average(Y_s).T
+par = Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0)
 
-fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=False)
-ax = np.atleast_1d(ax)
-ax[0].plot(t_A, y_sz.flatten(), label="y_sz", alpha=0.75)
-ax[0].plot(t_A, y_s0.flatten(), label="y_s", alpha=0.75)
-ax[0].legend(prop={"size": 8})
-ax[0].set_xlabel(util.TOF_LABEL)
 
+par.plot_regions(t_A)
 plt.show()
-
-
-par = Parameters(Y_o, Y_s, R, D)

@@ -16,7 +16,7 @@ output_shape = projection_shape + (N_A,)
 
 g = lambda t_A: resolution.lanl_fp5_kernel(t_A, Δt, flight_path_length)
 kernels = resolution.equispaced_kernels(t_A, num_kernels, g)
-R = resolution.ResolutionOperator(output_shape, kernels)
+R = resolution.ResolutionOperator(output_shape, kernels=kernels)
 t_F = R.compute_t_F(t_A)
 
 x = np.random.rand(*R.input_shape) ** 0.5

@@ -79,7 +79,7 @@ class ResolutionOperator:
                 1,
                 self.N_A,
             )
-            self.R_single = self.__class__(single_output_shape, self.kernels)
+            self.R_single = self.__class__(single_output_shape, kernels=self.kernels)
 
     def __call__(self, x):
         return self.R(x)
@@ -99,7 +99,7 @@ class ResolutionOperator:
                 f"array shape not compatible. array.shape[-1] ({array.shape[-1]}) != input_shape[-1] ({self.input_shape[-1]})"
             )
         output_shape = array.shape[:-1] + (self.output_shape[-1],)
-        R_ = self.__class__(output_shape, self.kernels)
+        R_ = self.__class__(output_shape, kernels=self.kernels)
         return R_(array)
 
     def compute_t_F(self, t_A):
@@ -111,7 +111,6 @@ class ResolutionOperator:
         Returns:
             t_F (array): Time-of-flight equi-spaced increasing array.
         """
-
         x = np.arange(self.N_F)
         u = self.call_on_any_array(x)
 
