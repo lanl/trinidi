@@ -7,3 +7,7 @@ pip install -e .
 
 pip install ipython pyqt5
 pip install pre-commit autoflake isort black pylint
+
+
+# other commands
+cd docs && make clean && make html && open -a "Safari"
