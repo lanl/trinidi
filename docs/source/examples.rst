@@ -8,4 +8,5 @@ Example Notebooks
    :maxdepth: 2
 
 
-   example_notebooks/ex1.ipynb
+   notebooks/ex1.ipynb
+   notebooks/ex1_.rst

@@ -7,7 +7,12 @@ pip install -e .
 
 pip install ipython pyqt5
 pip install pre-commit autoflake isort black pylint
+pip install jupyter
+
+pip install -r docs/docs_requirements.txt
+
+conda install sphinx
 
 
 # other commands
-cd docs && make clean && make html && open -a "Safari"
+cd docs && make clean && make html && open -a "Safari" ../build/sphinx/html/index.html && cd ..
