@@ -24,6 +24,7 @@ TRINIDI Documentation
 .. toctree::
    :hidden:
 
+   api
    notebooks/ex1.ipynb
    notebooks/ex1_.rst
 
