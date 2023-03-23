@@ -1,5 +1,10 @@
 """Some reconstruction functions and classes."""
 
+from jax.config import config
+from scico.numpy import BlockArray
+
+config.update("jax_enable_x64", True)
+
 
 class ProjectionRegion:
     r"""ProjectionRegion class.
@@ -225,10 +230,33 @@ class Parameters:
         self.y_sz = (self.Ω_z.average(Y_s) / self.Ω_z.average(self.v)).T
 
         self.Ω_0 = Ω_0
-        if Ω_0 is not None:
+        if self.Ω_0 is not None:
             self.y_s0 = (self.Ω_0.average(Y_s) / self.Ω_0.average(self.v)).T
 
         # Initialization
+        α_2 = 1
+        print(f"{α_2 = }")
+
+        if self.Ω_0:
+            # (ω_0' Y_s 1) / (ω_0' Y_o 1)
+            α_1 = np.sum(self.Ω_0.average(Y_s)) / np.sum(self.Ω_0.average(Y_o))
+        else:
+            # (1' Y_s 1) / (1' Y_o 1)
+            α_1 = np.sum(self.Ω_o.average(Y_s)) / np.sum(self.Ω_o.average(Y_o))
+        print(f"{α_1 = }")
+
+        temp = np.min(self.y_sz / self.y_o) * self.y_o / (α_1 * α_2)
+        θ = (np.log(temp.T) @ np.linalg.pinv(self.P)).T
+        b = (np.exp(θ.T @ self.P)).T
+        print(f"{θ = }")
+
+        q = np.abs(util.no_nan_divide(self.y_sz / α_1 - α_2 * b, self.y_o - b))
+        DR = R.call_on_any_array(self.D.values)
+        z = (-np.log(q.T) @ np.linalg.pinv(DR)).T
+        print(f"{z.shape = }")
+
+        cast = lambda x: np.require(x, dtype=np.float64)
+        self.zα1α2θ = BlockArray([cast(z), cast(α_1), cast(α_2), cast(θ)])
 
     def plot_regions(self):
         r"""Plot Ω regions and corresponding spectra"""

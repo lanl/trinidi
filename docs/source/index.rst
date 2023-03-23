@@ -20,6 +20,7 @@ TRINIDI Documentation
    zreferences
    contributing
    shapes
+   examples
 
 
 Indices

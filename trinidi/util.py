@@ -183,3 +183,16 @@ def rose_phantom(N, num_circles=5, radius=2 / 3):
     )
 
     return masks
+
+
+def no_nan_divide(x, y):
+    """Return `x/y`, with 0 instead of NaN where `y` is 0.
+
+    Args:
+        x: Numerator.
+        y: Denominator.
+
+    Returns:
+        `x / y` with 0 wherever `y == 0`.
+    """
+    return np.where(y != 0, np.divide(x, np.where(y != 0, y, 1)), 0)
