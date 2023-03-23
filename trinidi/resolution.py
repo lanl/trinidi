@@ -20,7 +20,7 @@ class ResolutionOperator:
     N_A = {self.output_shape[-1]}
         """
 
-    def __init__(self, output_shape, kernels=None):
+    def __init__(self, output_shape, t_A, kernels=None):
         """Initialize a ResolutionOperator object.
 
         Args:
@@ -29,6 +29,7 @@ class ResolutionOperator:
                 'None' results in identity operator.
         """
         self.output_shape = output_shape
+        self.t_A = t_A
 
         if kernels == None:
             kernels = [1]
@@ -79,7 +80,12 @@ class ResolutionOperator:
                 1,
                 self.N_A,
             )
-            self.R_single = self.__class__(single_output_shape, kernels=self.kernels)
+            self.R_single = self.__class__(
+                single_output_shape, None, kernels=self.kernels
+            )
+
+        if self.t_A is not None:
+            self.t_F = self.compute_t_F(self.t_A)
 
     def __call__(self, x):
         return self.R(x)
@@ -99,7 +105,7 @@ class ResolutionOperator:
                 f"array shape not compatible. array.shape[-1] ({array.shape[-1]}) != input_shape[-1] ({self.input_shape[-1]})"
             )
         output_shape = array.shape[:-1] + (self.output_shape[-1],)
-        R_ = self.__class__(output_shape, kernels=self.kernels)
+        R_ = self.__class__(output_shape, None, kernels=self.kernels)
         return R_(array)
 
     def compute_t_F(self, t_A):

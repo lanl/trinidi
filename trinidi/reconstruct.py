@@ -94,8 +94,8 @@ projection_shape = (31, 31)
 
 output_shape = projection_shape + (N_A,)
 
-R = resolution.ResolutionOperator(output_shape, kernels=kernels)
-t_F = R.compute_t_F(t_A)
+R = resolution.ResolutionOperator(output_shape, t_A, kernels=kernels)
+t_F = R.t_F
 D = cross_section.XSDict(isotopes, t_F, flight_path_length)
 
 
@@ -206,7 +206,12 @@ class Parameters:
         self.R = R
         self.D = D
 
-        N_A = Y_o.shape[-1]
+        self.t_A = R.t_A
+        self.t_F = R.t_F
+
+        N_A = self.t_A.size
+        N_F = self.t_F.size
+
         self.P = util.background_basis(N_b, N_A)
 
         # v = (Y_o 1/N_p) / (1'/N_p Y_o 1/N_A) where 1 is a vector of ones.
@@ -217,38 +222,53 @@ class Parameters:
         self.y_o = (Ω_o.average(Y_o) / Ω_o.average(self.v)).T
 
         self.Ω_z = Ω_z
-        self.y_sz = (Ω_z.average(Y_s) / Ω_z.average(self.v)).T
+        self.y_sz = (self.Ω_z.average(Y_s) / self.Ω_z.average(self.v)).T
 
         self.Ω_0 = Ω_0
         if Ω_0 is not None:
-            self.y_s0 = (Ω_0.average(Y_s) / Ω_0.average(self.v)).T
+            self.y_s0 = (self.Ω_0.average(Y_s) / self.Ω_0.average(self.v)).T
 
-    def plot_regions(self, t_A):
+        # Initialization
+
+    def plot_regions(self):
         r"""Plot Ω regions and corresponding spectra"""
-        Ys_Yo = np.sum(self.Y_s, axis=-1) / np.sum(self.Y_o, axis=-1)
+        meas_ratio = np.sum(self.Y_s, axis=-1) / np.sum(self.Y_o, axis=-1)
 
-        N = 3 if self.Ω_0 else 2
-        fig, ax = plt.subplots(1, N, figsize=[12, 8], sharex=True)
+        N = 4 if self.Ω_0 else 3
+        fig, ax = plt.subplots(1, N, figsize=[15, 4], sharex=True)
         ax = np.atleast_1d(ax)
-        ax[0].imshow(Ys_Yo)
-        self.Ω_z.plot_contours(ax[0], color="red")
-        if self.Ω_0:
-            self.Ω_0.plot_contours(ax[0], color="blue")
-        ax[0].set_title("TOF Integrated Measurement Ratio")
 
-        self.Ω_z.imshow(ax[1], title="Ω_z")
+        im = ax[0].imshow(self.v[:, :, 0], vmin=0)
+        fig.colorbar(im, ax=ax[0])
+        ax[0].set_title("v")
+
+        im = ax[1].imshow(meas_ratio, vmin=0)
+        fig.colorbar(im, ax=ax[1])
+        self.Ω_z.plot_contours(ax[1], color="red")
+        if self.Ω_0:
+            self.Ω_0.plot_contours(ax[1], color="blue")
+        ax[1].set_title("1Y_s / 1Y_o")
+
+        im = self.Ω_z.imshow(ax[2], title="Ω_z")
+        fig.colorbar(im, ax=ax[2])
 
         if self.Ω_0:
-            self.Ω_0.imshow(ax[2], title="Ω_0")
+            im = self.Ω_0.imshow(ax[3], title="Ω_0")
+            fig.colorbar(im, ax=ax[3])
+
+        fig.suptitle("Selected Regions Ω_z, Ω_0")
 
         fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
         ax = np.atleast_1d(ax)
-        ax[0].plot(t_A, self.y_o.flatten(), label="y_o", alpha=0.75, color="green")
-        ax[0].plot(t_A, self.y_sz.flatten(), label="y_sz", alpha=0.75, color="red")
+        ax[0].plot(self.t_A, self.y_o.flatten(), label="y_o", alpha=0.75, color="green")
+        ax[0].plot(self.t_A, self.y_sz.flatten(), label="y_sz", alpha=0.75, color="red")
         if self.Ω_0:
-            ax[0].plot(t_A, self.y_s0.flatten(), label="y_s0", alpha=0.75, color="blue")
+            ax[0].plot(
+                self.t_A, self.y_s0.flatten(), label="y_s0", alpha=0.75, color="blue"
+            )
         ax[0].legend(prop={"size": 8})
         ax[0].set_xlabel(util.TOF_LABEL)
+        ax[0].set_title("Averaged Measurements")
 
         self.D.plot(ax[1])
 
@@ -274,5 +294,5 @@ class Parameters:
 par = Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0)
 
 
-par.plot_regions(t_A)
+par.plot_regions()
 plt.show()
