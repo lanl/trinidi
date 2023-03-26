@@ -15,7 +15,7 @@ from scico.functional import (
     SeparableFunctional,
     ZeroFunctional,
 )
-from scico.loss import SquaredL2Loss
+from scico.loss import PoissonLoss, SquaredL2Loss
 from scico.numpy import BlockArray
 from scico.operator import Operator
 from scico.optimize.pgm import AcceleratedPGM, RobustLineSearchStepSize
@@ -209,6 +209,32 @@ class Preconditioner:
         return zα1α2θ
 
 
+def _check_compatible_RDY(R, D, Y_list=None):
+    r"""Check shapes compatibility between R and D; and list of Y (optional)"""
+    if R.N_F != D.N_F:
+        raise ValueError(
+            f"ResolutionOperator and XSDict shapes are not compatible. {R.N_F=} while {D.N_F=}."
+        )
+
+    if Y_list is not None:
+        Y = Y_list[0]
+
+        if not all(Yi.shape == Y.shape for Yi in Y_list):
+            raise ValueError(
+                f"Not all shapes in Y_list are the same. Have: {[Yi.shape for Yi in Y_list]}"
+            )
+
+        if R.projection_shape != Y.shape[:-1]:
+            raise ValueError(
+                f"ResolutionOperator and counting data shapes are not compatible. {R.projection_shape=} while {Y.shape[:-1]=}."
+            )
+
+        if R.N_A != Y.shape[-1]:
+            raise ValueError(
+                f"ResolutionOperator and counting data shapes are not compatible. {R.N_A=} while {Y.shape[-1]=}."
+            )
+
+
 class Parameters:
     r"""Parameter class for nuisance parameters.
     :code:`projection_shape` is the shape of the detector so usually this will
@@ -252,24 +278,38 @@ class Parameters:
                 (`β=0`), and solving equation for `ω_s0` (`β` infinite).
                 Equal weight when `β=1.0` (default).
         """
-        self.R = R
-        self.t_A = self.R.t_A
-        self.t_F = self.R.t_F
-        self.D = D
-        self._pc = Preconditioner(D)
-        self._D_conditioned = self._pc.D_conditioned
 
-        self.P = util.background_basis(N_b, self.t_A.size)
+        _check_compatible_RDY(R, D, Y_list=[Y_o, Y_s])
+
+        self.R = R
+        self.D = D
+        self._pc = Preconditioner(self.D)
 
         self.Y_o = Y_o
         self.Y_s = Y_s
         projection_shape = Y_s.shape[:-1]
 
+        self.t_A = self.R.t_A
+        self.N_b = N_b
+        self.P = util.background_basis(N_b, self.t_A.size)
+
         # --- Averaging regions
         # Ω_o: average all projections (1')
         Ω_o = ProjectionRegion(np.ones(projection_shape + (1,)))
+        if Ω_z.projection_shape != projection_shape:
+            raise ValueError(
+                f"Ω_z shape does not match. {Ω_z.projection_shape=} != {projection_shape=}"
+            )
         self.Ω_z = Ω_z
-        self.Ω_0 = Ω_0  # This may be None, equivalent to β=0
+
+        if Ω_0:
+            if Ω_0.projection_shape != projection_shape:
+                raise ValueError(
+                    f"Ω_0 shape does not match. {Ω_0.projection_shape=} != {projection_shape=}"
+                )
+            self.Ω_0 = Ω_0
+        else:
+            self.Ω_0 = None  # equivalent to β=0
 
         # v = (Y_o 1/N_p) / (1'/N_p Y_o 1/N_A) where 1 is a vector of ones.
         self.v = np.mean(self.Y_o, axis=-1, keepdims=True) / np.mean(self.Y_o)
@@ -295,7 +335,7 @@ class Parameters:
         zα1α2θ_init_conditioned = self._pc.condition_zα1α2θ(self.zα1α2θ_init)
 
         forward_z_conditioned = Forward_zα1α2θ(
-            self.zα1α2θ_init.shape, self.y_o, self._D_conditioned, self.R, self.P
+            self.zα1α2θ_init.shape, self.y_o, self._pc.D_conditioned, self.R, self.P
         )
         self.forward_z = Forward_zα1α2θ(self.zα1α2θ_init.shape, self.y_o, self.D, self.R, self.P)
         if self.Ω_0:
@@ -331,14 +371,12 @@ class Parameters:
         g = SeparableFunctional([gz, gα1, gα2, gθ])
 
         # --- Optimizer
-        step_size = RobustLineSearchStepSize()
-        L0 = 1e-5
         self.apgm = AcceleratedPGM(
             f=f_conditioned,
             g=g,
-            L0=L0,
+            L0=1e-5,
             x0=zα1α2θ_init_conditioned,
-            step_size=step_size,
+            step_size=RobustLineSearchStepSize(),
             itstat_options={"display": True, "period": 10},
         )
 
@@ -417,10 +455,10 @@ class Parameters:
         y_o = self.y_o
         y_s0 = self.y_s0
 
-        z = self.zα1α2θ[0]
-        α_1 = self.zα1α2θ[1]
-        α_2 = self.zα1α2θ[2]
-        θ = self.zα1α2θ[3]
+        z = self.get_parameter_dict()["z"]
+        α_1 = self.get_parameter_dict()["α_1"]
+        α_2 = self.get_parameter_dict()["α_2"]
+        θ = self.get_parameter_dict()["θ"]
         b = (snp.exp(θ.T @ self.P)).T
         ϕ = self.y_o - b
 
@@ -581,3 +619,145 @@ class Parameters:
             raise ValueError(
                 f"Incompatible shapes of zα1α2θ. Internal shape is {self.zα1α2θ.shape} but new shape is {zα1α2θ.shape}."
             )
+
+
+class Forward_Z(Operator):
+    r"""
+    Pseudo forward operator
+    F(Z) = ε (Φ * Q(Z) + B_s)
+
+    Q(Z) = exp(-Z D) R
+    B_s = μ B
+    """
+
+    def __init__(self, input_shape, α_1, α_2, Φ, B, D, R, jit: bool = True):
+        self.α_1 = jax.device_put(α_1)
+        self.α_2 = jax.device_put(α_2)
+        self.Φ = jax.device_put(Φ)
+        self.D = jax.device_put(D.values)
+        self.B = jax.device_put(B)
+        self.R = R
+
+        super().__init__(
+            input_shape=input_shape,
+            jit=jit,
+        )
+
+    def _eval(self, Z):
+        Q = self.R(snp.exp(-Z @ self.D))
+        return self.α_1 * (self.Φ * Q + self.α_2 * self.B)
+
+
+class ArealDensityEstimator:
+    r"""ArealDensityEstimator class"""
+
+    def __init__(self, Y_s, par, D=None, R=None, non_negative_Z=False):
+        """Initialize an ArealDensityEstimator object."""
+
+        if D is None:
+            self.D = par.D
+
+        if R is None:
+            self.R = par.R
+
+        self._pc = Preconditioner(self.D)
+
+        _check_compatible_RDY(self.R, self.D, Y_list=[Y_s])
+        projection_shape = self.R.projection_shape
+
+        z = par.get_parameter_dict()["z"]
+        α_1 = par.get_parameter_dict()["α_1"]
+        α_2 = par.get_parameter_dict()["α_2"]
+        θ = par.get_parameter_dict()["θ"]
+
+        b = (snp.exp(θ.T @ par.P)).T
+        ϕ = par.y_o - b
+
+        B = par.v @ b.T
+        Φ = par.v @ ϕ.T
+
+        print(f"check or crop {par.v.shape=}???")
+
+        self.Z_init = self._initialize(Φ, Y_s, α_1, α_2, self.D, self.R, B)
+        Z_init_conditioned = self._initialize(Φ, Y_s, α_1, α_2, self.D, self.R, B)
+        self.Z = self.Z_init.copy()
+
+        self.forward_Z = Forward_Z(self.Z_init.shape, α_1, α_2, Φ, B, self.D, self.R)
+        _forward_Z_conditioned = Forward_Z(
+            self.Z_init.shape, α_1, α_2, Φ, B, self._pc.D_conditioned, self.R
+        )
+
+        f_conditioned = PoissonLoss(y=jax.device_put(Y_s), A=_forward_Z_conditioned)
+        self.f = PoissonLoss(y=jax.device_put(Y_s), A=self.forward_Z)
+
+        if non_negative_Z:
+            g = NonNegativeIndicator()
+        else:
+            g = ZeroFunctional()
+
+        self.apgm = AcceleratedPGM(
+            f=f_conditioned,
+            g=g,
+            L0=1e-5,
+            x0=Z_init_conditioned,
+            step_size=RobustLineSearchStepSize(),
+            itstat_options={"display": True, "period": 10},
+        )
+
+        self.iteration_history = None
+
+    def _initialize(self, Φ, Y_s, α_1, α_2, D, R, B):
+        r"""Initialize Z."""
+        Q = np.abs(util.no_nan_divide(Y_s / α_1 - α_2 * B, Φ))
+        Q[Q < 1e-5] = 1e-5  # this is to prevent log(0)
+        DR = R.call_on_any_array(D.values)
+        Z = -np.log(Q) @ np.linalg.pinv(DR)
+        return jax.device_put(Z)
+
+    def plot_convergence(self, plot_residual=True, ground_truth=None, figsize=[6, 4]):
+        r"""Plot convergence behaviour."""
+        if self.iteration_history is None:
+            raise ValueError(
+                "Iteration history is None. Can only plot convergence after .solve() has been run."
+            )
+
+        Iter = np.array(self.iteration_history.Iter)
+        Time = np.array(self.iteration_history.Time)
+        Objective = np.array(self.iteration_history.Objective)
+        L = np.array(self.iteration_history.L)
+        Residual = np.array(self.iteration_history.Residual)
+
+        if plot_residual:
+            fig, ax = plt.subplots(2, 1, sharex="all", figsize=figsize)
+            ax = np.atleast_1d(ax)
+        else:
+            fig, ax = plt.subplots(1, 1, sharex="all", figsize=figsize)
+            ax = np.atleast_1d(ax)
+
+        ax[0].semilogy(Objective, label="Objective", color="blue", linewidth=1)
+        if ground_truth is not None:
+            value_gt = float(self.f(ground_truth))  # scalar
+            array_gt = np.ones(len(Objective)) * value_gt
+            ax[0].semilogy(array_gt, label="Objective(Ground Truth)", color="orange", linewidth=1)
+            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e} (Ground Truth: {value_gt:.4e})")
+        else:
+            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e}")
+        ax[0].legend()
+        ax[0].set_xlabel("Iteration")
+
+        if plot_residual:
+            ax[1].semilogy(Residual, label="Residual", color="orange")
+            ax[1].set_xlabel("Iteration")
+            ax[1].legend()
+
+        fig.suptitle(f"Convergence Plots")
+        return fig, ax
+
+    def solve(self, iterations=100):
+        r"""Find parameters."""
+        self.apgm.maxiter = iterations
+
+        Z_conditioned = self.apgm.solve()
+        self.iteration_history = self.apgm.itstat_object.history(transpose=True)
+
+        self.Z = self._pc.uncondition_Z(Z_conditioned)

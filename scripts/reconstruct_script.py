@@ -45,12 +45,12 @@ D = cross_section.XSDict(isotopes, t_F, flight_path_length)
 ϕ, b, θ, α_1, α_2 = util.generate_spectra(t_A, acquisition_time=10)
 
 
-fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
-ax = np.atleast_1d(ax)
-ax[0].plot(t_A, b.flatten(), label="b", alpha=0.75)
-ax[0].plot(t_A, (ϕ + b).flatten(), label="ϕ+b", alpha=0.75)
-ax[0].set_xlabel(util.TOF_LABEL)
-ax[0].legend(prop={"size": 8})
+# fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
+# ax = np.atleast_1d(ax)
+# ax[0].plot(t_A, b.flatten(), label="b", alpha=0.75)
+# ax[0].plot(t_A, (ϕ + b).flatten(), label="ϕ+b", alpha=0.75)
+# ax[0].set_xlabel(util.TOF_LABEL)
+# ax[0].legend(prop={"size": 8})
 
 
 z = np.array([[0.005, 0.003, 0.004]]).T
@@ -59,10 +59,9 @@ Z = util.rose_phantom(projection_shape[0], num_circles=z.size, radius=2 / 3) * z
 )
 
 
-fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
-ax = np.atleast_1d(ax)
-plot_densities(fig, ax, Z, isotopes)
-# plt.show()
+# fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
+# ax = np.atleast_1d(ax)
+# plot_densities(fig, ax, Z, isotopes)
 
 
 v = np.random.poisson(1000, size=projection_shape + (1,))
@@ -82,40 +81,76 @@ Y_s = np.random.poisson(Y_s_bar)
 Ω_0 = reconstruct.ProjectionRegion(np.sum(Z, axis=2, keepdims=True) == 0)
 
 
-fig, ax = plt.subplots(1, 3, figsize=[14, 4])
-ax = np.atleast_1d(ax)
+# fig, ax = plt.subplots(1, 3, figsize=[14, 4])
+# ax = np.atleast_1d(ax)
 
-ax[0].imshow(np.sum(Y_s, axis=-1) / np.sum(Y_o, axis=-1), vmin=0)
-ax[0].set_title("1Y_s / 1Y_o")
+# ax[0].imshow(np.sum(Y_s, axis=-1) / np.sum(Y_o, axis=-1), vmin=0)
+# ax[0].set_title("1Y_s / 1Y_o")
 
-Ω_z.plot_contours(ax[0], color="red")
-Ω_0.plot_contours(ax[0], color="blue")
+# Ω_z.plot_contours(ax[0], color="red")
+# Ω_0.plot_contours(ax[0], color="blue")
 
-Ω_z.imshow(ax[1], title="Ω_z")
-Ω_0.imshow(ax[2], title="Ω_0")
+# Ω_z.imshow(ax[1], title="Ω_z")
+# Ω_0.imshow(ax[2], title="Ω_0")
 
-fig.suptitle("")
 # plt.show()
 
 
+from importlib import reload
+
+import trinidi.reconstruct
+
+reload(trinidi.reconstruct)
+
+
 par = reconstruct.Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0, N_b=3)
-par.save("par.npy")
 
-par.solve(iterations=20)
+if False:
+    par.plot_regions()
 
+    par.solve(iterations=20)
+    fig, ax = par.plot_convergence(
+        plot_residual=True, ground_truth={"z": z, "α_1": α_1, "α_2": α_2, "θ": θ}
+    )
 
-par = reconstruct.Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0, N_b=3)
-par.load("par.npy")
+    fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
+    ax = np.atleast_1d(ax)
+    par.plot_results(ax[0])
+    D.plot(ax[1])
 
-fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
-ax = np.atleast_1d(ax)
-par.plot_results(ax[0])
-D.plot(ax[1])
-plt.show()
+    par.save("par.npy")
+    par = reconstruct.Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0, N_b=3)
+    par.load("par.npy")
+
+    d = par.get_parameter_dict()
+    par = reconstruct.Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0, N_b=3)
+    par.set_parameter_dict(**d)
+    par.set_parameter_dict(z=d["z"], α_1=d["α_1"], α_2=d["α_2"], θ=d["θ"])  # same as line above
+
+    plt.show()
 
 
 par.set_parameter_dict(z=z, α_1=α_1, α_2=α_2, θ=θ)
-par.solve(iterations=20)
 
-par.plot_convergence(plot_residual=False, ground_truth=None)
+
+from importlib import reload
+
+import trinidi.reconstruct
+
+reload(trinidi.reconstruct)
+
+
+den = reconstruct.ArealDensityEstimator(Y_s, par)
+den.solve(iterations=1000)
+
+fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
+ax = np.atleast_1d(ax)
+plot_densities(fig, ax, Z, isotopes)
+fig.suptitle("Z: Areal Densities [mol/cm²]")
+
+fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
+ax = np.atleast_1d(ax)
+plot_densities(fig, ax, den.Z, isotopes)
+fig.suptitle("Z_hat: Areal Densities [mol/cm²]")
+
 plt.show()

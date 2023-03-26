@@ -1,7 +1,9 @@
 """ Resolution Operator """
 
 import numpy as np
+
 from jax import device_put
+
 from scico.linop import Convolve, LinearOperator
 
 from trinidi.util import time2energy
@@ -75,14 +77,15 @@ class ResolutionOperator:
 
         self.R = lambda x: self.G(self.H(x))
 
-        if self.projection_shape != (1,):
+        if self.projection_shape == (1,):
+            self.single = self
+
+        else:
             single_output_shape = (
                 1,
                 self.N_A,
             )
-            self.R_single = self.__class__(
-                single_output_shape, None, kernels=self.kernels
-            )
+            self.R_single = self.__class__(single_output_shape, None, kernels=self.kernels)
 
         if self.t_A is not None:
             self.t_F = self.compute_t_F(self.t_A)
@@ -141,9 +144,7 @@ class ResolutionOperator:
         if K > 1:
             W = np.zeros([K, N_F])
             for i in range(K):
-                W[i] = triangle(
-                    N_F, center=(N_F - 1) / (K - 1) * i, radius=(N_F - 1) / (K - 1)
-                )
+                W[i] = triangle(N_F, center=(N_F - 1) / (K - 1) * i, radius=(N_F - 1) / (K - 1))
 
         else:
             W = np.ones([K, N_F])
@@ -191,9 +192,9 @@ def lanl_fp5_kernel(t_A, Δt, flight_path_length):
 
     x = np.arange(-np.ceil(thresh), np.ceil(thresh))
 
-    fi = lambda x, v, t, T: (
-        (x - t) ** (v / 2 - 1) / (gamma(v / 2) * T ** (v / 2))
-    ) * np.exp(-(x - t) / T)
+    fi = lambda x, v, t, T: ((x - t) ** (v / 2 - 1) / (gamma(v / 2) * T ** (v / 2))) * np.exp(
+        -(x - t) / T
+    )
 
     f1 = np.zeros_like(x)
     f1[x + mode > t1] = fi(x[x + mode > t1] + mode, v1, t1, T1)
