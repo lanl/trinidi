@@ -1,9 +1,13 @@
 """Some reconstruction functions and classes."""
 
+import copy
+
+import numpy as np
+
 import jax
 import jax.config
+
 import matplotlib.pyplot as plt
-import numpy as np
 import scico.numpy as snp
 from scico.functional import (
     Functional,
@@ -16,7 +20,7 @@ from scico.numpy import BlockArray
 from scico.operator import Operator
 from scico.optimize.pgm import AcceleratedPGM, RobustLineSearchStepSize
 
-from trinidi import cross_section, resolution, util
+from trinidi import util
 
 jax.config.update("jax_enable_x64", True)
 
@@ -77,23 +81,6 @@ class ProjectionRegion:
         cs = ax.contour(self.mask[:, :, 0], colors=color, alpha=alpha, levels=[0.5])
 
         return cs
-
-
-def plot_densities(fig, ax, Z, isotopes):
-    r"""Show areal densities. `ax` must be list."""
-
-    for i, isotope in enumerate(isotopes):
-        z = Z[:, :, i]
-        vmax = np.percentile(z, 99.9)
-        vmin = np.percentile(z, 0.1)
-        im = ax[i].imshow(z, vmin=vmin, vmax=vmax)
-        fig.colorbar(im, ax=ax[i], format="%.1e")
-        ax[i].set_title(f"{isotope}")
-        ax[i].axis("off")
-
-    fig.suptitle("Areal Densities [mol/cm²]")
-
-    return fig, ax
 
 
 class FunctionalSum(Functional):
@@ -187,9 +174,6 @@ class Forward_0α1α2θ(Operator):
         return α_1 * (y_o + (α_2 - 1) * b)
 
 
-import copy
-
-
 class Preconditioner:
     """(Z) (D)  = (ZC) (C_inverse D)
     original   conditioned
@@ -225,80 +209,6 @@ class Preconditioner:
         return zα1α2θ
 
 
-Δt = 0.90
-t_A = np.arange(72, 400, Δt)
-N_A = t_A.size
-flight_path_length = 10
-
-kernels = [np.array([1]), np.array([1 / 4, 1 / 4, 1 / 4, 1 / 4])]
-
-isotopes = ["U-238", "Pu-239", "Ta-181"]
-projection_shape = (31, 31)
-
-
-output_shape = projection_shape + (N_A,)
-
-R = resolution.ResolutionOperator(output_shape, t_A, kernels=kernels)
-t_F = R.t_F
-D = cross_section.XSDict(isotopes, t_F, flight_path_length)
-
-
-ϕ, b, θ, α_1, α_2 = util.generate_spectra(t_A, acquisition_time=10)
-
-
-fig, ax = plt.subplots(1, 1, figsize=[12, 8], sharex=True)
-ax = np.atleast_1d(ax)
-ax[0].plot(t_A, b.flatten(), label="b", alpha=0.75)
-ax[0].plot(t_A, (ϕ + b).flatten(), label="ϕ+b", alpha=0.75)
-ax[0].set_xlabel(util.TOF_LABEL)
-ax[0].legend(prop={"size": 8})
-
-
-z = np.array([[0.005, 0.003, 0.004]]).T
-Z = util.rose_phantom(
-    projection_shape[0], num_circles=z.size, radius=2 / 3
-) * z.reshape([1, 1, z.size])
-
-
-fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
-ax = np.atleast_1d(ax)
-plot_densities(fig, ax, Z, isotopes)
-# plt.show()
-
-
-v = np.random.poisson(1000, size=projection_shape + (1,))
-v = v / v.mean()
-
-Φ = v @ ϕ.T
-B = v @ b.T
-
-Y_o_bar = Φ + B
-Y_s_bar = α_1 * (Φ * R(np.exp(-Z @ D.values)) + α_2 * B)
-
-Y_o = np.random.poisson(Y_o_bar)
-Y_s = np.random.poisson(Y_s_bar)
-
-
-Ω_z = ProjectionRegion(np.prod(Z, axis=2, keepdims=True) > 0)
-Ω_0 = ProjectionRegion(np.sum(Z, axis=2, keepdims=True) == 0)
-
-
-fig, ax = plt.subplots(1, 3, figsize=[14, 4])
-ax = np.atleast_1d(ax)
-
-ax[0].imshow(np.sum(Y_s, axis=-1) / np.sum(Y_o, axis=-1), vmin=0)
-ax[0].set_title("1Y_s / 1Y_o")
-
-Ω_z.plot_contours(ax[0], color="red")
-Ω_0.plot_contours(ax[0], color="blue")
-
-Ω_z.imshow(ax[1], title="Ω_z")
-Ω_0.imshow(ax[2], title="Ω_0")
-
-fig.suptitle("")
-# plt.show()
-
-
 class Parameters:
     r"""Parameter class for nuisance parameters.
     :code:`projection_shape` is the shape of the detector so usually this will
@@ -313,9 +223,20 @@ class Parameters:
     :code:`R` has shape :code:`(N_F, N_A)`.
     """
 
-    def __init__(
-        self, Y_o, Y_s, R, D, Ω_z, Ω_0=None, N_b=5, β=1.0, non_negative_z=False
-    ):
+    def __repr__(self):
+        parameter_dict = self._to_parameter_dict(self.zα1α2θ)
+        z = parameter_dict["z"]
+        α_1 = parameter_dict["α_1"]
+        α_2 = parameter_dict["α_2"]
+        θ = parameter_dict["θ"]
+        return f"""{type(self)}
+    z.T = {z.T}
+    α_1 = {α_1}
+    α_2 = {α_2}
+    θ.T = {θ.T}
+        """
+
+    def __init__(self, Y_o, Y_s, R, D, Ω_z, Ω_0=None, N_b=5, non_negative_z=False):
         r"""
         Args:
             Y_o: Open beam measurement.
@@ -331,7 +252,6 @@ class Parameters:
                 (`β=0`), and solving equation for `ω_s0` (`β` infinite).
                 Equal weight when `β=1.0` (default).
         """
-
         self.R = R
         self.t_A = self.R.t_A
         self.t_F = self.R.t_F
@@ -345,6 +265,7 @@ class Parameters:
         self.Y_s = Y_s
         projection_shape = Y_s.shape[:-1]
 
+        # --- Averaging regions
         # Ω_o: average all projections (1')
         Ω_o = ProjectionRegion(np.ones(projection_shape + (1,)))
         self.Ω_z = Ω_z
@@ -353,41 +274,49 @@ class Parameters:
         # v = (Y_o 1/N_p) / (1'/N_p Y_o 1/N_A) where 1 is a vector of ones.
         self.v = np.mean(self.Y_o, axis=-1, keepdims=True) / np.mean(self.Y_o)
 
-        # --- Averages y_o, y_sz
+        # --- Averages y_o, y_sz, y_s0
         # y_o' = (1' Y_o) / (1' v)
         self.y_o = (Ω_o.average(self.Y_o) / Ω_o.average(self.v)).T
+        # y_sz' = (ω_z' Y_s) / (ω_z' v)
         self.y_sz = (self.Ω_z.average(self.Y_s) / self.Ω_z.average(self.v)).T
+        if self.Ω_0:
+            # y_s0' = (ω_0' Y_s) / (ω_0' v)
+            self.y_s0 = (self.Ω_0.average(Y_s) / self.Ω_0.average(self.v)).T
+        else:
+            self.y_s0 = None
 
         # --- Initialization
         self.zα1α2θ_init = self._initialize(
             self.Ω_0, self.Y_o, self.Y_s, self.y_sz, self.y_o, self.D, self.R, self.P
         )
-        self._zα1α2θ_init_conditioned = self._pc.condition_zα1α2θ(self.zα1α2θ_init)
+        self.zα1α2θ = self.zα1α2θ_init.copy()
 
-        # --- When not Ω_0:
-        self._forward_z_conditioned = Forward_zα1α2θ(
+        # --- Forward operators
+        zα1α2θ_init_conditioned = self._pc.condition_zα1α2θ(self.zα1α2θ_init)
+
+        forward_z_conditioned = Forward_zα1α2θ(
             self.zα1α2θ_init.shape, self.y_o, self._D_conditioned, self.R, self.P
         )
-        self.forward_z = Forward_zα1α2θ(
-            self.zα1α2θ_init.shape, self.y_o, self.D, self.R, self.P
-        )
+        self.forward_z = Forward_zα1α2θ(self.zα1α2θ_init.shape, self.y_o, self.D, self.R, self.P)
+        if self.Ω_0:
+            self.forward_0 = Forward_0α1α2θ(self.zα1α2θ_init.shape, self.y_o, self.P)
+        else:
+            self.forward_0 = None
 
-        fz = SquaredL2Loss(y=jax.device_put(self.y_sz), A=self._forward_z_conditioned)
-        fz.is_smooth = True
+        # --- Losses
+        fz_conditioned = SquaredL2Loss(y=jax.device_put(self.y_sz), A=forward_z_conditioned)
+        fz = SquaredL2Loss(y=jax.device_put(self.y_sz), A=self.forward_z)
 
         if self.Ω_0:
             # f = || y_sz - f(z, α_1, α_2, θ) ||^2  +  || y_s0 - f(0, α_1, α_2, θ) ||^2
-            self.forward_0 = Forward_0α1α2θ(self.zα1α2θ_init.shape, self.y_o, self.P)
-            self.y_s0 = (self.Ω_0.average(Y_s) / self.Ω_0.average(self.v)).T
             f0 = SquaredL2Loss(y=jax.device_put(self.y_s0), A=self.forward_0)
-            f0.is_smooth = True
-            f = FunctionalSum(fz, f0)
+            f_conditioned = FunctionalSum(fz_conditioned, f0)
+            self.f = FunctionalSum(fz, f0)
 
         else:
             # f = || y_sz - f(z, α_1, α_2, θ) ||^2
-            self.forward_0 = None
-            self.y_s0 = None
-            f = fz
+            f_conditioned = fz_conditioned
+            self.f = fz
 
         # --- g constraints
         if non_negative_z:
@@ -401,32 +330,26 @@ class Parameters:
 
         g = SeparableFunctional([gz, gα1, gα2, gθ])
 
+        # --- Optimizer
         step_size = RobustLineSearchStepSize()
         L0 = 1e-5
         self.apgm = AcceleratedPGM(
-            f=f,
+            f=f_conditioned,
             g=g,
             L0=L0,
-            x0=self._zα1α2θ_init_conditioned,
+            x0=zα1α2θ_init_conditioned,
             step_size=step_size,
             itstat_options={"display": True, "period": 10},
         )
 
-    def solve(self, iterations=100):
-        r"""Find parameters."""
-        self.apgm.maxiter = iterations
-        zα1α2θ_conditioned = self.apgm.solve()
-        self.zα1α2θ = self._pc.uncondition_zα1α2θ(zα1α2θ_conditioned)
-        return self.zα1α2θ
+        self.iteration_history = None
 
     def _initialize(self, Ω_0, Y_o, Y_s, y_sz, y_o, D, R, P):
         r"""Initialize parameters."""
         α_2 = 1
 
         projection_shape = Y_s.shape[:-1]
-        Ω_o = ProjectionRegion(
-            np.ones(projection_shape + (1,))
-        )  # average all projections (1')
+        Ω_o = ProjectionRegion(np.ones(projection_shape + (1,)))  # average all projections (1')
 
         if Ω_0:
             # (ω_0' Y_s 1) / (ω_0' Y_o 1)
@@ -444,8 +367,9 @@ class Parameters:
         DR = R.call_on_any_array(D.values)
         z = (-np.log(q.T) @ np.linalg.pinv(DR)).T
 
-        cast = lambda x: np.require(x, dtype=np.float64)
-        return BlockArray([cast(z), cast(α_1), cast(α_2), cast(θ)])
+        zα1α2θ_init = self._to_zα1α2θ(z=z, α_1=α_1, α_2=α_2, θ=θ)
+
+        return zα1α2θ_init
 
     def plot_regions(self):
         r"""Plot Ω regions and corresponding spectra"""
@@ -480,38 +404,180 @@ class Parameters:
         ax[0].plot(self.t_A, self.y_o.flatten(), label="y_o", alpha=0.75, color="green")
         ax[0].plot(self.t_A, self.y_sz.flatten(), label="y_sz", alpha=0.75, color="red")
         if self.Ω_0:
-            ax[0].plot(
-                self.t_A, self.y_s0.flatten(), label="y_s0", alpha=0.75, color="blue"
-            )
+            ax[0].plot(self.t_A, self.y_s0.flatten(), label="y_s0", alpha=0.75, color="blue")
         ax[0].legend(prop={"size": 8})
         ax[0].set_xlabel(util.TOF_LABEL)
         ax[0].set_title("Averaged Measurements")
 
         self.D.plot(ax[1])
 
-    def estmate(self):
-        r"""Estimate Parameters"""
+    def plot_results(self, ax):
+        r"""Add docstring here."""
+        y_sz = self.y_sz
+        y_o = self.y_o
+        y_s0 = self.y_s0
 
-        apgm.solve()
-        self.z = ""
-        self.α_1 = ""
-        self.α_2 = ""
-        self.θ = ""
+        z = self.zα1α2θ[0]
+        α_1 = self.zα1α2θ[1]
+        α_2 = self.zα1α2θ[2]
+        θ = self.zα1α2θ[3]
+        b = (snp.exp(θ.T @ self.P)).T
+        ϕ = self.y_o - b
 
-        self.ϕ = ""
-        self.b = ""
+        t_A = self.t_A
+
+        fitz = self.forward_z(self.zα1α2θ)
+        fit0 = self.forward_0(self.zα1α2θ)
+
+        eff_background = α_1 * α_2 * b
+
+        if y_s0 is not None:
+            ax.plot(
+                t_A,
+                y_s0.flatten(),
+                label="Ω_0 Measurement, y_s0",
+                alpha=0.3,
+                color="tab:orange",
+                linewidth=3,
+            )
+            eff_open_beam_label = "Effective Open Beam (Fit of y_s0)"
+        else:
+            eff_open_beam_label = "Effective Open Beam"
+
+        ax.plot(
+            t_A,
+            fit0.flatten(),
+            "--",
+            label=eff_open_beam_label,
+            alpha=1,
+            color="orange",
+            linewidth=1,
+        )
+
+        ax.plot(
+            t_A,
+            y_sz.flatten(),
+            label="Ω_z Measurement, y_sz",
+            alpha=0.3,
+            color="tab:blue",
+            linewidth=3,
+        )
+        ax.plot(
+            t_A,
+            fitz.flatten(),
+            "--",
+            label="Fit of y_sz",
+            alpha=1,
+            color="tab:blue",
+            linewidth=1,
+        )
+
+        ax.plot(
+            t_A,
+            eff_background.flatten(),
+            "--",
+            label="Effective Background",
+            alpha=1,
+            color="tab:red",
+            linewidth=1,
+        )
+        ax.legend(prop={"size": 8})
+        ax.set_xlabel("TOF [μs]")
+
+    def plot_convergence(self, plot_residual=True, ground_truth=None, figsize=[6, 4]):
+        r"""Plot convergence behaviour."""
+        if self.iteration_history is None:
+            raise ValueError(
+                "Iteration history is None. Can only plot convergence after .solve() has been run."
+            )
+
+        Iter = np.array(self.iteration_history.Iter)
+        Time = np.array(self.iteration_history.Time)
+        Objective = np.array(self.iteration_history.Objective)
+        L = np.array(self.iteration_history.L)
+        Residual = np.array(self.iteration_history.Residual)
+
+        if plot_residual:
+            fig, ax = plt.subplots(2, 1, sharex="all", figsize=figsize)
+            ax = np.atleast_1d(ax)
+        else:
+            fig, ax = plt.subplots(1, 1, sharex="all", figsize=figsize)
+            ax = np.atleast_1d(ax)
+
+        ax[0].semilogy(Objective, label="Objective", color="blue", linewidth=1)
+        if ground_truth:
+            zα1α2θ = self._to_zα1α2θ(**ground_truth)
+            value_gt = float(self.f(zα1α2θ))  # scalar
+            array_gt = np.ones(len(Objective)) * value_gt
+            ax[0].semilogy(array_gt, label="Objective(Ground Truth)", color="orange", linewidth=1)
+            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e} (Ground Truth: {value_gt:.4e})")
+        else:
+            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e}")
+        ax[0].legend()
+        ax[0].set_xlabel("Iteration")
+
+        if plot_residual:
+            ax[1].semilogy(Residual, label="Residual", color="orange")
+            ax[1].set_xlabel("Iteration")
+            ax[1].legend()
+
+        fig.suptitle(f"Convergence Plots")
+        return fig, ax
+
+    def solve(self, iterations=100):
+        r"""Find parameters."""
+        self.apgm.maxiter = iterations
+
+        zα1α2θ_conditioned = self.apgm.solve()
+        self.iteration_history = self.apgm.itstat_object.history(transpose=True)
+
+        self.zα1α2θ = self._pc.uncondition_zα1α2θ(zα1α2θ_conditioned)
+
+    def get_parameter_dict(self):
+        r"""Get Parameters."""
+        parameter_dict = self._to_parameter_dict(self.zα1α2θ)
+        return parameter_dict
+
+    def set_parameter_dict(self, z=None, α_1=None, α_2=None, θ=None):
+        r"""Set Parameters."""
+        zα1α2θ = self._to_zα1α2θ(z=z, α_1=α_1, α_2=α_2, θ=θ)
+        self._check_zα1α2θ_shape(zα1α2θ)
+        self.zα1α2θ = zα1α2θ
+        self.apgm.x = self._pc.condition_zα1α2θ(self.zα1α2θ)
 
     def save(self, file_name):
-        r"""Save Parameters"""
+        r"""Save Parameters to file."""
+        parameter_dict = self._to_parameter_dict(self.zα1α2θ)
+        np.save(file_name, parameter_dict, allow_pickle=True)
 
     def load(self, file_name):
-        r"""Load Parameters"""
+        r"""Load Parameters from file."""
+        parameter_dict = np.load(file_name, allow_pickle=True)[()]
+        self.set_parameter_dict(**parameter_dict)
 
+    def _to_zα1α2θ(self, z=None, α_1=None, α_2=None, θ=None):
+        """Convert parameter_dict to zα1α2θ."""
+        cast = lambda x: jax.device_put(np.require(x, dtype=np.float64))
+        to_z = cast(z).reshape([-1, 1])
+        to_α_1 = cast(α_1)
+        to_α_2 = cast(α_2)
+        to_θ = cast(θ).reshape([-1, 1])
+        zα1α2θ = BlockArray([to_z, to_α_1, to_α_2, to_θ])
+        return zα1α2θ
 
-par = Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0)
+    def _to_parameter_dict(self, zα1α2θ):
+        """Convert zα1α2θ to parameter_dict."""
+        cast = lambda x: np.require(x, dtype=np.float64)
+        z = cast(zα1α2θ[0])
+        α_1 = cast(zα1α2θ[1])
+        α_2 = cast(zα1α2θ[2])
+        θ = cast(zα1α2θ[3])
+        parameter_dict = {"z": z, "α_1": α_1, "α_2": α_2, "θ": θ}
+        return parameter_dict
 
-zα1α2θ = par.solve(iterations=50000)
-
-
-par.plot_regions()
-plt.show()
+    def _check_zα1α2θ_shape(self, zα1α2θ):
+        """Check whether zα1α2θ has compatible shape to stored selzα1α2θ."""
+        if not self.zα1α2θ.shape == zα1α2θ.shape:
+            raise ValueError(
+                f"Incompatible shapes of zα1α2θ. Internal shape is {self.zα1α2θ.shape} but new shape is {zα1α2θ.shape}."
+            )

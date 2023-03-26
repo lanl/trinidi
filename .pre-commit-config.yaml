@@ -21,6 +21,12 @@ repos:
       language: python
       language_version:  python3
       types: [python]
+    - id: isort
+      name: isort (cython)
+      entry: isort
+      language: python
+      language_version:  python3
+      types: [cython]
     - id: black
       name: black
       entry: black
@@ -34,5 +40,5 @@ repos:
       language: python
       language_version: python3
       types: [python]
-      exclude: ^(trinidi/test/|examples|docs)
+      exclude: ^(scico/test/|examples|docs)
       args: ['--score=n', '--disable=all', '--enable=missing-docstring']
