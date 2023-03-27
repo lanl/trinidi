@@ -105,7 +105,7 @@ reload(trinidi.reconstruct)
 
 par = reconstruct.Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0, N_b=3)
 
-if False:
+if True:
     par.plot_regions()
 
     par.solve(iterations=20)
@@ -141,7 +141,7 @@ reload(trinidi.reconstruct)
 
 
 den = reconstruct.ArealDensityEstimator(Y_s, par)
-den.solve(iterations=1000)
+den.solve(iterations=100)
 
 fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
 ax = np.atleast_1d(ax)

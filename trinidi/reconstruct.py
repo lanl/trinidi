@@ -235,6 +235,45 @@ def _check_compatible_RDY(R, D, Y_list=None):
             )
 
 
+def _plot_convergence_common(iteration_history, plot_residual=True, value_gt=None, figsize=[6, 4]):
+    r"""Plot convergence behaviour."""
+    if iteration_history is None:
+        raise ValueError(
+            "Iteration history is None. Can only plot convergence after .solve() has been run."
+        )
+
+    Iter = np.array(iteration_history.Iter)
+    Time = np.array(iteration_history.Time)
+    Objective = np.array(iteration_history.Objective)
+    L = np.array(iteration_history.L)
+    Residual = np.array(iteration_history.Residual)
+
+    if plot_residual:
+        fig, ax = plt.subplots(2, 1, sharex="all", figsize=figsize)
+        ax = np.atleast_1d(ax)
+    else:
+        fig, ax = plt.subplots(1, 1, sharex="all", figsize=figsize)
+        ax = np.atleast_1d(ax)
+
+    ax[0].semilogy(Objective, label="Objective", color="blue", linewidth=1)
+    if value_gt is not None:
+        array_gt = np.ones(len(Objective)) * value_gt
+        ax[0].semilogy(array_gt, label="Objective(Ground Truth)", color="orange", linewidth=1)
+        ax[0].set_title(f"Final Objective: {Objective[-1]:.4e} (Ground Truth: {value_gt:.4e})")
+    else:
+        ax[0].set_title(f"Final Objective: {Objective[-1]:.4e}")
+    ax[0].legend()
+    ax[0].set_xlabel("Iteration")
+
+    if plot_residual:
+        ax[1].semilogy(Residual, label="Residual", color="orange")
+        ax[1].set_xlabel("Iteration")
+        ax[1].legend()
+
+    fig.suptitle(f"Convergence Plots")
+    return fig, ax
+
+
 class Parameters:
     r"""Parameter class for nuisance parameters.
     :code:`projection_shape` is the shape of the detector so usually this will
@@ -467,7 +506,7 @@ class Parameters:
         fitz = self.forward_z(self.zα1α2θ)
         fit0 = self.forward_0(self.zα1α2θ)
 
-        eff_background = α_1 * α_2 * b
+        efbg = α_1 * α_2 * b
 
         if y_s0 is not None:
             ax.plot(
@@ -478,88 +517,31 @@ class Parameters:
                 color="tab:orange",
                 linewidth=3,
             )
-            eff_open_beam_label = "Effective Open Beam (Fit of y_s0)"
+            lab1 = "Effective Open Beam (Fit of y_s0)"
         else:
-            eff_open_beam_label = "Effective Open Beam"
+            lab1 = "Effective Open Beam"
 
-        ax.plot(
-            t_A,
-            fit0.flatten(),
-            "--",
-            label=eff_open_beam_label,
-            alpha=1,
-            color="orange",
-            linewidth=1,
-        )
-
-        ax.plot(
-            t_A,
-            y_sz.flatten(),
-            label="Ω_z Measurement, y_sz",
-            alpha=0.3,
-            color="tab:blue",
-            linewidth=3,
-        )
-        ax.plot(
-            t_A,
-            fitz.flatten(),
-            "--",
-            label="Fit of y_sz",
-            alpha=1,
-            color="tab:blue",
-            linewidth=1,
-        )
-
-        ax.plot(
-            t_A,
-            eff_background.flatten(),
-            "--",
-            label="Effective Background",
-            alpha=1,
-            color="tab:red",
-            linewidth=1,
-        )
+        lab2 = "Effective Background"
+        ax.plot(t_A, fit0.flatten(), "--", label=lab1, color="orange", linewidth=1)
+        ax.plot(t_A, y_sz.flatten(), label="y_sz", alpha=0.3, color="tab:blue", linewidth=3)
+        ax.plot(t_A, fitz.flatten(), "--", label="Fit of y_sz", color="tab:blue", linewidth=1)
+        ax.plot(t_A, efbg.flatten(), "--", label=lab2, color="tab:red", linewidth=1)
         ax.legend(prop={"size": 8})
         ax.set_xlabel("TOF [μs]")
 
     def plot_convergence(self, plot_residual=True, ground_truth=None, figsize=[6, 4]):
         r"""Plot convergence behaviour."""
-        if self.iteration_history is None:
-            raise ValueError(
-                "Iteration history is None. Can only plot convergence after .solve() has been run."
-            )
 
-        Iter = np.array(self.iteration_history.Iter)
-        Time = np.array(self.iteration_history.Time)
-        Objective = np.array(self.iteration_history.Objective)
-        L = np.array(self.iteration_history.L)
-        Residual = np.array(self.iteration_history.Residual)
-
-        if plot_residual:
-            fig, ax = plt.subplots(2, 1, sharex="all", figsize=figsize)
-            ax = np.atleast_1d(ax)
-        else:
-            fig, ax = plt.subplots(1, 1, sharex="all", figsize=figsize)
-            ax = np.atleast_1d(ax)
-
-        ax[0].semilogy(Objective, label="Objective", color="blue", linewidth=1)
         if ground_truth:
             zα1α2θ = self._to_zα1α2θ(**ground_truth)
             value_gt = float(self.f(zα1α2θ))  # scalar
-            array_gt = np.ones(len(Objective)) * value_gt
-            ax[0].semilogy(array_gt, label="Objective(Ground Truth)", color="orange", linewidth=1)
-            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e} (Ground Truth: {value_gt:.4e})")
         else:
-            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e}")
-        ax[0].legend()
-        ax[0].set_xlabel("Iteration")
+            value_gt = None
 
-        if plot_residual:
-            ax[1].semilogy(Residual, label="Residual", color="orange")
-            ax[1].set_xlabel("Iteration")
-            ax[1].legend()
+        fig, ax = _plot_convergence_common(
+            self.iteration_history, plot_residual=plot_residual, value_gt=value_gt, figsize=figsize
+        )
 
-        fig.suptitle(f"Convergence Plots")
         return fig, ax
 
     def solve(self, iterations=100):
@@ -716,41 +698,14 @@ class ArealDensityEstimator:
 
     def plot_convergence(self, plot_residual=True, ground_truth=None, figsize=[6, 4]):
         r"""Plot convergence behaviour."""
-        if self.iteration_history is None:
-            raise ValueError(
-                "Iteration history is None. Can only plot convergence after .solve() has been run."
-            )
 
-        Iter = np.array(self.iteration_history.Iter)
-        Time = np.array(self.iteration_history.Time)
-        Objective = np.array(self.iteration_history.Objective)
-        L = np.array(self.iteration_history.L)
-        Residual = np.array(self.iteration_history.Residual)
-
-        if plot_residual:
-            fig, ax = plt.subplots(2, 1, sharex="all", figsize=figsize)
-            ax = np.atleast_1d(ax)
-        else:
-            fig, ax = plt.subplots(1, 1, sharex="all", figsize=figsize)
-            ax = np.atleast_1d(ax)
-
-        ax[0].semilogy(Objective, label="Objective", color="blue", linewidth=1)
         if ground_truth is not None:
             value_gt = float(self.f(ground_truth))  # scalar
-            array_gt = np.ones(len(Objective)) * value_gt
-            ax[0].semilogy(array_gt, label="Objective(Ground Truth)", color="orange", linewidth=1)
-            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e} (Ground Truth: {value_gt:.4e})")
-        else:
-            ax[0].set_title(f"Final Objective: {Objective[-1]:.4e}")
-        ax[0].legend()
-        ax[0].set_xlabel("Iteration")
 
-        if plot_residual:
-            ax[1].semilogy(Residual, label="Residual", color="orange")
-            ax[1].set_xlabel("Iteration")
-            ax[1].legend()
+        fig, ax = _plot_convergence_common(
+            self.iteration_history, plot_residual=plot_residual, value_gt=value_gt, figsize=figsize
+        )
 
-        fig.suptitle(f"Convergence Plots")
         return fig, ax
 
     def solve(self, iterations=100):
