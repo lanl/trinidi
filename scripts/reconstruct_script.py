@@ -154,3 +154,32 @@ plot_densities(fig, ax, den.Z, isotopes)
 fig.suptitle("Z_hat: Areal Densities [mol/cm²]")
 
 plt.show()
+
+
+# How to handle binning or cropping data to different shape than in nuisance parameter estimation.
+
+
+def binning_2x2(Y):
+    r"""Bin an array of shape (N, M, ...) with the result being (N//2, M//2, ...)"""
+    N0 = Y.shape[0] // 2
+    N1 = Y.shape[1] // 2
+    Y = Y[0::2][:N0] + Y[1::2][:N0]
+    Y = Y[:, 0::2][:, :N1] + Y[:, 1::2][:, :N1]
+    return Y
+
+
+den = reconstruct.ArealDensityEstimator(Y_s, par, projection_transform=binning_2x2)
+den.solve(iterations=100)
+
+
+fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
+ax = np.atleast_1d(ax)
+plot_densities(fig, ax, Z, isotopes)
+fig.suptitle("Z: Areal Densities [mol/cm²]")
+
+fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
+ax = np.atleast_1d(ax)
+plot_densities(fig, ax, den.Z, isotopes)
+fig.suptitle("Z_hat: Areal Densities [mol/cm²]")
+
+plt.show()

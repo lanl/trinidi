@@ -20,7 +20,7 @@ from scico.numpy import BlockArray
 from scico.operator import Operator
 from scico.optimize.pgm import AcceleratedPGM, RobustLineSearchStepSize
 
-from trinidi import util
+from trinidi import resolution, util
 
 jax.config.update("jax_enable_x64", True)
 
@@ -633,7 +633,7 @@ class Forward_Z(Operator):
 class ArealDensityEstimator:
     r"""ArealDensityEstimator class"""
 
-    def __init__(self, Y_s, par, D=None, R=None, non_negative_Z=False):
+    def __init__(self, Y_s, par, D=None, R=None, non_negative_Z=False, projection_transform=None):
         """Initialize an ArealDensityEstimator object."""
 
         if D is None:
@@ -642,9 +642,18 @@ class ArealDensityEstimator:
         if R is None:
             self.R = par.R
 
+        if projection_transform:
+            v = projection_transform(par.v)
+            Y_s = projection_transform(Y_s)
+            self.R = resolution.ResolutionOperator(Y_s.shape, self.R.t_A, self.R.kernels)
+        else:
+            v = par.v
+
         self._pc = Preconditioner(self.D)
 
         _check_compatible_RDY(self.R, self.D, Y_list=[Y_s])
+        if v.shape[:-1] != Y_s.shape[:-1]:
+            raise ValueError(f"{v.shape[:-1]=} and {Y_s.shape[:-1]=} shapes are not compatible.")
         projection_shape = self.R.projection_shape
 
         z = par.get_parameter_dict()["z"]
@@ -655,10 +664,8 @@ class ArealDensityEstimator:
         b = (snp.exp(θ.T @ par.P)).T
         ϕ = par.y_o - b
 
-        B = par.v @ b.T
-        Φ = par.v @ ϕ.T
-
-        print(f"check or crop {par.v.shape=}???")
+        B = v @ b.T
+        Φ = v @ ϕ.T
 
         self.Z_init = self._initialize(Φ, Y_s, α_1, α_2, self.D, self.R, B)
         Z_init_conditioned = self._initialize(Φ, Y_s, α_1, α_2, self.D, self.R, B)
