@@ -3,6 +3,7 @@
 import os
 
 import numpy as np
+
 from scipy import interpolate
 from si_prefix import si_format
 
@@ -183,12 +184,11 @@ class XSDict:
 
         D.insert(target, d)
         self.values = np.array(D)
+        self.N_m = len(self.isotopes)
 
         return self.isotopes
 
-    def _get_cross_section_values(
-        self, isotopes, t_F, flight_path_length, samples_per_bin
-    ):
+    def _get_cross_section_values(self, isotopes, t_F, flight_path_length, samples_per_bin):
         """Creates a cross section dictionary."""
 
         xsdict = np.zeros([len(isotopes), t_F.size])

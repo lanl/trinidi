@@ -19,16 +19,15 @@ TRINIDI Documentation
    zreferences
    contributing
    shapes
-   notebooks/examples
+   examples/examples
 
 .. toctree::
    :hidden:
 
    api
-   notebooks/ex1.ipynb
-   notebooks/ex1_.rst
 
-
+   examples/notebooks/cross_section.ipynb
+   examples/cross_section_.rst
 
 
 

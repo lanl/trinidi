@@ -89,11 +89,6 @@ f = bin_number_to_time(bin_index_list, time_list)
 
 N_A = y_s.size
 t_A = f(np.arange(N_A))
-t_0 = t_A[0]  # = f(0)
-Δt = t_A[1] - t_A[0]  # = f(1) - f(0)
-
-print(f"Estitated bin width:        {Δt = :.5f} μs")
-print(f"Estitated starting time:    {t_0 = :.2f} μs")
 
 
 fig, ax = plt.subplots(1, 1, figsize=[9, 5], sharex=False)
@@ -109,3 +104,19 @@ for x in time_list:
 ax[0].set_title("Measurement aligned with cross sections")
 plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0, rect=(0, 0, 1, 0.95))
 plt.show()
+
+
+t_0 = t_A[0]  # = f(0)
+Δt = t_A[1] - t_A[0]  # = f(1) - f(0)
+print(f"Estitated bin width:        {Δt = :.5f} μs")
+print(f"Estitated starting time:    {t_0 = :.2f} μs")
+
+
+E = util.time2energy(t_A, flight_path_length)  # energy array [eV]
+# Note that by our convention, the t_F (and t_A) arrays are increasing
+# which forces the energy array to be decreasing :
+print(f"{t_A[0]=:.2f},\t{t_A[1]=:.2f},\t..., {t_A[-1]=:.2f}\t[μs]")
+print(f"{E[0]=:.2f},\t{E[1]=:.2f},\t..., {E[-1]=:.2f}\t\t[eV]")
+
+print(f"t_A = [{t_A[0]:.2f}, {t_A[1]:.2f}, ..., {t_A[-1]:.2f}] [μs]")
+print(f"E   = [{E[0]:.2f}, {E[1]:.2f}, ..., {E[-1]:.2f}] [eV]")

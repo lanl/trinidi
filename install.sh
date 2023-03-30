@@ -19,9 +19,5 @@ cd docs && make clean && make html && open -a "Safari" ../build/sphinx/html/inde
 
 
 
-
-
-
-
-
-jupyter nbconvert --to python ex1.ipynb
+# from convert notebooks to scripts
+jupyter nbconvert --to python data/examples/notebooks/*.ipynb  --output-dir data/examples/scripts/
