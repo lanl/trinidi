@@ -1,7 +1,8 @@
 r"""Example script for cross_section submodule"""
 
-import matplotlib.pyplot as plt
 import numpy as np
+
+import matplotlib.pyplot as plt
 
 from trinidi import cross_section, util
 
@@ -21,6 +22,7 @@ cross_section.info(isotopes_U)
 flight_path_length = 10  # [m]
 t_F = np.arange(72, 720, Δt)  # time-of-flight array [μs]
 E = util.time2energy(t_F, flight_path_length)  # energy array [eV]
+print(f"E = {E.min():.2f} eV ... {E.max():.2f} ev")
 
 
 # Generate cross section dictionary and plot it with respect to time-of-flight and energy.
@@ -40,6 +42,7 @@ plt.show()
 
 # Generate cross section dictionary and merge isotopes by natural abundance percentages
 isotopes_full = ["Au-197", "W-180", "W-182", "W-183", "W-184", "W-186"]
+# W-180 * 0.0012 + ... + W-186 * 0.284 = W
 merge_isotopes = ["W-180", "W-182", "W-183", "W-184", "W-186"]
 merge_weights = [0.0012, 0.265, 0.143, 0.306, 0.284]
 new_key = "W"
