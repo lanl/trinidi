@@ -30,7 +30,6 @@ class ProjectionRegion:
 
     This class is used to handle the Ω regions indicating the regions where the sample image
     has no areal density, or uniformly dense areal density. Used for averaging over many pixels.
-
     """
 
     def __init__(self, projection_mask):
@@ -106,8 +105,8 @@ class FunctionalSum(Functional):
 
 
 class Forward_zα1α2θ(Operator):
-    r"""
-    Pseudo forward operator
+    r"""Pseudo forward operator
+
     f(z,ε,μ,θ) = ε[ {c_o - b(θ)} * q(z) +  μ b(θ)]
 
     c_o = (ω' C_o) / (ω'v)
@@ -141,8 +140,8 @@ class Forward_zα1α2θ(Operator):
 
 
 class Forward_0α1α2θ(Operator):
-    r"""
-    Pseudo forward operator
+    r"""Pseudo forward operator
+
     f(0,ε,μ,θ) = ε[ {c_o - b(θ)} * q(z) +  μ b(θ)]
                = ε[ c_o +  (μ-1) b(θ)]
 
@@ -152,7 +151,6 @@ class Forward_0α1α2θ(Operator):
 
     This gets fitted to
     c_s = (ω' C_s) / (ω'v)
-
     """
 
     def __init__(self, input_shape, y_o, P, jit: bool = True):
@@ -276,6 +274,7 @@ def _plot_convergence_common(iteration_history, plot_residual=True, value_gt=Non
 
 class Parameters:
     r"""Parameter class for nuisance parameters.
+
     :code:`projection_shape` is the shape of the detector so usually this will
     be :code:`(N_pixels_x, N_pixels_y)` but it may be any shape including    singleton shape.
     :code:`N_p` number of projections, :code:`np.prod(projection_shape) = N_p`.
@@ -283,8 +282,7 @@ class Parameters:
     :code:`N_A` is the number of measured TOF bins (TOA's)
     :code:`D` has shape :code:`(N_F, N_A)`
     :code:`N_F` is the number of theoretical TOF bins. :math:`N_F \geq N_A`
-    :code:`ω_sz`, :code:`ω_s0` have shape :code:`projection_shape + (1,)`.
-        :math:`ω_sz^\top` has shape :code:`(1,) + projection_shape`.
+    :code:`ω_sz`, :code:`ω_s0` have shape :code:`projection_shape + (1,)`. :math:`ω_sz^\top` has shape :code:`(1,) + projection_shape`.
     :code:`R` has shape :code:`(N_F, N_A)`.
     """
 
@@ -604,8 +602,7 @@ class Parameters:
 
 
 class Forward_Z(Operator):
-    r"""
-    Pseudo forward operator
+    r"""Pseudo forward operator
     F(Z) = ε (Φ * Q(Z) + B_s)
 
     Q(Z) = exp(-Z D) R
