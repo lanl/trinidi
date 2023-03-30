@@ -59,9 +59,9 @@ Z = util.rose_phantom(projection_shape[0], num_circles=z.size, radius=2 / 3) * z
 )
 
 
-# fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
-# ax = np.atleast_1d(ax)
-# plot_densities(fig, ax, Z, isotopes)
+fig, ax = plt.subplots(1, len(isotopes), figsize=[12, 3.3])
+ax = np.atleast_1d(ax)
+plot_densities(fig, ax, Z, isotopes)
 
 
 v = np.random.poisson(1000, size=projection_shape + (1,))
@@ -81,26 +81,24 @@ Y_s = np.random.poisson(Y_s_bar)
 Ω_0 = reconstruct.ProjectionRegion(np.sum(Z, axis=2, keepdims=True) == 0)
 
 
-# fig, ax = plt.subplots(1, 3, figsize=[14, 4])
-# ax = np.atleast_1d(ax)
+fig, ax = plt.subplots(1, 3, figsize=[14, 4])
+ax = np.atleast_1d(ax)
 
-# ax[0].imshow(np.sum(Y_s, axis=-1) / np.sum(Y_o, axis=-1), vmin=0)
-# ax[0].set_title("1Y_s / 1Y_o")
+ax[0].imshow(np.sum(Y_s, axis=-1) / np.sum(Y_o, axis=-1), vmin=0)
+ax[0].set_title("1Y_s / 1Y_o")
 
-# Ω_z.plot_contours(ax[0], color="red")
-# Ω_0.plot_contours(ax[0], color="blue")
+Ω_z.plot_contours(ax[0], color="red")
+Ω_0.plot_contours(ax[0], color="blue")
 
-# Ω_z.imshow(ax[1], title="Ω_z")
-# Ω_0.imshow(ax[2], title="Ω_0")
+Ω_z.imshow(ax[1], title="Ω_z")
+Ω_0.imshow(ax[2], title="Ω_0")
 
-# plt.show()
+plt.show()
 
 
-from importlib import reload
-
-import trinidi.reconstruct
-
-reload(trinidi.reconstruct)
+# from importlib import reload
+# import trinidi.reconstruct
+# reload(trinidi.reconstruct)
 
 
 par = reconstruct.Parameters(Y_o, Y_s, R, D, Ω_z, Ω_0=Ω_0, N_b=3)

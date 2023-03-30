@@ -16,8 +16,3 @@ conda install sphinx
 
 # other commands
 cd docs && make clean && make html && open -a "Safari" ../build/sphinx/html/index.html && cd ..
-
-
-
-# from convert notebooks to scripts
-jupyter nbconvert --to python data/examples/notebooks/*.ipynb  --output-dir data/examples/scripts/
