@@ -1,7 +1,8 @@
 r"""Example script for resolution submodule"""
 
-import matplotlib.pyplot as plt
 import numpy as np
+
+import matplotlib.pyplot as plt
 
 from trinidi import resolution
 

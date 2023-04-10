@@ -7,7 +7,7 @@ pip install -e .
 
 pip install ipython pyqt5
 pip install pre-commit autoflake isort black pylint
-pip install jupyter
+pip install jupyter py2jn
 
 pip install -r docs/docs_requirements.txt
 
