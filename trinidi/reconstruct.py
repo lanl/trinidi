@@ -19,6 +19,7 @@ from scico.loss import PoissonLoss, SquaredL2Loss
 from scico.numpy import BlockArray
 from scico.operator import Operator
 from scico.optimize.pgm import AcceleratedPGM, RobustLineSearchStepSize
+from scipy.optimize import minimize
 
 from trinidi import resolution, util
 
@@ -139,6 +140,38 @@ class Forward_zα1α2θ(Operator):
         return α_1 * ((y_o - b) * q + α_2 * b)
 
 
+class Forward_zα1α2θ_arr:
+    r"""Pseudo forward operator
+
+    f(z,ε,μ,θ) = ε[ {c_o - b(θ)} * q(z) +  μ b(θ)]
+
+    c_o = (ω' C_o) / (ω'v)
+    q(z) = exp(-z D) R
+    b(θ) = exp(θ P)
+
+    This gets fitted to
+    c_s = (ω' C_s) / (ω'v)
+    """
+
+    def __init__(self, N_m, y_o, D, R, P, jit: bool = True):
+        self.y_o = y_o
+        self.D = jax.device_put(D.values)
+        self.R = R.single
+        self.P = jax.device_put(P)
+        self.N_m = N_m
+
+    def __call__(self, zα1α2θ):
+        N_m = self.N_m
+        z = zα1α2θ[0:N_m][:, np.newaxis]
+        α_1 = zα1α2θ[N_m : N_m + 1]
+        α_2 = zα1α2θ[N_m + 1 : N_m + 2]
+        θ = zα1α2θ[N_m + 2 :][:, np.newaxis]
+        b = (snp.exp(θ.T @ self.P)).T
+        q = self.R(snp.exp(-z.T @ self.D)).T
+        y_o = self.y_o
+        return α_1 * ((y_o - b) * q + α_2 * b)
+
+
 class Forward_0α1α2θ(Operator):
     r"""Pseudo forward operator
 
@@ -167,6 +200,36 @@ class Forward_0α1α2θ(Operator):
         α_1 = zα1α2θ[1]
         α_2 = zα1α2θ[2]
         θ = zα1α2θ[3]
+        b = (snp.exp(θ.T @ self.P)).T
+        y_o = self.y_o
+        return α_1 * (y_o + (α_2 - 1) * b)
+
+
+class Forward_0α1α2θ_arr:
+    r"""Pseudo forward operator
+
+    f(0,ε,μ,θ) = ε[ {c_o - b(θ)} * q(z) +  μ b(θ)]
+               = ε[ c_o +  (μ-1) b(θ)]
+
+    c_o = (ω' C_o) / (ω'v)
+    q(0) = exp(-z D) R = 1
+    b(θ) = exp(θ P)
+
+    This gets fitted to
+    c_s = (ω' C_s) / (ω'v)
+    """
+
+    def __init__(self, N_m, y_o, P, jit: bool = True):
+        self.y_o = y_o
+        self.P = jax.device_put(P)
+        self.N_m = N_m
+
+    def __call__(self, zα1α2θ):
+        N_m = self.N_m
+        # z = zα1α2θ[0:N_m][:,np.newaxis]
+        α_1 = zα1α2θ[N_m : N_m + 1]
+        α_2 = zα1α2θ[N_m + 1 : N_m + 2]
+        θ = zα1α2θ[N_m + 2 :][:, np.newaxis]
         b = (snp.exp(θ.T @ self.P)).T
         y_o = self.y_o
         return α_1 * (y_o + (α_2 - 1) * b)
@@ -272,8 +335,8 @@ def _plot_convergence_common(iteration_history, plot_residual=True, value_gt=Non
     return fig, ax
 
 
-class Parameters:
-    r"""Parameter class for nuisance parameters.
+class ParameterEstimator:
+    r"""ParameterEstimator class for nuisance parameters.
 
     :code:`projection_shape` is the shape of the detector so usually this will
     be :code:`(N_pixels_x, N_pixels_y)` but it may be any shape including    singleton shape.
@@ -299,7 +362,7 @@ class Parameters:
     θ.T = {θ.T}
         """
 
-    def __init__(self, Y_o, Y_s, R, D, Ω_z, Ω_0=None, N_b=5, non_negative_z=False):
+    def __init__(self, Y_o, Y_s, R, D, Ω_z, Ω_0=None, N_b=5, non_negative_z=False, verbose=False):
         r"""
         Args:
             Y_o: Open beam measurement.
@@ -321,6 +384,7 @@ class Parameters:
         self.R = R
         self.D = D
         self._pc = Preconditioner(self.D)
+        self.N_m = self.D.N_m
 
         self.Y_o = Y_o
         self.Y_s = Y_s
@@ -381,12 +445,14 @@ class Parameters:
             self.forward_0 = None
 
         # --- Losses
-        fz_conditioned = SquaredL2Loss(y=jax.device_put(self.y_sz), A=forward_z_conditioned)
-        fz = SquaredL2Loss(y=jax.device_put(self.y_sz), A=self.forward_z)
+        fz_conditioned = SquaredL2Loss(
+            y=jax.device_put(self.y_sz), A=forward_z_conditioned, scale=1
+        )
+        fz = SquaredL2Loss(y=jax.device_put(self.y_sz), A=self.forward_z, scale=1)
 
         if self.Ω_0:
             # f = || y_sz - f(z, α_1, α_2, θ) ||^2  +  || y_s0 - f(0, α_1, α_2, θ) ||^2
-            f0 = SquaredL2Loss(y=jax.device_put(self.y_s0), A=self.forward_0)
+            f0 = SquaredL2Loss(y=jax.device_put(self.y_s0), A=self.forward_0, scale=1)
             f_conditioned = FunctionalSum(fz_conditioned, f0)
             self.f = FunctionalSum(fz, f0)
 
@@ -407,7 +473,7 @@ class Parameters:
 
         g = SeparableFunctional([gz, gα1, gα2, gθ])
 
-        # --- Optimizer
+        # --- Optimizer APGM
         self.apgm = AcceleratedPGM(
             f=f_conditioned,
             g=g,
@@ -416,6 +482,32 @@ class Parameters:
             step_size=RobustLineSearchStepSize(),
             itstat_options={"display": True, "period": 10},
         )
+
+        # ----- BFGS
+
+        aa = zα1α2θ_init_conditioned
+        x0_pc = np.concatenate([aa[0][:, 0], aa[1][np.newaxis], aa[2][np.newaxis], aa[3][:, 0]])
+        A_pc1 = Forward_zα1α2θ_arr(self.N_m, self.y_o, self._pc.D_conditioned, self.R, self.P)
+        A_pc2 = Forward_0α1α2θ_arr(self.N_m, self.y_o, self.P)
+
+        f1_arr = lambda x: np.sum((self.y_sz - A_pc1(x)) ** 2)
+        if self.Ω_0:
+            f2_arr = lambda x: np.sum((self.y_s0 - A_pc2(x)) ** 2)
+            f_arr = lambda x: f1_arr(x) + f2_arr(x)
+        else:
+            f_arr = f1_arr
+
+        x_pc = minimize(f_arr, x0_pc, method="BFGS", options={"disp": verbose})
+
+        z_pc = x_pc.x[0 : self.N_m][:, np.newaxis]
+        α_1 = float(x_pc.x[self.N_m : self.N_m + 1])
+        α_2 = float(x_pc.x[self.N_m + 1 : self.N_m + 2])
+        θ = x_pc.x[self.N_m + 2 :][:, np.newaxis]
+
+        z = (z_pc.T @ self._pc._C_inverse).T
+
+        self.zα1α2θ_bfgs = self._to_zα1α2θ(z=z, α_1=α_1, α_2=α_2, θ=θ)
+        self.zα1α2θ = self._to_zα1α2θ(z=z, α_1=α_1, α_2=α_2, θ=θ)
 
         self.iteration_history = None
 
@@ -474,28 +566,17 @@ class Parameters:
 
         fig.suptitle("Selected Regions Ω_z, Ω_0")
 
-        fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
-        ax = np.atleast_1d(ax)
-        ax[0].plot(self.t_A, self.y_o.flatten(), label="y_o", alpha=0.75, color="green")
-        ax[0].plot(self.t_A, self.y_sz.flatten(), label="y_sz", alpha=0.75, color="red")
-        if self.Ω_0:
-            ax[0].plot(self.t_A, self.y_s0.flatten(), label="y_s0", alpha=0.75, color="blue")
-        ax[0].legend(prop={"size": 8})
-        ax[0].set_xlabel(util.TOF_LABEL)
-        ax[0].set_title("Averaged Measurements")
-
-        self.D.plot(ax[1])
-
-    def plot_results(self, ax):
+    def plot_results(self):
         r"""Add docstring here."""
+
         y_sz = self.y_sz
         y_o = self.y_o
         y_s0 = self.y_s0
 
-        z = self.get_parameter_dict()["z"]
-        α_1 = self.get_parameter_dict()["α_1"]
-        α_2 = self.get_parameter_dict()["α_2"]
-        θ = self.get_parameter_dict()["θ"]
+        z = self.get()["z"]
+        α_1 = self.get()["α_1"]
+        α_2 = self.get()["α_2"]
+        θ = self.get()["θ"]
         b = (snp.exp(θ.T @ self.P)).T
         ϕ = self.y_o - b
 
@@ -506,8 +587,11 @@ class Parameters:
 
         efbg = α_1 * α_2 * b
 
+        fig, ax = plt.subplots(2, 1, figsize=[12, 8], sharex=True)
+        ax = np.atleast_1d(ax)
+
         if y_s0 is not None:
-            ax.plot(
+            ax[0].plot(
                 t_A,
                 y_s0.flatten(),
                 label="Ω_0 Measurement, y_s0",
@@ -520,14 +604,16 @@ class Parameters:
             lab1 = "Effective Open Beam"
 
         lab2 = "Effective Background"
-        ax.plot(t_A, fit0.flatten(), "--", label=lab1, color="orange", linewidth=1)
-        ax.plot(t_A, y_sz.flatten(), label="y_sz", alpha=0.3, color="tab:blue", linewidth=3)
-        ax.plot(t_A, fitz.flatten(), "--", label="Fit of y_sz", color="tab:blue", linewidth=1)
-        ax.plot(t_A, efbg.flatten(), "--", label=lab2, color="tab:red", linewidth=1)
-        ax.legend(prop={"size": 8})
-        ax.set_xlabel("TOF [μs]")
+        ax[0].plot(t_A, fit0.flatten(), "--", label=lab1, color="orange", linewidth=1)
+        ax[0].plot(t_A, y_sz.flatten(), label="y_sz", alpha=0.3, color="tab:blue", linewidth=3)
+        ax[0].plot(t_A, fitz.flatten(), "--", label="Fit of y_sz", color="tab:blue", linewidth=1)
+        ax[0].plot(t_A, efbg.flatten(), "--", label=lab2, color="tab:red", linewidth=1)
+        ax[0].legend(prop={"size": 8})
+        ax[0].set_xlabel("TOF [μs]")
 
-    def plot_convergence(self, plot_residual=True, ground_truth=None, figsize=[6, 4]):
+        self.D.plot(ax[1])
+
+    def apgm_plot_convergence(self, plot_residual=True, ground_truth=None, figsize=[6, 4]):
         r"""Plot convergence behaviour."""
 
         if ground_truth:
@@ -542,7 +628,7 @@ class Parameters:
 
         return fig, ax
 
-    def solve(self, iterations=100):
+    def apgm_solve(self, iterations=100):
         r"""Find parameters."""
         self.apgm.maxiter = iterations
 
@@ -551,12 +637,12 @@ class Parameters:
 
         self.zα1α2θ = self._pc.uncondition_zα1α2θ(zα1α2θ_conditioned)
 
-    def get_parameter_dict(self):
+    def get(self):
         r"""Get Parameters."""
         parameter_dict = self._to_parameter_dict(self.zα1α2θ)
         return parameter_dict
 
-    def set_parameter_dict(self, z=None, α_1=None, α_2=None, θ=None):
+    def set(self, z=None, α_1=None, α_2=None, θ=None):
         r"""Set Parameters."""
         zα1α2θ = self._to_zα1α2θ(z=z, α_1=α_1, α_2=α_2, θ=θ)
         self._check_zα1α2θ_shape(zα1α2θ)
@@ -571,7 +657,7 @@ class Parameters:
     def load(self, file_name):
         r"""Load Parameters from file."""
         parameter_dict = np.load(file_name, allow_pickle=True)[()]
-        self.set_parameter_dict(**parameter_dict)
+        self.set(**parameter_dict)
 
     def _to_zα1α2θ(self, z=None, α_1=None, α_2=None, θ=None):
         """Convert parameter_dict to zα1α2θ."""
@@ -587,8 +673,8 @@ class Parameters:
         """Convert zα1α2θ to parameter_dict."""
         cast = lambda x: np.require(x, dtype=np.float64)
         z = cast(zα1α2θ[0])
-        α_1 = cast(zα1α2θ[1])
-        α_2 = cast(zα1α2θ[2])
+        α_1 = float(zα1α2θ[1])
+        α_2 = float(zα1α2θ[2])
         θ = cast(zα1α2θ[3])
         parameter_dict = {"z": z, "α_1": α_1, "α_2": α_2, "θ": θ}
         return parameter_dict
@@ -627,11 +713,11 @@ class Forward_Z(Operator):
         return self.α_1 * (self.Φ * Q + self.α_2 * self.B)
 
 
-class ArealDensityEstimator:
-    r"""ArealDensityEstimator class"""
+class DensityEstimator:
+    r"""DensityEstimator class"""
 
     def __init__(self, Y_s, par, D=None, R=None, non_negative_Z=False, projection_transform=None):
-        """Initialize an ArealDensityEstimator object."""
+        """Initialize an DensityEstimator object."""
 
         if D is None:
             self.D = par.D
@@ -653,10 +739,11 @@ class ArealDensityEstimator:
             raise ValueError(f"{v.shape[:-1]=} and {Y_s.shape[:-1]=} shapes are not compatible.")
         projection_shape = self.R.projection_shape
 
-        z = par.get_parameter_dict()["z"]
-        α_1 = par.get_parameter_dict()["α_1"]
-        α_2 = par.get_parameter_dict()["α_2"]
-        θ = par.get_parameter_dict()["θ"]
+        d = par.get()
+        z = d["z"]
+        α_1 = d["α_1"]
+        α_2 = d["α_2"]
+        θ = d["θ"]
 
         b = (snp.exp(θ.T @ par.P)).T
         ϕ = par.y_o - b
@@ -720,3 +807,4 @@ class ArealDensityEstimator:
         self.iteration_history = self.apgm.itstat_object.history(transpose=True)
 
         self.Z = self._pc.uncondition_Z(Z_conditioned)
+        return self.Z
