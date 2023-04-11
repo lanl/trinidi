@@ -3,13 +3,8 @@ TRINIDI Documentation
 
 `Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference (TRINIDI) <https://github.com/lanl/trinidi/tree/develop>`__ is a Python package for estimating isotopic densities using neutron transmission resonance images.
 
-TRINIDI is based on the work in `this manuscript <https://arxiv.org/abs/2302.12577>`__.
+TRINIDI is based on the work in `this manuscript <https://arxiv.org/abs/2302.12577>`__ and it uses SCICO :cite:`balke-2022-scico`.
 
-TRINIDI uses SCICO :cite:`balke-2022-scico`.
-
-
-TRINIDI Documentation
-=====================
 
 .. toctree::
    :maxdepth: 2
@@ -17,9 +12,15 @@ TRINIDI Documentation
 
    API Reference <_autosummary/trinidi.rst>
    zreferences
-   contributing
    shapes
    examples/examples_index
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Documentation
+
+   contributing
 
 .. toctree::
    :hidden:

@@ -235,6 +235,18 @@ class Forward_0α1α2θ_arr:
         return α_1 * (y_o + (α_2 - 1) * b)
 
 
+def background_basis(N_b, N_t):
+    r"""Creates the (N_b, N_t) background basis matrix"""
+    P = np.ones([N_b, N_t])
+    x = np.linspace(np.exp(-1), np.exp(1), N_t)
+    for i in range(N_b):
+        P[i] = np.log(x) ** i
+    for i in range(N_b):
+        P[i] = P[i] / np.linalg.norm(P[i])
+
+    return P
+
+
 class Preconditioner:
     """(Z) (D)  = (ZC) (C_inverse D)
     original   conditioned

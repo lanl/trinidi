@@ -3,7 +3,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-from trinidi import cross_section, util
+from trinidi import cross_section, simulate, util
 
 
 def generate_measurement():
@@ -18,7 +18,7 @@ def generate_measurement():
     D = cross_section.XSDict(isotopes, t_F, flight_path_length)
     z = np.array([[0.005, 0.001]]).T
 
-    ϕ, b, θ, α_1, α_2 = util.generate_spectra(t_A)
+    ϕ, b, θ, α_1, α_2 = simulate.generate_spectra(t_A)
     y_s = α_1 * (ϕ.T * np.exp(-z.T @ D.values) + α_2 * b.T)
     return y_s.flatten()
 
