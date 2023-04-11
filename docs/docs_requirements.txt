@@ -11,5 +11,5 @@ py2jn
 pygraphviz>=1.7
 pandoc
 docutils==0.16
-faculty-sphinx-theme==0.3.1
+faculty-sphinx-theme
 ipython
