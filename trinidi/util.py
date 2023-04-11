@@ -102,12 +102,7 @@ self.coeffs = {self.coeffs}
 
             self.N = self.coeffs.size
 
-        elif (
-            (not (t_A is None))
-            and (not (y is None))
-            and (not (N is None))
-            and (coeffs is None)
-        ):
+        elif (not (t_A is None)) and (not (y is None)) and (not (N is None)) and (coeffs is None):
             # data
 
             self.N = N
@@ -140,13 +135,9 @@ self.coeffs = {self.coeffs}
 def generate_spectra(t_A, acquisition_time=1):
     r"""Generate example parameters for simulation"""
     b_raw = (
-        SimpleSpectrum(coeffs=[[7.63056371], [-2.07322922], [0.11770202]])(t_A)
-        * acquisition_time
+        SimpleSpectrum(coeffs=[[7.63056371], [-2.07322922], [0.11770202]])(t_A) * acquisition_time
     )
-    ϕ = (
-        SimpleSpectrum(coeffs=[[2.67570648], [-0.72236513], [0.05469538]])(t_A)
-        * acquisition_time
-    )
+    ϕ = SimpleSpectrum(coeffs=[[2.67570648], [-0.72236513], [0.05469538]])(t_A) * acquisition_time
     N_b = 3
 
     P = background_basis(N_b, t_A.size)
@@ -178,9 +169,7 @@ def rose_phantom(N, num_circles=5, radius=2 / 3):
     distance = 1 - radius
     angles = np.linspace(0, 2 * np.pi, num_circles, endpoint=False) - np.pi / 2
     centers = np.array([[np.cos(angle), np.sin(angle)] for angle in angles]) * distance
-    masks = np.stack(
-        [circle_mask(N, center, radius=radius) for center in centers], axis=2
-    )
+    masks = np.stack([circle_mask(N, center, radius=radius) for center in centers], axis=2)
 
     return masks
 

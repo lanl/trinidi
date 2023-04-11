@@ -362,7 +362,19 @@ class ParameterEstimator:
     θ.T = {θ.T}
         """
 
-    def __init__(self, Y_o, Y_s, R, D, Ω_z, Ω_0=None, N_b=5, non_negative_z=False, verbose=False):
+    def __init__(
+        self,
+        Y_o,
+        Y_s,
+        R,
+        D,
+        Ω_z,
+        Ω_0=None,
+        N_b=5,
+        non_negative_z=False,
+        verbose=False,
+        dispperiod=10,
+    ):
         r"""
         Args:
             Y_o: Open beam measurement.
@@ -480,7 +492,7 @@ class ParameterEstimator:
             L0=1e-5,
             x0=zα1α2θ_init_conditioned,
             step_size=RobustLineSearchStepSize(),
-            itstat_options={"display": True, "period": 10},
+            itstat_options={"display": True, "period": dispperiod},
         )
 
         # ----- BFGS
@@ -716,7 +728,16 @@ class Forward_Z(Operator):
 class DensityEstimator:
     r"""DensityEstimator class"""
 
-    def __init__(self, Y_s, par, D=None, R=None, non_negative_Z=False, projection_transform=None):
+    def __init__(
+        self,
+        Y_s,
+        par,
+        D=None,
+        R=None,
+        non_negative_Z=False,
+        projection_transform=None,
+        dispperiod=10,
+    ):
         """Initialize an DensityEstimator object."""
 
         if D is None:
@@ -774,7 +795,7 @@ class DensityEstimator:
             L0=1e-5,
             x0=Z_init_conditioned,
             step_size=RobustLineSearchStepSize(),
-            itstat_options={"display": True, "period": 10},
+            itstat_options={"display": True, "period": dispperiod},
         )
 
         self.iteration_history = None

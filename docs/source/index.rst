@@ -26,8 +26,10 @@ TRINIDI Documentation
 
    api
 
-   examples/notebooks/cross_section.ipynb
-   examples/cross_section_.rst
+   examples/notebooks/cross_section_demo.ipynb
+   examples/cross_section_demo_.rst
+   examples/notebooks/reconstruct_demo.ipynb
+   examples/reconstruct_demo_.rst
 
 
 
