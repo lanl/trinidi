@@ -119,9 +119,7 @@ if os.environ.get("NO_MATHJAX"):
     imgmath_image_format = "svg"
 else:
     extensions.append("sphinx.ext.mathjax")
-    mathjax_path = (
-        "https://cdn.mathjax.org/mathjax/latest/" "MathJax.js?config=TeX-AMS_HTML"
-    )
+    mathjax_path = "https://cdn.mathjax.org/mathjax/latest/" "MathJax.js?config=TeX-AMS_HTML"
 
 mathjax_config = {
     "TeX": {
@@ -189,8 +187,9 @@ pygments_style = "sphinx"
 
 # The theme to use for HTML and HTML Help pages. See the documentation for
 # a list of builtin themes.
-# html_theme = "sphinx_rtd_theme"
-html_theme = "faculty-sphinx-theme"
+html_theme = "sphinx_rtd_theme"
+# html_theme = "faculty-sphinx-theme"
+# html_theme = 'karma_sphinx_theme'
 
 html_theme_options = {
     "includehidden": False,
@@ -278,9 +277,7 @@ napoleon_use_rtype = False
 
 
 graphviz_output_format = "svg"
-inheritance_graph_attrs = dict(
-    rankdir="LR", fontsize=9, ratio="compress", bgcolor="transparent"
-)
+inheritance_graph_attrs = dict(rankdir="LR", fontsize=9, ratio="compress", bgcolor="transparent")
 inheritance_node_attrs = dict(
     shape="box",
     fontsize=9,
