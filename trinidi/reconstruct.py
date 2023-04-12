@@ -416,7 +416,7 @@ class ParameterEstimator:
 
         self.t_A = self.R.t_A
         self.N_b = N_b
-        self.P = util.background_basis(N_b, self.t_A.size)
+        self.P = background_basis(N_b, self.t_A.size)
 
         # --- Averaging regions
         # Ω_o: average all projections (1')
