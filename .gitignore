@@ -1,0 +1,13 @@
+*.pyc
+__pycache__
+*.npy
+
+# Sphinx documentation
+docs/_build/
+build/
+docs/source/_autosummary/
+docs/source/example_notebooks/.ipynb_checkpoints/
+
+
+# macos files
+*.DS_Store
