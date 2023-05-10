@@ -28,18 +28,25 @@ class ResolutionOperator:
         Args:
             output_shape: Output shape of operator, i.e. measurement shape.
             kernels (list of nd-arrays): list of convolution kernels.
-                'None' results in identity operator.
+                'None' results in identity operator. Each kernel must
+                sum to 1.
         """
         self.output_shape = output_shape
         self.t_A = t_A
 
         if kernels == None:
-            kernels = [1]
+            kernels = [np.array([1])]
 
         if len(kernels) >= 1:
             self.kernels = kernels
         else:
             raise ValueError("Number of kernels must be at least 1.")
+
+        for k in self.kernels:
+            if np.any(k < 0):
+                raise ValueError("Kernels must me non-negative")
+            if np.abs(np.sum(k) - 1) > 1e-3:
+                raise ValueError("Kernels must sum to 1.")
 
         self.projection_shape = self.output_shape[:-1]
         self.N_A = self.output_shape[-1]
@@ -121,7 +128,7 @@ class ResolutionOperator:
             t_F (array): Time-of-flight equi-spaced increasing array.
         """
         x = np.arange(self.N_F)
-        u = self.call_on_any_array(x)
+        u = np.array(self.call_on_any_array(x))
 
         slope = (u[-1] - u[0]) / (u.size - 1)
         offset = u[0]
@@ -160,11 +167,28 @@ class ResolutionOperator:
 
         return Convolve(h, input_shape=input_shape, mode="same", jit=True)
 
+    def plot_kernel_weights(self, ax):
+        """Plot kernel weights as a function of t_F."""
+        if self.t_A is not None:
+            for i, w in enumerate(self.W):
+                ax.plot(
+                    self.t_F[w > 0],
+                    w[w > 0],
+                    linestyle="--",
+                    label=f"w{i}",
+                    alpha=0.6,
+                    linewidth=1.3,
+                )
+            ax.legend(prop={"size": 8})
+            ax.set_title("Kernel Weights")
+        else:
+            raise ValueError("Can only plot weights if t_A is not None at construction.")
+
 
 from scipy.special import gamma
 
 
-def lanl_fp5_kernel(t_A, Δt, flight_path_length):
+def lansce_fp5_kernel(t_A, Δt, flight_path_length):
     r"""Resolution function kernel based on :cite:`lynn2002neutron`.
 
     Args:
@@ -226,4 +250,4 @@ def equispaced_kernels(t_A, num_kernels, kernel_generator):
     else:
         t_As = [np.mean(t_A)]
 
-    return [kernel_generator(t) for t in t_As]
+    return [kernel_generator(t) for t in t_As], t_As
