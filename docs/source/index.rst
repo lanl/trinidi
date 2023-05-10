@@ -17,17 +17,14 @@ TRINIDI provides cross section data that is extracted from the `Lib80x <https://
    :maxdepth: 2
    :caption: User Documentation
 
+   installation
    API Reference <_autosummary/trinidi.rst>
    zreferences
    shapes
    examples/examples_index
 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Developer Documentation
 
-   contributing
 
 .. toctree::
    :hidden:
@@ -38,6 +35,8 @@ TRINIDI provides cross section data that is extracted from the `Lib80x <https://
    examples/cross_section_demo_.rst
    examples/notebooks/reconstruct_demo.ipynb
    examples/reconstruct_demo_.rst
+   examples/notebooks/resolution_demo.ipynb
+   examples/resolution_demo_.rst
 
 
 
