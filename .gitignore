@@ -1,8 +1,11 @@
+# python files
 *.pyc
 __pycache__
 *.npy
+*.egg-info
+dist
 
-# Sphinx documentation
+# sphinx documentation
 docs/_build/
 build/
 docs/source/_autosummary/
