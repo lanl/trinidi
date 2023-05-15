@@ -9,4 +9,4 @@ include docs/docs_requirements.txt
 recursive-include trinidi *.py
 recursive-include data *.npy README.rst
 recursive-include docs Makefile *.py *.ipynb *.rst *.bib *.css *.svg *.ico
-recursive-include scripts *_requirements.txt *.txt *.rst *.py
+recursive-include examples *_requirements.txt *.txt *.rst *.py

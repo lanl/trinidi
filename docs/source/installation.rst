@@ -40,4 +40,4 @@ Installation
 
    ::
 
-      python scripts/reconstruction_demo.py
+      python examples/reconstruction_demo.py
