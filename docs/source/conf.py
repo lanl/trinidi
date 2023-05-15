@@ -2,6 +2,7 @@
 
 import os
 import sys
+from ast import parse
 
 from sphinx.ext.napoleon.docstring import GoogleDocstring
 
@@ -11,9 +12,10 @@ rootpath = os.path.join(confpath, "..", "..")
 sys.path.append(rootpath)
 
 
-# from trinidi._version import package_version
-def package_version():  # update this ToDo
-    return "0.0.1"
+with open(os.path.join("../../trinidi", "__init__.py")) as f:
+    package_version = (
+        parse(next(filter(lambda line: line.startswith("__version__"), f))).body[0].value.s
+    )
 
 
 ## See
@@ -165,7 +167,7 @@ copyright = "2023 Thilo Balke"
 # built documents.
 #
 # The short X.Y version.
-version = package_version()
+version = package_version
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -338,7 +340,7 @@ exclude_patterns = ["_build", "**tests**", "**spi**", "**README.rst", "include"]
 
 
 def setup(app):
-    #app.add_css_file("trinidi.css")
+    # app.add_css_file("trinidi.css")
     app.add_css_file(
         "http://netdna.bootstrapcdn.com/font-awesome/4.7.0/" "css/font-awesome.min.css"
     )
