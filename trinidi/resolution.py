@@ -28,7 +28,7 @@ class ResolutionOperator:
         Args:
             output_shape: Output shape of operator, i.e. measurement shape.
             kernels (list of nd-arrays): list of convolution kernels.
-                'None' results in identity operator. Each kernel must
+                ``None`` results in identity operator. Each kernel must
                 sum to 1.
         """
         self.output_shape = output_shape

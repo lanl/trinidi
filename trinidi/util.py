@@ -16,7 +16,7 @@ def time2energy(time, flight_path_length):
 
     where :math:`E` is the energy, :math:`m` is the mass, :math:`t` is
     the time-of-flight of the neutron, and :math:`L` is the flight path
-    lenghth.
+    length.
 
     Args:
         time: Time-of-flight in :math:`\mathrm{μs}`.
