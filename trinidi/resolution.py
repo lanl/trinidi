@@ -28,7 +28,7 @@ class ResolutionOperator:
         Args:
             output_shape: Output shape of operator, i.e. measurement shape.
             kernels (list of nd-arrays): list of convolution kernels.
-                'None' results in identity operator. Each kernel must
+                ``None`` results in identity operator. Each kernel must
                 sum to 1.
         """
         self.output_shape = output_shape
@@ -233,14 +233,17 @@ def lansce_fp5_kernel(t_A, Δt, flight_path_length):
 
 
 def equispaced_kernels(t_A, num_kernels, kernel_generator):
-    r"""Generate a list of resolution function kernels that correspond to equispaced time-of-flights and a given kernel_generator.
+    r"""Generate a list of resolution function kernels.
+
+    Generate a list of resolution function kernels that correspond to
+    equispaced time-of-flights and a given kernel_generator.
 
     Args:
         t_A (array): time-of-arrival array of the neutrons in :math:`\mathrm{μs}`.
-        num_kernels (int): Number of kernels to be generated. If `1`, single kernel with average
-            time-of-arrival is being generated.
-        kernel_generator (function): Function with single argument that generates a kernel array
-            based on the time-of-arrival.
+        num_kernels (int): Number of kernels to be generated. If `1`, single
+            kernel with average time-of-arrival is being generated.
+        kernel_generator (function): Function with single argument that
+            generates a kernel array based on the time-of-arrival.
 
     Returns:
         list of Kernel arrays.

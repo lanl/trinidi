@@ -10,7 +10,7 @@ from si_prefix import si_format
 from trinidi import util
 
 # Store absolute path to xsdata.npy
-__xsdata_filename__ = os.path.join(os.path.dirname(__file__), "../data/xsdata.npy")
+__xsdata_filename__ = os.path.join(os.path.dirname(__file__), "data/xsdata.npy")
 if not os.path.exists(__xsdata_filename__):
     raise Exception(
         f"__xsdata_filename__: `{__xsdata_filename__}` does not exist. Please ensure submodule `data` is up to date."

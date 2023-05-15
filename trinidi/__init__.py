@@ -8,7 +8,7 @@
 is a Python package for estimating isotopic densities using neutron transmission resonance images.
 """
 
-__version__ = "0.0.1a0"
+__version__ = "0.0.1a1"
 
 
 from .cross_section import *
