@@ -33,7 +33,7 @@ setup(
     install_requires=install_requires,
     python_requires=">=3.8",
     license="BSD",
-    package_data={"data": ["*.npy"]},
+    package_data={"trinidi": ["data/*.npy"]},
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Development Status :: 3 - Alpha",
