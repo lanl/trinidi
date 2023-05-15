@@ -6,6 +6,7 @@ include pyproject.toml
 include requirements.txt
 include docs/docs_requirements.txt
 
+recursive-exclude data *
 recursive-include trinidi *.py *.npy
 recursive-include docs Makefile *.py *.ipynb *.rst *.bib *.css *.svg *.ico
-recursive-include examples *_requirements.txt *.txt *.rst *.py
+recursive-include docs/source/examples *_requirements.txt *.txt *.rst *.py
