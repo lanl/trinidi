@@ -190,13 +190,10 @@ pygments_style = "default"
 
 # The theme to use for HTML and HTML Help pages. See the documentation for
 # a list of builtin themes.
-# html_theme = "sphinx_rtd_theme"
-html_theme = "faculty-sphinx-theme"
-# html_theme = 'karma_sphinx_theme'
+html_theme = "furo"
 
 html_theme_options = {
-    "includehidden": False,
-    "logo_only": True,
+    "sidebar_hide_name": True,
 }
 
 
