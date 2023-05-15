@@ -338,7 +338,7 @@ exclude_patterns = ["_build", "**tests**", "**spi**", "**README.rst", "include"]
 
 
 def setup(app):
-    app.add_css_file("trinidi.css")
+    #app.add_css_file("trinidi.css")
     app.add_css_file(
         "http://netdna.bootstrapcdn.com/font-awesome/4.7.0/" "css/font-awesome.min.css"
     )
