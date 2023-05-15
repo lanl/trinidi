@@ -13,10 +13,19 @@ with open(os.path.join(name, "__init__.py")) as f:
 with open("requirements.txt") as f:
     install_requires = [line.strip() for line in f.readlines()]
 
+
+description = (
+    "Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference (TRINIDI)"
+)
+long_description = """
+Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference (TRINIDI) is a Python package for estimating isotopic densities using neutron transmission resonance images.
+"""
+
 setup(
     name=name,
     version=version,
-    description="Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference (TRINIDI)",
+    description=description,
+    long_description=long_description,
     author="Thilo Balke",
     author_email="thilo.balke@gmail.com",
     url="https://github.com/lanl/trinidi",
