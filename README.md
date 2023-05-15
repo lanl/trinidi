@@ -10,4 +10,4 @@ Time-of-Flight Resonance Imaging with Neutrons for Isotopic Density Inference.
 
 Full documentation is available at: https://trinidi.readthedocs.io
 
-![trinidi](https://github.com/lanl/trinidi/blob/main/docs/trinidi.png?raw=true)
+![trinidi](docs/trinidi.png)
