@@ -1,0 +1,13 @@
+include MANIFEST.in
+include README.rst
+include LICENSE
+include setup.py
+include conftest.py
+include pyproject.toml
+include requirements.txt
+include docs/docs_requirements.txt
+
+recursive-include trinidi *.py
+recursive-include trinidi/data *.npy
+recursive-include docs Makefile *.py *.ipynb *.rst *.bib *.css *.svg *.ico
+recursive-include scripts *_requirements.txt *.txt *.rst *.py
