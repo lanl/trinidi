@@ -2,14 +2,13 @@
 
 import os
 from ast import parse
+
 from setuptools import find_packages, setup
 
 name = "trinidi"
 
-with open(os.path.join(name, '__init__.py')) as f:
-    version = parse(next(filter(
-        lambda line: line.startswith('__version__'),
-        f))).body[0].value.s
+with open(os.path.join(name, "__init__.py")) as f:
+    version = parse(next(filter(lambda line: line.startswith("__version__"), f))).body[0].value.s
 
 with open("requirements.txt") as f:
     install_requires = [line.strip() for line in f.readlines()]
