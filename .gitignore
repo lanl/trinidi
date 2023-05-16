@@ -1,7 +1,6 @@
 # python files
 *.pyc
 __pycache__
-*.npy
 *.egg-info
 dist
 
