@@ -193,9 +193,20 @@ pygments_style = "default"
 html_theme = "furo"
 
 html_theme_options = {
+    "light_css_variables": {
+        "color-brand-primary": "#e34a09",
+        "color-brand-content": "#e34a09",
+        "color-background-primary": "#FCFCFC",
+        "color-background-secondary": "#FAFAFA",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#e34a09",
+        "color-brand-content": "#e34a09",
+        "color-background-primary": "#303030",
+        "color-background-secondary": "#282828",
+    },
     "sidebar_hide_name": True,
 }
-
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -337,7 +348,7 @@ exclude_patterns = ["_build", "**tests**", "**spi**", "**README.rst", "include"]
 
 
 def setup(app):
-    # app.add_css_file("trinidi.css")
+    app.add_css_file("trinidi.css")
     app.add_css_file(
         "http://netdna.bootstrapcdn.com/font-awesome/4.7.0/" "css/font-awesome.min.css"
     )

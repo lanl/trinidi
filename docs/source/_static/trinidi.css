@@ -1,0 +1,8 @@
+/* furo theme customization */
+
+.sidebar-drawer {
+  width: fit-content !important;
+}
+
+
+@media ( prefers-color-scheme: light )

@@ -18,7 +18,8 @@ This package depends on features provided by SCICO :cite:`balke2022scico`, and p
    API Reference <_autosummary/trinidi.rst>
    zreferences
    shapes
-   examples/examples_index
+   examples/examples_index_notebooks
+   examples/examples_index_scripts
 
 
 
