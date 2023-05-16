@@ -23,20 +23,6 @@ This package depends on features provided by SCICO :cite:`balke2022scico`, and p
 
 
 
-.. toctree::
-   :hidden:
-
-   api
-
-   examples/notebooks/cross_section_demo.ipynb
-   examples/cross_section_demo_.rst
-   examples/notebooks/reconstruct_demo.ipynb
-   examples/reconstruct_demo_.rst
-   examples/notebooks/resolution_demo.ipynb
-   examples/resolution_demo_.rst
-
-
-
 Indices
 =======
 
