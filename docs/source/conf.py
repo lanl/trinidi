@@ -194,14 +194,14 @@ html_theme = "furo"
 
 html_theme_options = {
     "light_css_variables": {
-        "color-brand-primary": "#e34a09",
-        "color-brand-content": "#e34a09",
+        "color-brand-primary": "#d43c00",
+        "color-brand-content": "#d43c00",
         "color-background-primary": "#FCFCFC",
         "color-background-secondary": "#FAFAFA",
     },
     "dark_css_variables": {
-        "color-brand-primary": "#e34a09",
-        "color-brand-content": "#e34a09",
+        "color-brand-primary": "#ff7842",
+        "color-brand-content": "#ff7842",
         "color-background-primary": "#303030",
         "color-background-secondary": "#282828",
     },
