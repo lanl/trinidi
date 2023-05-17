@@ -6,7 +6,7 @@ Installation
 PyPI
 ----
 
-To install ``TRINIDI`` using the Python Package Index run the command:
+To install TRINIDI using the Python Package Index run the command:
 
 ::
 
@@ -15,7 +15,7 @@ To install ``TRINIDI`` using the Python Package Index run the command:
 From Source
 -----------
 
-Installing from source downloads the most recent version of `TRINIDI`
+Installing from source downloads the most recent version of TRINIDI
 and gives you direct access to the
 :ref:`Jupyter notebooks <examples_notebooks>` the and corresponding
 :ref:`Python scripts <examples_scripts>`.

@@ -3,7 +3,7 @@
 Overview
 ========
 
-The main functionality of ``TRINIDI`` is reconstructing areal density
+The main functionality of TRINIDI is reconstructing areal density
 values, :math:`Z \in \mathbb{R}^{N_{\mathrm{P}} \times N_{\mathrm{m}}}`,
 from the neutron time-of-flight transmission measurements,
 :math:`Y_{\mathrm{s}} \in \mathbb{R}^{N_{\mathrm{P}} \times N_{\mathrm{A}}}`
@@ -27,7 +27,7 @@ We strongly advise the reader to review our manuscript
 Array Shapes
 ------------
 
-In ``TRINIDI`` the measurements are handled using the
+In TRINIDI the measurements are handled using the
 ``nd-arrays`` ``Y_s`` and ``Y_o`` and
 ::
 
@@ -51,7 +51,7 @@ Similarly, for the areal density array we have
         Z.shape == projection_shape + (N_m,).
 
 Below you can find a :ref:`summary <shape_summary>` of the most
-important arrays and operators in ``TRINIDI``.
+important arrays and operators in TRINIDI.
 
 
 Cross Section Dictionary
@@ -68,7 +68,7 @@ expressed as
 so that :math:`(Q_0)_{i, j}` is the fraction of flux neutrons that make it
 to the detector at projection :math:`i` and TOF bin index :math:`j`.
 
-In ``TRINIDI``, the cross section data structure, ``D``, is created
+In TRINIDI, the cross section data structure, ``D``, is created
 using the :class:`.XSDict` class in the :mod:`trinidi.cross_section`
 module. This class has features including reading, merging and plotting
 cross section entries. The actual values of :math:`D` are stored in
@@ -79,12 +79,12 @@ can be computed as
 
         Q_0 = np.exp(- Z @ D.values).
 
-In ``TRINIDI``, ``D.values`` has units of
+In TRINIDI, ``D.values`` has units of
 :math:`\mathrm{mol}/\mathrm{cm}^2`, which is the reciprocal of the
 units of ``Z``.
 
 To make yourself familiar of the cross section dictionary data structure
-We recommend to check out the
+we recommend to check out the
 :ref:`trinidi.cross_section Module Demo <cross_section_demo>`
 script which is also available as
 :ref:`Jupyter notebook <examples_notebooks>`.
