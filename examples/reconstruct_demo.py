@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from trinidi import cross_section, reconstruct, resolution, simulate, util
 
 """
-Generation of Simulated data
+Generation of Simulated Data
 ----------------------------
 To generate the simulated data we use `TRINIDI`'s `generate_sample_data` function that generates
 a phantom of overlapping discs of different isotopes and the associated measurement counts.
@@ -124,7 +124,7 @@ As shown above, the phantom consists of several discs and the `i`th disc corresp
 """
 
 for i, (iso, z_i) in enumerate(zip(isotopes, z.flatten())):
-    print(f"{iso}: {z_i} = ({Z[:,:,i].max()}) [mol/cm²]")
+    print(f"{iso}: {z_i} (= {Z[:,:,i].max()}) [mol/cm²]")
 
 """
 Preparation for the Reconstruction

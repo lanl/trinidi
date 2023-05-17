@@ -91,12 +91,6 @@ script which is also available as
 
 
 
-
-
-
-
-
-
 Time-of-Flight Calibration
 --------------------------
 
@@ -113,10 +107,21 @@ script which is also available as
 Resolution Operator
 -------------------
 
+To make yourself familiar of the resolution function data structure
+we recommend to check out the
+:ref:`trinidi.resolution Module Demo <resolution_demo>`
+script which is also available as
+:ref:`Jupyter notebook <examples_notebooks>`.
 
 
+Reconstruction
+--------------
 
-
+To make yourself familiar of the reconstruction module
+we recommend to check out the
+:ref:`trinidi.reconstruct Module Demo <reconstruct_demo>`
+script which is also available as
+:ref:`Jupyter notebook <examples_notebooks>`.
 
 
 .. _shape_summary:
@@ -132,8 +137,8 @@ Summary of Array and Operator Shapes and Units
     t_A               |  (N_A,)
     R                 |  (N_F, N_A) (implied)
     D.values          |  (N_m, N_F)
-    Z                 |  (N_P, N_m)
-    Y_o, Y_s, Φ, B    |  (N_P, N_A)
+    Z                 |  projection_shape + (N_m,)
+    Y_o, Y_s, Φ, B    |  projection_shape + (N_A,)
 
 ::
 
