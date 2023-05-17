@@ -39,7 +39,7 @@ with a :math:`64 \times 64` pixel detector and :math:`1000` TOA bins we
 get
 ::
 
-        Y_s.shape == projection_shape + (N_A,) == (64, 64) + (1000,) == (64, 64, 1000)
+        Y_s.shape == projection_shape + (N_A,) == (64, 64) + (1000,) == (64, 64, 1000).
 
 The array element ``Y_s[i_y, i_x, i_t]`` corresponds to the pixel with
 index ``(i_x, i_y)`` and TOA bin ``t_A[i_t]``, where ``t_A`` has size
@@ -49,6 +49,52 @@ Similarly, for the areal density array we have
 ::
 
         Z.shape == projection_shape + (N_m,).
+
+Below you can find a :ref:`summary <shape_summary>` of the most
+important arrays and operators in ``TRINIDI``.
+
+
+Cross Section Dictionary
+------------------------
+
+The cross section dictionary,
+:math:`D \in \mathbb{R}^{N_{\mathrm{m}} \times N_{\mathrm{F}}}`, maps
+areal densities to hyperspectral attenuation or transmission values.
+Ignoring the effects of the resolution function, the transmission is
+expressed as
+
+.. math:: Q_0 = \exp(-ZD)
+
+so that :math:`(Q_0)_{i, j}` is the fraction of flux neutrons that make it
+to the detector at projection :math:`i` and TOF bin index :math:`j`.
+
+In ``TRINIDI``, the cross section data structure, ``D``, is created
+using the :class:`.XSDict` class in the :mod:`trinidi.cross_section`
+module. This class has features including reading, merging and plotting
+cross section entries. The actual values of :math:`D` are stored in
+``D.values`` so that the expression of the transmission from above
+can be computed as
+
+::
+
+        Q_0 = np.exp(- Z @ D.values).
+
+In ``TRINIDI``, ``D.values`` has units of
+:math:`\mathrm{mol}/\mathrm{cm}^2`, which is the reciprocal of the
+units of ``Z``.
+
+To make yourself familiar of the cross section dictionary data structure
+We recommend to check out the
+:ref:`trinidi.cross_section Module Demo <cross_section_demo>`
+script which is also available as
+:ref:`Jupyter notebook <examples_notebooks>`.
+
+
+
+
+
+
+
 
 
 Time-of-Flight Calibration
@@ -64,25 +110,19 @@ script which is also available as
 :ref:`Jupyter notebook <examples_notebooks>`.
 
 
-
-
-Units Summary
--------------
-
-::
-
-    Quantity          |  Unit       |  Data Structure
-    ------------------+-------------+--------------------
-    lengths           |  m          |  flight_path_lenght
-    times             |  μs         |  t_A, t_F, Δt, t_0
-    neutron energies  |  eV         |  E
-    cross sections    |  mol/cm²    |  D
-    areal densities   |  cm²/mol    |  Z
+Resolution Operator
+-------------------
 
 
 
-Shapes Summary
---------------
+
+
+
+
+.. _shape_summary:
+
+Summary of Array and Operator Shapes and Units
+----------------------------------------------
 
 ::
 
@@ -93,4 +133,14 @@ Shapes Summary
     R                 |  (N_F, N_A) (implied)
     D.values          |  (N_m, N_F)
     Z                 |  (N_P, N_m)
-    Y_o, Y_s          |  (N_P, N_A)
+    Y_o, Y_s, Φ, B    |  (N_P, N_A)
+
+::
+
+    Quantity          |  Unit       |  Data Structure
+    ------------------+-------------+--------------------
+    lengths           |  m          |  flight_path_lenght
+    times             |  μs         |  t_A, t_F, Δt, t_0
+    neutron energies  |  eV         |  E
+    cross sections    |  mol/cm²    |  D
+    areal densities   |  cm²/mol    |  Z

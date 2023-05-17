@@ -17,7 +17,7 @@ from trinidi import cross_section, reconstruct, resolution, simulate, util
 """
 Generation of Simulated data
 ----------------------------
-To generate the simulated data we use `trinidi`'s `generate_sample_data` function that generates
+To generate the simulated data we use `TRINIDI`'s `generate_sample_data` function that generates
 a phantom of overlapping discs of different isotopes and the associated measurement counts.
 
 Below we define what isotopes to use for the phantom and what their corresponding densities, `z`

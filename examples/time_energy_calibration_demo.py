@@ -6,7 +6,7 @@ Demo: Time-Energy Calibration
 =============================
 
 This script illustrates the calibration of the time-energy
-correspondence. For many `trinidi` features we will need the
+correspondence. For many `TRINIDI` features we will need the
 time-of-flight (TOF) vector, `t_F` and time-of-arrival (TOA) vector
 `t_A`, which for the purposes of this example are assumed to be equal
 and simply referred to as time, `t`.
@@ -24,7 +24,7 @@ $$t = L \sqrt{ \frac{m}{2 E} } \; $$
 
 where $m$ is the mass of the neutron.
 
-In `trinidi` we assume that the time bins are equidistant and increasing
+In `TRINIDI` we assume that the time bins are equidistant and increasing
 i.e.
 
 $$ t_i = i \Delta_t + t_0 \;$$

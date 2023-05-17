@@ -74,6 +74,8 @@ class XSDict:
     of size `(N_m, N_F)`, where `N_m` is the number of isotopes (`len(isotopes)`) and `N_m`
     is the number of time-of-flight bins (`t_F.size`).
 
+    The unit of the cross sections is `mol/cm²`.
+
     """
 
     def __repr__(self):
@@ -148,10 +150,20 @@ class XSDict:
         """Merge cross section entries of an XSDict.
 
         This function can be used to combine cross section entries using a weighted sum.
-        The list `merge_isotopes` must be a subset of `self.isotopes`. The `merge_weights` are
-        usually the natural abundance fractions of the isotopes, summing to <=1. The returned
-        list of `isotopes` has the unchanged isotopes where the merged isotopes are replaced by
+        The list `merge_isotopes` must be a subset of `self.isotopes`. The `merge_weights` are the
+        weights of the weighted sum and are often the natural abundance fractions of the isotopes,
+        summing to <=1.
+        The returned list of isotopes has the unchanged isotopes where the merged isotopes are replaced by
         the `new_key` string. (I.e. they updated list `isotopes` is likely not stricly only isotopes.)
+
+        For example:
+
+        .. code-block:: python
+
+            print(self.isotopes) # ["U-235", "U-238", "Pu-239"]
+            new_isotopes = self.merge(["U-235", "U-238"], merge_weights, "U")
+            print(new_isotopes) # ["U", "Pu-239"] (equivalent to self.isotopes)
+
 
         Args:
             merge_isotopes (list): list of isotope symbols to be summed.

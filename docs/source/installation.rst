@@ -3,7 +3,7 @@
 Installation
 ============
 
-PyPi
+PyPI
 ----
 
 To install ``TRINIDI`` using the Python Package Index run the command:
