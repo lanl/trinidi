@@ -1,9 +1,54 @@
-r"""Example script for estimating the time calibration."""
+#!/usr/bin/env python
+# coding: utf-8
+
+"""
+Demo: Time-Energy Calibration
+=============================
+
+This script illustrates the calibration of the time-energy
+correspondence. For many `trinidi` features we will need the
+time-of-flight (TOF), `t_F`,
+respectively.
+
+With the knowledge of the flight path length, $L$, there is a unique
+correspondence between the TOF, $t$, and the energy, $E$ of the
+neutrons, i.e.
+
+
+$$E = \frac{1}{2} m \left( \frac{L}{t} \right)$$
+
+or
+
+$$t = L \sqrt{ \frac{m}{2 E} } \; $$
+
+where $m$ is the mass of the neutron.
+
+The measurement arrays, `Y_o` and `Y_s`, each have a shape of
+`projection_shape + (N_A,)`. The projection shape is typically
+the shape of the detector and thus `np.prod(projection_shape) == N_P`,
+matching the notation from our manuscript that
+$Y_{\mathrm{s}} \in \mathbb{R}^{N_{\mathrm{p}} \times N_{\mathrm{A}}}$.
+
+For example, a given a measurement with a $64 \times 64$ pixel detector
+and $1000$ TOA bins we get `Y_s.shape == projection_shape + (N_A,) ==
+(64, 64) + (1000,) == (64, 64, 1000)`. The array element `Y_s[i_y, i_x, i_t]` corresponds to the pixel with
+index `(i_x, i_y)` and TOA bin `t_A[i_t]`.
+
+
+
+"""
+
+
 import numpy as np
 
 import matplotlib.pyplot as plt
 
 from trinidi import cross_section, simulate, util
+
+"""
+First we generate a typical measurement spectrum `y_s`. The function
+below generates the data and prints out the ground tru
+"""
 
 
 def generate_measurement():
