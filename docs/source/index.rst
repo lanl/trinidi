@@ -15,11 +15,11 @@ This package depends on features provided by SCICO :cite:`balke2022scico`, and p
    :caption: User Documentation
 
    installation
+   overview
    API Reference <_autosummary/trinidi.rst>
+   examples/index_notebooks
+   examples/index_scripts
    zreferences
-   shapes
-   examples/examples_index_notebooks
-   examples/examples_index_scripts
 
 
 

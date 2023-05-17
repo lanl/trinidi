@@ -3,6 +3,25 @@
 Installation
 ============
 
+PyPi
+----
+
+To install ``TRINIDI`` using the Python Package Index run the command:
+
+::
+
+      pip install trinidi
+
+From Source
+-----------
+
+Installing from source downloads the most recent version of `TRINIDI`
+and gives you direct access to the
+:ref:`Jupyter notebooks <examples_notebooks>` the and corresponding
+:ref:`Python scripts <examples_scripts>`.
+
+To install,
+
 1. Clone TRINIDI from the source repo:
 
    ::
@@ -36,8 +55,11 @@ Installation
       pip install -e .  # Installs TRINIDI in editable mode
 
 
-5. Verify that TRINIDI is running correctly, i.e.:
+5. Verify that TRINIDI is running correctly, e.g. run an example script:
 
    ::
 
       python examples/reconstruction_demo.py
+
+The corresponding Jupyter notebooks can be found at
+``data/examples/notebooks/``.
