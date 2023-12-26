@@ -187,8 +187,9 @@ class XSDict:
 
         for isotope in merge_isotopes:
             i = self.isotopes.index(isotope)
+            j = merge_isotopes.index(isotope)
 
-            d = d + D[i] * merge_weights[i]
+            d = d + D[i] * merge_weights[j]
             del D[i]
             del self.isotopes[i]
 
